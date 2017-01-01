@@ -1,3 +1,10 @@
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+//   U N F I N I S H E D ,   D O E S   N O T   W O R K   O N   A r d u i n o   M i c r o   //
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
 /*******************************************************************************************************************
 ** Example program for using the VCNL4010 library which allows the Arduino to use the VCNL4010 Fully Integrated   **
 ** Proximity and Ambient Light Sensor with Infrared Emitter using the built-in interrupt functionality.           **
@@ -52,7 +59,7 @@ void setup() {                                                                //
   Serial.print(", low = ");Serial.print(ProximityReading*9/10);               // Display low threshold value      //
   Serial.print(", high = ");Serial.print(ProximityReading*11/10);             // Display high threshold value     //
   Serial.println();                                                           //                                  //
-  Sensor.setInterrupt( 4,                                                     // Trigger after 4 events           //
+  Sensor.setInterrupt( 1,                                                     // Trigger after 4 events           //
                        false,                                                 // Nothing on Proximity reading     //
                        false,                                                 // Nothing on Ambient light reading //
                        true,                                                  // Interrupt on Proximity threshold //
@@ -61,39 +68,50 @@ void setup() {                                                                //
                        ProximityReading * 11 / 10);                           // High value is 110% of first value//
   Sensor.setProximityContinuous(true);                                        // Turn on continuous Proximity     //
   Serial.println(F("VCNL4010 initialized.\n\n"));                             //                                  //
-    *digitalPinToPCMSK(INTERRUPT_PIN) |= bit (digitalPinToPCMSKbit(INTERRUPT_PIN));  // enable pin
-    PCIFR  |= bit (digitalPinToPCICRbit(INTERRUPT_PIN)); // clear any outstanding interrupt
-    PCICR  |= bit (digitalPinToPCICRbit(INTERRUPT_PIN)); // enable interrupt for the group
+  cli();                                                                      // Disable interrupts for a bit     //
+
+    DDRB = B00000000;        // set pins 8 to 13 as inputs
+    PORTB |= B11111111;      // enable pullups on pins 8 to 13
+
+  PCICR =0x02;          // Enable PCINT1 interrupt
+  PCMSK0 = 0b00000111;
+
+  DDRB &= ~(1 << DDB0);                                                       // Clear the PB0 pin
+  PORTB |= (1 << PORTB0);                                                     // turn On the Pull-up
+  PCICR |= (1 << PCIE0);                                                      // set PCIE0 to enable PCMSK0 scan
+  PCMSK0 |= (1 << PCINT0);                                                    // set PCINT0 to trigger
+  sei();                                                                      // turn on interrupts
+
+  pinMode(A0, INPUT);	   // Pin A0 is input to which a switch is connected
+  digitalWrite(A0, HIGH);   // Configure internal pull-up resistor
+  pinMode(A1, INPUT);	   // Pin A1 is input to which a switch is connected
+  digitalWrite(A1, HIGH);   // Configure internal pull-up resistor
+  pinMode(A2, INPUT);	   // Pin A2 is input to which a switch is connected
+  digitalWrite(A2, HIGH);   // Configure internal pull-up resistor
+}
 
 } // of method setup()                                                        //                                  //
 /*******************************************************************************************************************
 ** This is the main program for the Arduino IDE, it is an infinite loop and keeps on repeating.                   **
 *******************************************************************************************************************/
 void loop() {                                                                 //                                  //
+  Serial.print("Sleeping until sensor movement detected.\n");                 // Go to sleep until wake-up        //
   digitalWrite(GREEN_LED_PIN,false);                                          // Turn off LED while we sleep      //
-  ADCSRA = 0;                                                                 // turn off the ADC module          //
-  set_sleep_mode(SLEEP_MODE_EXT_STANDBY);                                     // Set the maximum power savings    //
+  delay(100);
   cli();                                                                      // disable interrupts               //
+  ADCSRA = 0;                                                                 // turn off the ADC module          //
+  set_sleep_mode(SLEEP_MODE_PWR_SAVE);                                        // Set the maximum power savings    //
   sleep_enable();                                                             // Enable sleep, but don't sleep yet//
-//  attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN),Wake,FALLING);         // Attach the ISR "Wake" to pin     //
   sei();                                                                      // Re-enable interrupts             //
   sleep_cpu ();                                                               // Sleep within 3 clock cycles      //
-//  detachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN));                      // Detach interrupt ISR             //
   ADCSRA = B10000000;                                                         // turn the ADC module back on      //
   digitalWrite(GREEN_LED_PIN,HIGH);                                           // Turning on LED                   //
-
-  if (Sensor.getInterrupt()) {
-    Serial.print(millis());Serial.print(" ");Serial.print(Sensor.getProximity());
-    Serial.print(": Sensor Movement detected!\n");
-    Sensor.clearInterrupt(0);
-    delay(200);
-  }
+delay(3000);
+  Serial.print(millis());Serial.print(" ");Serial.print(Sensor.getProximity());
+  Serial.print(": Sensor Movement detected!\n");
+  Sensor.clearInterrupt(0);
 } // of method loop()                                                         //----------------------------------//
 
 
-ISR(PCINT0_vect) {
-  Serial.print("Wake");
-}
-
-
+ISR(PCINT1_vect) {}
 

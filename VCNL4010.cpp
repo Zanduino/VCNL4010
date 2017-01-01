@@ -216,7 +216,7 @@ void VCNL4010::setInterrupt(const uint8_t  count         = 1,                 //
                             const bool     ProxThreshold = false,             //                                  //
                             const bool     ALSThreshold  = false,             //                                  //
                             const uint16_t lowThreshold  = 0,                 //                                  //
-                            const uint16_t highThreshold = 0 ) {              //                                  //
+                            const uint16_t highThreshold = UINT16_MAX ) {     //                                  //
   uint8_t registerValue = 0;                                                  // Default to 1 count               //
   if (count>=128)       registerValue = B111;                                 // Choose setting based on parameter//
   else if (count>=64)   registerValue = B110;                                 //                                  //
@@ -253,14 +253,15 @@ void VCNL4010::setAmbientContinuous(const bool ContinuousMode=true) {         //
                         else commandBuffer |= B00000000;                      // turn off both bits               //
     _ContinuousAmbient = false;                                               // set flag                         //
   } // of if-then-else we are turning on                                      //                                  //
-} // of method setAmbientContinuous()                                         //                                  //
+  writeByte(VCNL4010_COMMAND_REG,commandBuffer);                              // Write value back to register     //
+}// of method setAmbientContinuous()                                         //                                  //
 
 /*******************************************************************************************************************
 ** Method setProximityContinuous() sets or unsets the continuous measurement mode for the proximity sensor        **
 *******************************************************************************************************************/
 void VCNL4010::setProximityContinuous(const bool ContinuousMode=true) {       // Cont. Proximity sampling on/off  //
   uint8_t commandBuffer = readByte(VCNL4010_COMMAND_REG);                     // get the register contents        //
-  commandBuffer &= B11111010;                                                 // Mask the 2 relevant bits         //
+  commandBuffer &= B11111100;                                                 // Mask the 2 relevant bits         //
   if (ContinuousMode==true) {                                                 // If we are turning on then write  //
     commandBuffer |= B00000011;                                               // the 2 relevant bits and          //
     _ContinuousProximity = true;                                              // set flag                         //
@@ -269,4 +270,5 @@ void VCNL4010::setProximityContinuous(const bool ContinuousMode=true) {       //
                       else commandBuffer |= B00000000;                        // turn off both bits               //
     _ContinuousProximity = false;                                             // set flag                         //
   } // of if-then-else we are turning on                                      //                                  //
+  writeByte(VCNL4010_COMMAND_REG,commandBuffer);                              // Write value back to register     //
 } // of method setProximityContinuous()                                       //                                  //

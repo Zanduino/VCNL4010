@@ -69,13 +69,13 @@
                             const bool     ProxThreshold = false,             //                                  //
                             const bool     ALSThreshold  = false,             //                                  //
                             const uint16_t lowThreshold  = 0,                 //                                  //
-                            const uint16_t highThreshold = 0 );               //                                  //
+                            const uint16_t highThreshold = UINT16_MAX );      //                                  //
       uint16_t getAmbientLight();                                             // Retrieve ambient light reading   //
       uint16_t getProximity();                                                // Retrieve proximity reading       //
       uint8_t  getInterrupt();                                                // Retrieve Interrupt bits          //
       void     clearInterrupt(const uint8_t intVal=0);                        // Clear Interrupt bits             //
-    private:                                                                  // Private methods                  //
       uint8_t  readByte(const uint8_t addr);                                  // Read 1 byte from address on I2C  //
+    private:                                                                  // Private methods                  //
       uint16_t readWord(const uint8_t addr);                                  // Read 2 bytes from address on I2C //
       void     writeByte(const uint8_t addr, const uint8_t data);             // Write 1 byte at address to I2C   //
       uint8_t _TransmissionStatus;                                            // Status of I2C transmission       //

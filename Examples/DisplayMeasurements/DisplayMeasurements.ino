@@ -39,7 +39,7 @@ void setup() {                                                                //
   } // of if-then we can't initialize or find the device                      //                                  //
   Sensor.setLEDmA(200);                                                       // Boost power to Proximity sensor  //
   Sensor.setAmbientLight(2,128);                                              // Sample 2x per second, 128 avgs.  //
-  Sensor.setProximityRate(64);                                                // Sample 64x per second            //
+  Sensor.setProximityHz(64);                                                  // Sample 64x per second            //
   Serial.println(F("VCNL4010 initialized.\n\n"));                             //                                  //
 } // of method setup()                                                        //                                  //
 /*******************************************************************************************************************
@@ -68,8 +68,3 @@ void loop() {                                                                 //
     Proximity_Value = Proximity;                                              //                                  //
   } // of if-then we have a 10% change or more in either reading              //                                  //
 } // of method loop()                                                         //----------------------------------//
-
-
-//  Sensor.setInterrupt(1,false,false,false,true,30,15000);
-//  Serial.print(Sensor.getInterrupt(),BIN);
-//  Sensor.clearInterrupt(0);
