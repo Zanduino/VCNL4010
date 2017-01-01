@@ -24,6 +24,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer           Comments                                                                 **
 ** ====== ========== =================== ======================================================================== **
+** 1.0.0  2017-01-01 Arnd@SV-Zanshin.Com Fixed error on continuous mode with proximity, ready for release         **
 ** 1.0.b2 2016-12-31 Arnd@SV-Zanshin.Com Continued coding                                                         **
 ** 1.0.b1 2016-12-30 Arnd@SV-Zanshin.Com Created class                                                            **
 **                                                                                                                **
