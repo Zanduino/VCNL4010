@@ -11,4 +11,4 @@ The proximity sensor has a range of approximately 200mm (2 cm, or 3/4 of an inch
 Details are available at the [GitHub DSFamily Wiki](https://github.com/SV-Zanshin/VCNL4010/wiki)
 
 
-![Zanshin Logo](https://www.sv-zanshin.com/images/gif/zanshinkanjitiny.gif) <img src="https://www.sv-zanshin.com/images/gif/zanshintext.gif" width="75"/>
+![Zanshin Logo](https://www.sv-zanshin.com/r/images/site/gif/zanshinkanjitiny.gif) <img src="https://www.sv-zanshin.com/r/images/site/gif/zanshintext.gif" width="75"/>
