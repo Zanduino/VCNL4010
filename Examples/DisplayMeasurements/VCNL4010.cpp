@@ -1,5 +1,5 @@
 /*******************************************************************************************************************
-** VCNL4010 class method definitions. See the header file for program details and version information             **
+** VCNL4010 class method definitions. See the header file for program details and version information.            **
 **                                                                                                                **
 ** This program is free software: you can redistribute it and/or modify it under the terms of the GNU General     **
 ** Public License as published by the Free Software Foundation, either version 3 of the License, or (at your      **
@@ -22,9 +22,9 @@ VCNL4010::~VCNL4010() {} // of class destructor                               //
 ** Method begin starts I2C communications with the device, using a default address if one is not specified and    **
 ** return true if the device has been detected and false if it was not                                            **
 *******************************************************************************************************************/
-bool VCNL4010::begin( ) {                                                     // Start I2C Comms with device      //
+bool VCNL4010::begin( ) {                                                     // Start I2C Communications         //
   Wire.begin();                                                               // Start I2C as master device       //
-  if (readByte(VCNL4010_PRODUCT_ID_REG)!=VCNL4010_PRODUCT_VERSION)            // If the product doesn't match then//
+  if (readByte(VCNL4010_PRODUCT_ID_REG)!=VCNL4010_PRODUCT_VERSION)            // If product doesn't match then    //
     return false;                                                             // return an error                  //
   setProximityHz(2);                                                          // Default 2Hz proximity rate       //
   setLEDmA(20);                                                               // Default 20mA IR LED power        //

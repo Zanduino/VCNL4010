@@ -26,6 +26,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer           Comments                                                                 **
 ** ====== ========== =================== ======================================================================== **
+** 1.0.1  2017-07-11 Arnd@SV-Zanshin.Com Refactored variables to standard c++ nomenclature                        **
 ** 1.0.0  2017-01-02 Arnd@SV-Zanshin.Com Added PERCENTAGE constant and program description                        **
 **                                                                                                                **
 *******************************************************************************************************************/
@@ -44,7 +45,7 @@ VCNL4010 Sensor;                                                              //
 ** and then control goes to the main loop, which loop indefinately.                                               **
 *******************************************************************************************************************/
 void setup() {                                                                // Arduino standard setup method    //
-  Serial.begin(SERIAL_SPEED);                                                 // Start serial comms at Baud rate  //
+  Serial.begin(SERIAL_SPEED);                                                 // Start serial port at Baud rate   //
   delay(2000);                                                                // Some Atmel Serials need time     //
   Serial.println(F("Starting VCNL4010 display measurements program"));        //                                  //
   while (!Sensor.begin()) {                                                   // Loop until sensor found          //
@@ -60,24 +61,26 @@ void setup() {                                                                //
 ** This is the main program for the Arduino IDE, it is an infinite loop and keeps on repeating.                   **
 *******************************************************************************************************************/
 void loop() {                                                                 //                                  //
-  static uint16_t ALS_Last        = 0;                                        // Last displayed ALS reading       //
-  static uint16_t Proximity_Last  = 0;                                        // Last displayed Proximity reading //
-  uint16_t ALS              = Sensor.getAmbientLight();                       // Get the ambient light value      //
-  uint16_t Proximity        = Sensor.getProximity();                          // Get the Proximity sensor value   //
-  uint16_t ALS_Delta        = Sensor.getAmbientLight()/PERCENTAGE;            // Set delta to percentage of value //
-  uint16_t Proximity_Delta  = Sensor.getProximity()/PERCENTAGE;               // Set delta to percentage of value //
-  int16_t  ALS_Change       = ALS_Last - ALS;                                 // Compute the delta ALS            //
-  int16_t  Proximity_Change = Proximity_Last - Proximity;                     // Compute the delta Proximity      //
-  if (abs(ALS_Change)>ALS_Delta || abs(Proximity_Change)>Proximity_Delta) {   // If either is above threshold,    //
+  static uint16_t ambientSensorLast = 0;                                      // Last displayed ALS reading       //
+  static uint16_t proximityLast     = 0;                                      // Last displayed Proximity reading //
+                                                                              //----------------------------------//
+  uint16_t ambientSensor         = Sensor.getAmbientLight();                  // Get the ambient light value      //
+  uint16_t proximitySensor       = Sensor.getProximity();                     // Get the Proximity sensor value   //
+  uint16_t ambientSensorDelta    = Sensor.getAmbientLight()/PERCENTAGE;       // Set delta to percentage of value //
+  uint16_t proximitySensorDelta  = Sensor.getProximity()/PERCENTAGE;          // Set delta to percentage of value //
+  int16_t  ambientSensorChange   = ambientSensorLast - ambientSensor;         // Compute the delta ALS            //
+  int16_t  proximitySensorChange = proximityLast - proximitySensor;           // Compute the delta Proximity      //
+  if (abs(ambientSensorChange)>ambientSensorDelta ||                          // If either ambient or proximity   //
+      abs(proximitySensorChange)>proximitySensorDelta) {                      // is above the preset threshold,   //
     Serial.print(F("Time = "));                                               // then display the new values      //
     Serial.print(millis()/1000);                                              // marking the ALS or proximity that//
-    Serial.print(F(", Ambient Light = "));                                    // triggered display with a "*"     //
-    if (abs(ALS_Change)>ALS_Delta) Serial.print(F("*"));                      //                                  //
-    Serial.print(ALS);                                                        //                                  //
+    Serial.print(F(", Ambient Light = "));                                    // triggered the display with a "*" //
+    if (abs(ambientSensorChange)>ambientSensorDelta) Serial.print(F("*"));    //                                  //
+    Serial.print(ambientSensor);                                              //                                  //
     Serial.print(F(", Proximity = "));                                        //                                  //
-    if (abs(Proximity_Change)>Proximity_Delta) Serial.print(F("*"));          //                                  //
-    Serial.println(Proximity);                                                //                                  //
-    ALS_Last       = ALS;                                                     //                                  //
-    Proximity_Last = Proximity;                                               //                                  //
+    if (abs(proximitySensorChange)>proximitySensorDelta) Serial.print(F("*"));//                                  //
+    Serial.println(proximitySensor);                                          //                                  //
+    ambientSensorLast = ambientSensor;                                        //                                  //
+    proximityLast     = proximitySensor;                                      //                                  //
   } // of if-then we have a 10% change or more in either reading              //                                  //
 } // of method loop()                                                         //----------------------------------//
