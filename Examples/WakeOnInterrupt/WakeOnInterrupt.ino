@@ -29,10 +29,11 @@
 /*******************************************************************************************************************
 ** Declare all program constants                                                                                  **
 *******************************************************************************************************************/
-const uint32_t SERIAL_SPEED  = 9600;                                          // Set the baud rate for Serial I/O //
-const uint8_t  GREEN_LED_PIN =   13;                                          // Define the default Arduino pin   //
-const uint8_t  INTERRUPT_PIN =    9;                                          // VCNL4010 attached to this pin    //
-const uint8_t  WAKE_UP_PIN   =    7;                                          // Pin used to wake up processor,   //
+const uint32_t SERIAL_SPEED   = 9600;                                         // Set the baud rate for Serial I/O //
+const uint8_t  GREEN_LED_PIN  =   13;                                         // Define the default Arduino pin   //
+const uint8_t  INTERRUPT_PIN  =    9;                                         // VCNL4010 attached to this pin    //
+const uint8_t  WAKE_UP_PIN    =    7;                                         // Pin used to wake up processor,   //
+const uint8_t  PERCENT_CHANGE =   10;                                         // Trigger percent change           //
                                                                               // see comments above regarding use //
 /*******************************************************************************************************************
 ** Declare global variables and instantiate classes                                                               **
@@ -40,13 +41,11 @@ const uint8_t  WAKE_UP_PIN   =    7;                                          //
 uint16_t Proximity_Value = 0;                                                 // Last displayed Proximity reading //
 uint16_t Proximity_Delta = 0;                                                 // Difference between current & last//
 VCNL4010 Sensor;                                                              // Instantiate the class            //
-
 /*******************************************************************************************************************
 ** Declare interrupt vector to jump to when the VCNL4010 triggers a pin change interrupt. Nothing is done here    **
 ** apart from disabling the interrupt to prevent a race condition where the program jumps here constantly         **
 *******************************************************************************************************************/
 void sleepVector(void) {detachInterrupt(digitalPinToInterrupt(WAKE_UP_PIN));} // Detach interrupt immediately     //
-
 /*******************************************************************************************************************
 ** Method Setup(). This is an Arduino IDE method which is called upon boot or restart. It is only called one time **
 ** and then control goes to the main loop, which loop indefinately.                                               **
@@ -76,14 +75,13 @@ void setup() {                                                                //
                        false,                                                 // Nothing on Ambient light reading //
                        true,                                                  // Interrupt on Proximity threshold //
                        false,                                                 // Nothing on Ambient threshold     //
-                       ProximityReading *  9 / 10,                            // Low value is 90% of first reading//
-                       ProximityReading * 11 / 10);                           // High value is 110% of first value//
+                       ProximityReading * PERCENT_CHANGE / 100,               // Low value is 90% of first reading//
+                       ProximityReading * (100+PERCENT_CHANGE) / 100);        // High value is 110% of first value//
   Sensor.setProximityContinuous(true);                                        // Turn on continuous Proximity     //
   Serial.println(F("VCNL4010 initialized.\n\n"));                             //                                  //
   pinMode(WAKE_UP_PIN, INPUT);	                                              // Pin is attached to VCNL4010 INT  //
   digitalWrite(WAKE_UP_PIN, HIGH);                                            // Configure pull-up resistor       //
 } // of method setup()                                                        //----------------------------------//
-
 /*******************************************************************************************************************
 ** This is the main program for the Arduino IDE, it is an infinite loop and keeps on repeating.                   **
 *******************************************************************************************************************/
@@ -107,7 +105,7 @@ void loop() {                                                                 //
     USBDevice.attach();                                                       // Re-attach the USB port           //
     Serial.begin(SERIAL_SPEED);                                               // Start serial comms at set Baud   //
     while (!Serial);                                                          // wait for Serial to initialize    //
-    delay(2000);
+    delay(2000);                                                              //                                  //
   #endif                                                                      //----------------------------------//
   Sensor.clearInterrupt(0);                                                   // Reset status on VCNL4010         //
   Serial.println(F("Woke up, sensor movement detected"));                     // Tell the world that we're awake  //
