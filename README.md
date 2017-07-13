@@ -1,5 +1,5 @@
 # VCNL4010 library
-<img src="https://cdn-shop.adafruit.com/970x728/466-05.jpg" width="175" align="right"/> *Arduino* library for using the Vishay VCNL4010 sensor. The sensor is a fully integrated proximity and ambient light sensor with infrared emitter, I2C interface and interrupt function in a small package. It is available as a breakout board from Adafruit at https://www.adafruit.com/product/466.  The VCNL4010 datasheet can be found at  http://www.vishay.com/docs/83462/vcnl4010.pdf.
+<img src="https://github.com/SV-Zanshin/VCNL4010/blob/master/Images//VCNL4010_square.jpg" width="175" align="right"/> *Arduino* library for using the Vishay VCNL4010 sensor. The sensor is a fully integrated proximity and ambient light sensor with infrared emitter, I2C interface and interrupt function in a small package. It is available as a breakout board from Adafruit at https://www.adafruit.com/product/466.  The VCNL4010 datasheet can be found at  http://www.vishay.com/docs/83462/vcnl4010.pdf.
 
 ## Ambient light sensing
 The ambient light sensor (ALS) returns a 16-bit value starting at close to 0 for no light and goes upwards as the light level increases.
