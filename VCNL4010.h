@@ -24,6 +24,8 @@
 **                                                                                                                **
 ** Vers.  Date       Developer           Comments                                                                 **
 ** ====== ========== =================== ======================================================================== **
+** 1.0.2  2017-07-31 Arnd@SV-Zanshin.Com Removed default definitions from function definitions, kept them in the  **
+**                                       the prototype definitions as this caused compiler errors on non-Windows  **
 ** 1.0.1  2017-01-02 Arnd@SV-Zanshin.Com Moved readByte function back into priate area                            **
 ** 1.0.0  2017-01-01 Arnd@SV-Zanshin.Com Fixed error on continuous mode with proximity, ready for release         **
 ** 1.0.b2 2016-12-31 Arnd@SV-Zanshin.Com Continued coding                                                         **

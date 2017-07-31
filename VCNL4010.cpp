@@ -87,7 +87,7 @@ void VCNL4010::writeByte(const uint8_t addr, const uint8_t data) {            //
 **  111  250                                                                                                      **
 ** These roughly equate to Hz (2,4,8,16,32,64,128 and 256)                                                        **
 *******************************************************************************************************************/
-void VCNL4010::setProximityHz(const uint8_t Hz=2) {                           //                                  //
+void VCNL4010::setProximityHz(const uint8_t Hz) {                             //                                  //
   uint8_t setValue;                                                           // temp variable for sampling rate  //
   if (Hz>250)       setValue = 7;                                             // If value is bigger then set max  //
   else if (Hz>=128) setValue = 6;                                             //                                  //
@@ -103,7 +103,7 @@ void VCNL4010::setProximityHz(const uint8_t Hz=2) {                           //
 ** Method setLEDmA() sets the IR LED current output in milliamps. Range is between 0mA and 200mA, internally set  **
 ** in steps of 10mA with input values being truncated down to the next lower value                                **
 *******************************************************************************************************************/
-void VCNL4010::setLEDmA(const uint8_t mA=20) {                                //                                  //
+void VCNL4010::setLEDmA(const uint8_t mA) {                                   //                                  //
   writeByte(VCNL4010_LED_CURRENT_REG,(uint8_t)(mA/10));                       // Divide by 10 and write register  //
 } // of method setLEDmA()                                                     //                                  //
 /*******************************************************************************************************************
@@ -113,7 +113,7 @@ void VCNL4010::setLEDmA(const uint8_t mA=20) {                                //
 ** 10 =   1.5625 MHz                                                                                              **
 ** 11 =   3.125  MHz                                                                                              **
 *******************************************************************************************************************/
-void VCNL4010::setProximityFreq(const uint8_t value=0) {                      // Set Frequency value from list    //
+void VCNL4010::setProximityFreq(const uint8_t value) {                        // Set Frequency value from list    //
   uint8_t registerSetting = readByte(VCNL4010_PROXIMITY_TIMING_REG);          // Get the register settings        //
   registerSetting &= B11100111;                                               // Mask the 2 timing bits           //
   registerSetting |= (value&B00000011) << 3;                                  // Add in 2 bits from value         //
@@ -123,7 +123,7 @@ void VCNL4010::setProximityFreq(const uint8_t value=0) {                      //
 ** Method setAmbientLight() sets the number of samples taken per second and the number of samples averaged to     **
 ** make a reading; each reading takes only 300microseconds and the default period for a measurement is 100ms.     **
 *******************************************************************************************************************/
-void VCNL4010::setAmbientLight(uint8_t sample=2, uint8_t avg=32) {            //                                  //
+void VCNL4010::setAmbientLight(uint8_t sample, uint8_t avg) {                 //                                  //
   sample--;                                                                   // subtract one for offset          //
   if (sample==6)      sample==5;                                              // Adjust nonexistent values        //
   else if (sample==8) sample==6;                                              //                                  //
@@ -190,7 +190,7 @@ uint8_t VCNL4010::getInterrupt() {                                            //
 ** Bit 0 - high threshold interrupt                                                                               **
 ** The bit needs to be written as "1" in order to clear it, so send the bitwise not value                         **
 *******************************************************************************************************************/
-void VCNL4010::clearInterrupt(const uint8_t intVal=0) {                       // Set Interrupt bits               //
+void VCNL4010::clearInterrupt(const uint8_t intVal) {                         // Set Interrupt bits               //
   writeByte(VCNL4010_INTERRUPT_STATUS_REG,~intVal);                           // Write value to register          //
 } // of method clearInterrupt()                                               //                                  //
 /*******************************************************************************************************************
@@ -200,13 +200,13 @@ void VCNL4010::clearInterrupt(const uint8_t intVal=0) {                       //
 ** trigger an interrupt on threshold low or high value being exceeded for Proximity and ALS. Since only one can   **
 ** be used the ALS is chosen when both are set. Finally the low and high threshold values themselves              **
 *******************************************************************************************************************/
-void VCNL4010::setInterrupt(const uint8_t  count         = 1,                 //                                  //
-                            const bool     ProxReady     = false,             //                                  //
-                            const bool     ALSReady      = false,             //                                  //
-                            const bool     ProxThreshold = false,             //                                  //
-                            const bool     ALSThreshold  = false,             //                                  //
-                            const uint16_t lowThreshold  = 0,                 //                                  //
-                            const uint16_t highThreshold = UINT16_MAX ) {     //                                  //
+void VCNL4010::setInterrupt(const uint8_t  count         ,                    //                                  //
+                            const bool     ProxReady     ,                    //                                  //
+                            const bool     ALSReady      ,                    //                                  //
+                            const bool     ProxThreshold ,                    //                                  //
+                            const bool     ALSThreshold  ,                    //                                  //
+                            const uint16_t lowThreshold  ,                    //                                  //
+                            const uint16_t highThreshold ) {                  //                                  //
   uint8_t registerValue = 0;                                                  // Default to 1 count               //
   if (count>=128)       registerValue = B111;                                 // Choose setting based on parameter//
   else if (count>=64)   registerValue = B110;                                 //                                  //
@@ -231,7 +231,7 @@ void VCNL4010::setInterrupt(const uint8_t  count         = 1,                 //
 /*******************************************************************************************************************
 ** Method setAmbientContinuous() sets or unsets the continuous measurement mode for the ambient light sensor      **
 *******************************************************************************************************************/
-void VCNL4010::setAmbientContinuous(const bool ContinuousMode=true) {         // Cont. Ambient sampling on/off    //
+void VCNL4010::setAmbientContinuous(const bool ContinuousMode) {              // Cont. Ambient sampling on/off    //
   uint8_t commandBuffer = readByte(VCNL4010_COMMAND_REG);                     // get the register contents        //
   commandBuffer &= B11111010;                                                 // Mask the 2 relevant bits         //
   if (ContinuousMode==true) {                                                 // If we are turning on then write  //
@@ -247,7 +247,7 @@ void VCNL4010::setAmbientContinuous(const bool ContinuousMode=true) {         //
 /*******************************************************************************************************************
 ** Method setProximityContinuous() sets or unsets the continuous measurement mode for the proximity sensor        **
 *******************************************************************************************************************/
-void VCNL4010::setProximityContinuous(const bool ContinuousMode=true) {       // Cont. Proximity sampling on/off  //
+void VCNL4010::setProximityContinuous(const bool ContinuousMode) {            // Cont. Proximity sampling on/off  //
   uint8_t commandBuffer = readByte(VCNL4010_COMMAND_REG);                     // get the register contents        //
   commandBuffer &= B11111100;                                                 // Mask the 2 relevant bits         //
   if (ContinuousMode==true) {                                                 // If we are turning on then write  //
