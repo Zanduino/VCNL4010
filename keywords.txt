@@ -10,18 +10,18 @@ VCNL4010	KEYWORD1
 ####################################
 # Methods and Functions (KEYWORD2) #
 ####################################
-begin					KEYWORD2
-setProximityHz			KEYWORD2
-setLEDmA				KEYWORD2
-setProximityFreq		KEYWORD2
-setAmbientLight			KEYWORD2
+begin	KEYWORD2
+setProximityHz	KEYWORD2
+setLEDmA	KEYWORD2
+setProximityFreq	KEYWORD2
+setAmbientLight	KEYWORD2
 setAmbientContinuous	KEYWORD2
 setProximityContinuous	KEYWORD2
-setInterrupt			KEYWORD2
-getAmbientLight			KEYWORD2
-getProximity			KEYWORD2
-getInterrupt			KEYWORD2
-clearInterrupt			KEYWORD2
+setInterrupt	KEYWORD2
+getAmbientLight	KEYWORD2
+getProximity	KEYWORD2
+getInterrupt	KEYWORD2
+clearInterrupt	KEYWORD2
 
 ########################
 # Constants (LITERAL1) #
