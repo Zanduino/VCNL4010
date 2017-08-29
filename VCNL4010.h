@@ -24,7 +24,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                  Comments                                                          **
 ** ====== ========== ========================== ================================================================= **
-** 1.0.3b 2017-08-29 Arnd@SV-Zanshin.Com        Changed method on I2C reads to avoid hang without extra function  **
+** 1.0.4  2017-08-29 Arnd@SV-Zanshin.Com        Changed method on I2C reads to avoid hang without extra function  **
 ** 1.0.3a 2017-08-29 https://github.com/Danny24 Corrected potential I2C hang condition when device not present    **
 ** 1.0.2  2017-07-31 Arnd@SV-Zanshin.Com        Removed default definitions from function definitions, kept them  **
 **                                              in the prototype definitions as this caused compiler errors on    **
