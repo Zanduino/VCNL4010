@@ -24,7 +24,7 @@ VCNL4010::~VCNL4010() {} // of class destructor                               //
 *******************************************************************************************************************/
 bool VCNL4010::begin( ) {                                                     // Start I2C Comms with device      //
   Wire.begin();                                                               // Start I2C as master device       //
-  if (readByte(VCNL4010_PRODUCT_ID_REG)!=VCNL4010_PRODUCT_VERSION)            // If the product doesn't match then//
+  if (readByteBegin(VCNL4010_PRODUCT_ID_REG)!=VCNL4010_PRODUCT_VERSION)       // If the product doesn't match then//
     return false;                                                             // return an error                  //
   setProximityHz(2);                                                          // Default 2Hz proximity rate       //
   setLEDmA(20);                                                               // Default 20mA IR LED power        //
@@ -36,6 +36,17 @@ bool VCNL4010::begin( ) {                                                     //
   writeByte(VCNL4010_COMMAND_REG,commandBuffer);                              // Start the measurement cycle      //
   return true;                                                                // return success                   //
 } // of method begin()                                                        //                                  //
+/*******************************************************************************************************************
+** Method readByteBegin reads 1 byte from the specified address, but not wait for a response. Used in begin()     **
+*******************************************************************************************************************/
+uint8_t VCNL4010::readByteBegin(const uint8_t addr) {                         //                                  //
+  Wire.beginTransmission(VCNL4010_ADDRESS);                                   // Address the I2C device           //
+  Wire.write(addr);                                                           // Send the register address to read//
+  _TransmissionStatus = Wire.endTransmission();                               // Close transmission               //
+  delayMicroseconds(VCNL4010_I2C_DELAY);                                      // delay required for sync          //
+  Wire.requestFrom(VCNL4010_ADDRESS, (uint8_t)1);                             // Request 1 byte of data           //
+  return Wire.read();                                                         // read and return it, also is empty//
+} // of method readByteBegin()                                                //                                  //
 /*******************************************************************************************************************
 ** Method readByte reads 1 byte from the specified address                                                        **
 *******************************************************************************************************************/

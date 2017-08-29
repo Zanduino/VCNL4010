@@ -79,6 +79,7 @@
       uint8_t  getInterrupt();                                                // Retrieve Interrupt bits          //
       void     clearInterrupt(const uint8_t intVal=0);                        // Clear Interrupt bits             //
     private:                                                                  // Private methods                  //
+      uint8_t  readByteBegin(const uint8_t addr);                             // Read from I2C to check sensor    //
       uint8_t  readByte(const uint8_t addr);                                  // Read 1 byte from address on I2C  //
       uint16_t readWord(const uint8_t addr);                                  // Read 2 bytes from address on I2C //
       void     writeByte(const uint8_t addr, const uint8_t data);             // Write 1 byte at address to I2C   //
