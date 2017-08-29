@@ -22,14 +22,17 @@
 ** GNU General Public License for more details. You should have received a copy of the GNU General Public License **
 ** along with this program.  If not, see <http://www.gnu.org/licenses/>.                                          **
 **                                                                                                                **
-** Vers.  Date       Developer           Comments                                                                 **
-** ====== ========== =================== ======================================================================== **
-** 1.0.2  2017-07-31 Arnd@SV-Zanshin.Com Removed default definitions from function definitions, kept them in the  **
-**                                       the prototype definitions as this caused compiler errors on non-Windows  **
-** 1.0.1  2017-01-02 Arnd@SV-Zanshin.Com Moved readByte function back into priate area                            **
-** 1.0.0  2017-01-01 Arnd@SV-Zanshin.Com Fixed error on continuous mode with proximity, ready for release         **
-** 1.0.b2 2016-12-31 Arnd@SV-Zanshin.Com Continued coding                                                         **
-** 1.0.b1 2016-12-30 Arnd@SV-Zanshin.Com Created class                                                            **
+** Vers.  Date       Developer                  Comments                                                          **
+** ====== ========== ========================== ================================================================= **
+** 1.0.3b 2017-08-29 Arnd@SV-Zanshin.Com        Changed method on I2C reads to avoid hang without extra function  **
+** 1.0.3a 2017-08-29 https://github.com/Danny24 Corrected potential I2C hang condition when device not present    **
+** 1.0.2  2017-07-31 Arnd@SV-Zanshin.Com        Removed default definitions from function definitions, kept them  **
+**                                              in the prototype definitions as this caused compiler errors on    **
+**                                              non-Windows based machines                                        **
+** 1.0.1  2017-01-02 Arnd@SV-Zanshin.Com        Moved readByte function back into priate area                     **
+** 1.0.0  2017-01-01 Arnd@SV-Zanshin.Com        Fixed error on continuous mode with proximity, ready for release  **
+** 1.0.b2 2016-12-31 Arnd@SV-Zanshin.Com        Continued coding                                                  **
+** 1.0.b1 2016-12-30 Arnd@SV-Zanshin.Com        Created class                                                     **
 **                                                                                                                **
 *******************************************************************************************************************/
 #include "Arduino.h"                                                          // Arduino data type definitions    //
@@ -79,7 +82,6 @@
       uint8_t  getInterrupt();                                                // Retrieve Interrupt bits          //
       void     clearInterrupt(const uint8_t intVal=0);                        // Clear Interrupt bits             //
     private:                                                                  // Private methods                  //
-      uint8_t  readByteBegin(const uint8_t addr);                             // Read from I2C to check sensor    //
       uint8_t  readByte(const uint8_t addr);                                  // Read 1 byte from address on I2C  //
       uint16_t readWord(const uint8_t addr);                                  // Read 2 bytes from address on I2C //
       void     writeByte(const uint8_t addr, const uint8_t data);             // Write 1 byte at address to I2C   //
