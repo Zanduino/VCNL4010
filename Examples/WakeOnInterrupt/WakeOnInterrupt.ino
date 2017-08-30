@@ -73,7 +73,7 @@ void setup() {                                                                //
   Serial.print(F(", low = "));Serial.print(ProximityReading*9/10);            // Display low threshold value      //
   Serial.print(F(", high = "));Serial.print(ProximityReading*11/10);          // Display high threshold value     //
   Serial.println();                                                           //                                  //
-  Sensor.setInterrupt( 1,                                                     // Trigger after 4 events           //
+  Sensor.setInterrupt( 1,                                                     // Trigger after 1 event            //
                        false,                                                 // Nothing on Proximity reading     //
                        false,                                                 // Nothing on Ambient light reading //
                        true,                                                  // Interrupt on Proximity threshold //
