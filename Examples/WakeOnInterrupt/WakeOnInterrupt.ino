@@ -22,10 +22,14 @@
 ** WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the   **
 ** GNU General Public License for more details. You should have received a copy of the GNU General Public License **
 ** along with this program.  If not, see <http://www.gnu.org/licenses/>.                                          **
+**                                                                                                                **
+** Vers.  Date       Developer                  Comments                                                          **
+** ====== ========== ========================== ================================================================= **
+** 1.0.1  2017-08-30 Arnd@SV-Zanshin.Com        Added version information                                         **
+**                                                                                                                **
 *******************************************************************************************************************/
 #include "VCNL4010.h"                                                         // Include the library              //
 #include <avr/sleep.h>                                                        // Sleep mode Library               //
-
 /*******************************************************************************************************************
 ** Declare all program constants                                                                                  **
 *******************************************************************************************************************/
@@ -33,8 +37,7 @@ const uint32_t SERIAL_SPEED   = 9600;                                         //
 const uint8_t  GREEN_LED_PIN  =   13;                                         // Define the default Arduino pin   //
 const uint8_t  INTERRUPT_PIN  =    9;                                         // VCNL4010 attached to this pin    //
 const uint8_t  WAKE_UP_PIN    =    7;                                         // Pin used to wake up processor,   //
-const uint8_t  PERCENT_CHANGE =   10;                                         // Trigger percent change           //
-                                                                              // see comments above regarding use //
+const uint8_t  PERCENT_CHANGE =   10;                                         // Trigger percentage change        //
 /*******************************************************************************************************************
 ** Declare global variables and instantiate classes                                                               **
 *******************************************************************************************************************/
@@ -66,9 +69,9 @@ void setup() {                                                                //
   Sensor.setLEDmA(200);                                                       // Boost power to Proximity sensor  //
   Sensor.setProximityFreq(32);                                                // Sample 32 times per second       //
   uint16_t ProximityReading = Sensor.getProximity();                          // Get the proximity reading        //
-  Serial.print("Proximity sensor is ");Serial.print(ProximityReading);        // Display reading                  //
-  Serial.print(", low = ");Serial.print(ProximityReading*9/10);               // Display low threshold value      //
-  Serial.print(", high = ");Serial.print(ProximityReading*11/10);             // Display high threshold value     //
+  Serial.print(F("Proximity sensor is "));Serial.print(ProximityReading);     // Display reading                  //
+  Serial.print(F(", low = "));Serial.print(ProximityReading*9/10);            // Display low threshold value      //
+  Serial.print(F(", high = "));Serial.print(ProximityReading*11/10);          // Display high threshold value     //
   Serial.println();                                                           //                                  //
   Sensor.setInterrupt( 1,                                                     // Trigger after 4 events           //
                        false,                                                 // Nothing on Proximity reading     //

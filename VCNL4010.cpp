@@ -24,8 +24,7 @@ VCNL4010::~VCNL4010() {} // of class destructor                               //
 *******************************************************************************************************************/
 bool VCNL4010::begin( ) {                                                     // Start I2C Comms with device      //
   Wire.begin();                                                               // Start I2C as master device       //
-  if (readByte(VCNL4010_PRODUCT_ID_REG)!=VCNL4010_PRODUCT_VERSION)           // If the product doesn't match then//
-    return false;                                                             // return an error                  //
+  if(readByte(VCNL4010_PRODUCT_REG)!=VCNL4010_PRODUCT_VERSION) return false;  // Return error if no match         //
   setProximityHz(2);                                                          // Default 2Hz proximity rate       //
   setLEDmA(20);                                                               // Default 20mA IR LED power        //
   setAmbientLight(2,32);                                                      // Default 2/sec and 32 averaged    //

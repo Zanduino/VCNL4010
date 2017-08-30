@@ -4,6 +4,10 @@
 ** VCNL4010 can be found at http://www.vishay.com/docs/83462/vcnl4010.pdf and there is a breakout board from      **
 ** Adafruit with additional information located at https://www.adafruit.com/product/466.                          **
 **                                                                                                                **
+** The most recent version of the library can be downloaded from the following github location:                   **
+**  https://github.com/SV-Zanshin/VCNL4010/archive/master.zip and a detailed description of the library and it's  **
+** functions is at the github wiki located in https://github.com/SV-Zanshin/VCNL4010/wiki                         **
+**                                                                                                                **
 ** When the class is instantiated the default mode is to have triggered readings for the ambient light sensor as  **
 ** well as for the proximity sensor.  In order to speed up processing the class will trigger the two types of     **
 ** measurements preemptively, meaning that as soon that either of the results have been read the next measurement **
@@ -44,7 +48,7 @@
     ***************************************************************************************************************/
     const uint8_t  VCNL4010_ADDRESS                = 0x13;                    // Device address, fixed value      //
     const uint8_t  VCNL4010_COMMAND_REG            = 0x80;                    // Register containing commands     //
-    const uint8_t  VCNL4010_PRODUCT_ID_REG         = 0x81;                    // Register containing product ID   //
+    const uint8_t  VCNL4010_PRODUCT_REG            = 0x81;                    // Register containing product ID   //
     const uint8_t  VCNL4010_PROXIMITY_RATE_REG     = 0x82;                    // Register containing sampling rate//
     const uint8_t  VCNL4010_LED_CURRENT_REG        = 0x83;                    // Register containing IR LED mA    //
     const uint8_t  VCNL4010_AMBIENT_PARAMETER_REG  = 0x84;                    // Register containing ambient set  //
@@ -63,9 +67,9 @@
     public:                                                                   // Publicly visible methods         //
       VCNL4010();                                                             // Class constructor                //
       ~VCNL4010();                                                            // Class destructor                 //
-      bool     begin();                                                       // Start I2C Comms with device      //
+      bool     begin();                                                       // Start I2C communications         //
       void     setProximityHz(const uint8_t Hz=2);                            // Set proximity Hz sampling rate   //
-      void     setLEDmA(const uint8_t mA=20);                                 // Set milliamps used by IR LED     //
+      void     setLEDmA(const uint8_t mA=20);                                 // Set milliamperes used by IR LED  //
       void     setProximityFreq(const uint8_t value=0);                       // Set Frequency value from list    //
       void     setAmbientLight(const uint8_t sample=2, const uint8_t avg=32); // Set samples and averaging        //
       void     setAmbientContinuous(const bool ContinuousMode=true);          // Cont. Ambient sampling on/off    //
