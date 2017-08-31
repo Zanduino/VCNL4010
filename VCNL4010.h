@@ -28,6 +28,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                         Comments                                                   **
 ** ====== ========== ================================= ========================================================== **
+** 1.0.5a 2017-08-31 https://github.com/Koepel         Bug https://github.com/SV-Zanshin/VCNL4010/issues/4        **
 ** 1.0.4  2017-08-29 https://github.com/SV-Zanshin     Changed method on I2C reads to avoid hang w/out extra call **
 ** 1.0.3a 2017-08-29 https://github.com/Danny24        Corrected potential I2C hang condition when no device      **
 ** 1.0.2  2017-07-31 https://github.com/SV-Zanshin     Removed default definitions from function definitions, kept**

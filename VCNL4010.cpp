@@ -11,18 +11,16 @@
 *******************************************************************************************************************/
 #include "VCNL4010.h"                                                         // Include the header definition    //
 /*******************************************************************************************************************
-** Class Constructor instantiates the class                                                                       **
+** Unused Class Constructor & Destructor                                                                          **
 *******************************************************************************************************************/
 VCNL4010::VCNL4010()  {} // of class constructor                              //                                  //
-/*******************************************************************************************************************
-** Class Destructor currently does nothing and is included for compatibility purposes                             **
-*******************************************************************************************************************/
-VCNL4010::~VCNL4010() {} // of class destructor                               //                                  //
+VCNL4010::~VCNL4010() {} // of class destructor                               //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method begin starts I2C communications with the device, using a default address if one is not specified and    **
 ** return true if the device has been detected and false if it was not                                            **
 *******************************************************************************************************************/
-bool VCNL4010::begin( ) {                                                     // Start I2C Comms with device      //
+bool VCNL4010::begin( ) {                                                     // Start I2C Communications         //
   Wire.begin();                                                               // Start I2C as master device       //
   if(readByte(VCNL4010_PRODUCT_REG)!=VCNL4010_PRODUCT_VERSION) return false;  // Return error if no match         //
   setProximityHz(2);                                                          // Default 2Hz proximity rate       //
@@ -34,18 +32,20 @@ bool VCNL4010::begin( ) {                                                     //
   commandBuffer |= B00011000;                                                 // Single ALS and Proximity reading //
   writeByte(VCNL4010_COMMAND_REG,commandBuffer);                              // Start the measurement cycle      //
   return true;                                                                // return success                   //
-} // of method begin()                                                        //                                  //
+} // of method begin()                                                        //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method readByte reads 1 byte from the specified address                                                        **
 *******************************************************************************************************************/
 uint8_t VCNL4010::readByte(const uint8_t addr) {                              //                                  //
   Wire.beginTransmission(VCNL4010_ADDRESS);                                   // Address the I2C device           //
   Wire.write(addr);                                                           // Send the register address to read//
-  delayMicroseconds(VCNL4010_I2C_DELAY);                                      // delay required for sync          //
   _TransmissionStatus = Wire.endTransmission();                               // Close transmission               //
+  delayMicroseconds(VCNL4010_I2C_DELAY);                                      // delay required for sync          //
   Wire.requestFrom(VCNL4010_ADDRESS, (uint8_t)1);                             // Request 1 byte of data           //
   return Wire.read();                                                         // read it and return it            //
-} // of method readByte()                                                     //                                  //
+} // of method readByte()                                                     //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method readWord reads 2 bytes from the specified address                                                       **
 *******************************************************************************************************************/
@@ -53,14 +53,15 @@ uint16_t VCNL4010::readWord(const uint8_t addr) {                             //
   uint16_t returnData;                                                        // Store return value               //
   Wire.beginTransmission(VCNL4010_ADDRESS);                                   // Address the I2C device           //
   Wire.write(addr);                                                           // Send the register address to read//
-  delayMicroseconds(VCNL4010_I2C_DELAY);                                      // delay required for sync          //
   _TransmissionStatus = Wire.endTransmission();                               // Close transmission               //
+  delayMicroseconds(VCNL4010_I2C_DELAY);                                      // delay required for sync          //
   Wire.requestFrom(VCNL4010_ADDRESS, (uint8_t)2);                             // Request 2 consecutive bytes      //
   returnData  = Wire.read();                                                  // Read the msb                     //
   returnData  = returnData<<8;                                                // shift the data over              //
   returnData |= Wire.read();                                                  // Read the lsb                     //
   return returnData;                                                          // read it and return it            //
-} // of method readWord()                                                     //                                  //
+} // of method readWord()                                                     //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method writeByte write 1 byte to the specified address                                                         **
 *******************************************************************************************************************/
@@ -69,7 +70,8 @@ void VCNL4010::writeByte(const uint8_t addr, const uint8_t data) {            //
   Wire.write(addr);                                                           // Send the register address to read//
   Wire.write(data);                                                           // Send the register address to read//
   _TransmissionStatus = Wire.endTransmission();                               // Close transmission               //
-} // of method writeByte()                                                    //                                  //
+} // of method writeByte()                                                    //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method setProximityFrequency set the frequency with which the proximity sensor pulses are sent/read. The only  **
 ** values that the VCNL4010 can be set to are:                                                                    **
@@ -95,14 +97,16 @@ void VCNL4010::setProximityHz(const uint8_t Hz) {                             //
   else if (Hz>=4)   setValue = 1;                                             //                                  //
   else              setValue = 0;                                             //                                  //
   writeByte(VCNL4010_PROXIMITY_RATE_REG,setValue);                            // Write result to register         //
-} // of method setProximityHz()                                               //                                  //
+} // of method setProximityHz()                                               //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method setLEDmA() sets the IR LED current output in milliamps. Range is between 0mA and 200mA, internally set  **
 ** in steps of 10mA with input values being truncated down to the next lower value                                **
 *******************************************************************************************************************/
 void VCNL4010::setLEDmA(const uint8_t mA) {                                   //                                  //
   writeByte(VCNL4010_LED_CURRENT_REG,(uint8_t)(mA/10));                       // Divide by 10 and write register  //
-} // of method setLEDmA()                                                     //                                  //
+} // of method setLEDmA()                                                     //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method setProximityFreq() sets the proximity modulator timing to one of 4 possible values as follows:          **
 ** 00 = 390.625  kHz (DEFAULT)                                                                                    **
@@ -115,7 +119,8 @@ void VCNL4010::setProximityFreq(const uint8_t value) {                        //
   registerSetting &= B11100111;                                               // Mask the 2 timing bits           //
   registerSetting |= (value&B00000011) << 3;                                  // Add in 2 bits from value         //
   writeByte(VCNL4010_PROXIMITY_TIMING_REG,registerSetting);                   // Write new buffer back to register//
-} // of method setProximityFreq()                                             //                                  //
+} // of method setProximityFreq()                                             //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method setAmbientLight() sets the number of samples taken per second and the number of samples averaged to     **
 ** make a reading; each reading takes only 300microseconds and the default period for a measurement is 100ms.     **
@@ -138,7 +143,8 @@ void VCNL4010::setAmbientLight(uint8_t sample, uint8_t avg) {                 //
   registerValue |= sample << 4;                                               // Set bits 4,5,6                   //
   registerValue |= avg;                                                       // Set bits 0,1,2                   //
   writeByte(VCNL4010_AMBIENT_PARAMETER_REG,registerValue);                    // Write new values to buffer       //
-} // of method setAmbientLight()                                              //                                  //
+} // of method setAmbientLight()                                              //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method getAmbientLight() retrieves the 16 bit ambient light value. Since we always send a request for another  **
 ** reading after retrieving the previous results we just need to wait for a result to come back.                  **
@@ -153,7 +159,8 @@ uint16_t VCNL4010::getAmbientLight() {                                        //
     writeByte(VCNL4010_COMMAND_REG,commandBuffer);                            // Set trigger for next reading     //
   } // of if-then Continuous mode turned on                                   //                                  //
   return returnValue;                                                         // Send back the results            //
-} // of method getAmbientLight()                                              //                                  //
+} // of method getAmbientLight()                                              //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method getProximity() retrieves the 16 bit proximity value. Since we always send a request for another reading **
 ** after retrieving the previous results we just need to wait for a result to come back.                          **
@@ -168,7 +175,8 @@ uint16_t VCNL4010::getProximity() {                                           //
     writeByte(VCNL4010_COMMAND_REG,commandBuffer);                            // Set trigger for next reading     //
   } // of if-then Continuous mode turned on                                   //                                  //
   return returnValue;                                                         // Send back the results            //
-} // of method getProximity()                                                 //                                  //
+} // of method getProximity()                                                 //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method getInterrupt() retrieves the 4 bits denoting which, if any, interrupts have been triggered.             **
 ** Bit 3 - proximity interrupt                                                                                    **
@@ -178,7 +186,8 @@ uint16_t VCNL4010::getProximity() {                                           //
 *******************************************************************************************************************/
 uint8_t VCNL4010::getInterrupt() {                                            //                                  //
   return readByte(VCNL4010_INTERRUPT_STATUS_REG);                             // get the register contents        //
-} // of method getInterrupt()                                                 //                                  //
+} // of method getInterrupt()                                                 //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method clearInterrupt() overwrites the 4 bits denoting which, if any, interrupts have been triggered.          **
 ** Bit 3 - proximity interrupt                                                                                    **
@@ -189,7 +198,8 @@ uint8_t VCNL4010::getInterrupt() {                                            //
 *******************************************************************************************************************/
 void VCNL4010::clearInterrupt(const uint8_t intVal) {                         // Set Interrupt bits               //
   writeByte(VCNL4010_INTERRUPT_STATUS_REG,~intVal);                           // Write value to register          //
-} // of method clearInterrupt()                                               //                                  //
+} // of method clearInterrupt()                                               //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method setInterrupt() sets the interrupts used. The count is the number of consecutive readings needed in order**
 ** to trigger an interrupt for threshold low or high being exceeded. Then a boolean to indicate an interrupt on   **
@@ -224,7 +234,8 @@ void VCNL4010::setInterrupt(const uint8_t  count         ,                    //
     writeByte(VCNL4010_HIGH_THRESHOLD_LSB_REG,(uint8_t)highThreshold);        // Write the LSB                    //
   } // of if-then we have threshold interrupts to set                         //                                  //
   writeByte(VCNL4010_INTERRUPT_REG,registerValue);                            // Write the register contents      //
-} // of method setLEDmA()                                                     //                                  //
+} // of method setLEDmA()                                                     //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method setAmbientContinuous() sets or unsets the continuous measurement mode for the ambient light sensor      **
 *******************************************************************************************************************/
@@ -240,7 +251,8 @@ void VCNL4010::setAmbientContinuous(const bool ContinuousMode) {              //
     _ContinuousAmbient = false;                                               // set flag                         //
   } // of if-then-else we are turning on                                      //                                  //
   writeByte(VCNL4010_COMMAND_REG,commandBuffer);                              // Write value back to register     //
-}// of method setAmbientContinuous()                                          //                                  //
+}// of method setAmbientContinuous()                                          //----------------------------------//
+
 /*******************************************************************************************************************
 ** Method setProximityContinuous() sets or unsets the continuous measurement mode for the proximity sensor        **
 *******************************************************************************************************************/
@@ -256,4 +268,4 @@ void VCNL4010::setProximityContinuous(const bool ContinuousMode) {            //
     _ContinuousProximity = false;                                             // set flag                         //
   } // of if-then-else we are turning on                                      //                                  //
   writeByte(VCNL4010_COMMAND_REG,commandBuffer);                              // Write value back to register     //
-} // of method setProximityContinuous()                                       //                                  //
+} // of method setProximityContinuous()                                       //----------------------------------//
