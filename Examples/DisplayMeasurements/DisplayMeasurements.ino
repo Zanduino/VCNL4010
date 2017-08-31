@@ -24,10 +24,10 @@
 ** GNU General Public License for more details. You should have received a copy of the GNU General Public License **
 ** along with this program.  If not, see <http://www.gnu.org/licenses/>.                                          **
 **                                                                                                                **
-** Vers.  Date       Developer           Comments                                                                 **
-** ====== ========== =================== ======================================================================== **
-** 1.0.1  2017-07-11 Arnd@SV-Zanshin.Com Refactored variables to standard c++ nomenclature                        **
-** 1.0.0  2017-01-02 Arnd@SV-Zanshin.Com Added PERCENTAGE constant and program description                        **
+** Vers.  Date       Developer                     Comments                                                       **
+** ====== ========== ============================= ============================================================== **
+** 1.0.1  2017-07-11 https://github.com/SV-Zanshin Refactored variables to standard c++ nomenclature              **
+** 1.0.0  2017-01-02 https://github.com/SV-Zanshin Added PERCENTAGE constant and program description              **
 **                                                                                                                **
 *******************************************************************************************************************/
 #include "VCNL4010.h"                                                         // Include the library              //
