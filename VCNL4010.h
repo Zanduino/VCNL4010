@@ -28,6 +28,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                         Comments                                                   **
 ** ====== ========== ================================= ========================================================== **
+** 1.0.5b 2017-08-31 https://github.com/SV-Zanshin     Removed 170?s delay in I2C read statements                 **
 ** 1.0.5a 2017-08-31 https://github.com/Koepel         Bug https://github.com/SV-Zanshin/VCNL4010/issues/4        **
 ** 1.0.4  2017-08-29 https://github.com/SV-Zanshin     Changed method on I2C reads to avoid hang w/out extra call **
 ** 1.0.3a 2017-08-29 https://github.com/Danny24        Corrected potential I2C hang condition when no device      **
@@ -63,7 +64,6 @@
     const uint8_t  VCNL4010_INTERRUPT_STATUS_REG   = 0x8E;                    // Interrupt status register        //
     const uint8_t  VCNL4010_PROXIMITY_TIMING_REG   = 0x8F;                    // Register containing ProxTiming   //
     const uint8_t  VCNL4010_PRODUCT_VERSION        = 0x21;                    // Current product ID               //
-    const uint8_t  VCNL4010_I2C_DELAY              = 0170;                    // Microseconds delay on I2C write  //
   class VCNL4010 {                                                            // Class definition                 //
     public:                                                                   // Publicly visible methods         //
       VCNL4010();                                                             // Class constructor                //
@@ -93,5 +93,6 @@
       uint8_t _TransmissionStatus;                                            // Status of I2C transmission       //
       bool    _ContinuousAmbient   = false;                                   // If mode turned on for Ambient    //
       bool    _ContinuousProximity = false;                                   // If mode turned on for Proximity  //
+      bool    _I2Caddress          = VCNL4010_ADDRESS;                        // Default to standard I2C address  //
   }; // of VCNL4010 class definition                                          //                                  //
 #endif                                                                        //----------------------------------//

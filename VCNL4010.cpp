@@ -41,7 +41,6 @@ uint8_t VCNL4010::readByte(const uint8_t addr) {                              //
   Wire.beginTransmission(VCNL4010_ADDRESS);                                   // Address the I2C device           //
   Wire.write(addr);                                                           // Send the register address to read//
   _TransmissionStatus = Wire.endTransmission();                               // Close transmission               //
-  delayMicroseconds(VCNL4010_I2C_DELAY);                                      // delay required for sync          //
   Wire.requestFrom(VCNL4010_ADDRESS, (uint8_t)1);                             // Request 1 byte of data           //
   return Wire.read();                                                         // read it and return it            //
 } // of method readByte()                                                     //----------------------------------//
@@ -54,7 +53,6 @@ uint16_t VCNL4010::readWord(const uint8_t addr) {                             //
   Wire.beginTransmission(VCNL4010_ADDRESS);                                   // Address the I2C device           //
   Wire.write(addr);                                                           // Send the register address to read//
   _TransmissionStatus = Wire.endTransmission();                               // Close transmission               //
-  delayMicroseconds(VCNL4010_I2C_DELAY);                                      // delay required for sync          //
   Wire.requestFrom(VCNL4010_ADDRESS, (uint8_t)2);                             // Request 2 consecutive bytes      //
   returnData  = Wire.read();                                                  // Read the msb                     //
   returnData  = returnData<<8;                                                // shift the data over              //
@@ -197,7 +195,8 @@ uint8_t VCNL4010::getInterrupt() {                                            //
 ** The bit needs to be written as "1" in order to clear it, so send the bitwise not value                         **
 *******************************************************************************************************************/
 void VCNL4010::clearInterrupt(const uint8_t intVal) {                         // Set Interrupt bits               //
-  writeByte(VCNL4010_INTERRUPT_STATUS_REG,~intVal);                           // Write value to register          //
+  writeByte(VCNL4010_INTERRUPT_STATUS_REG,                                    //                                  //
+  (readByte(VCNL4010_INTERRUPT_STATUS_REG)&0xF0)|(~intVal&0xF));              //                                  //
 } // of method clearInterrupt()                                               //----------------------------------//
 
 /*******************************************************************************************************************

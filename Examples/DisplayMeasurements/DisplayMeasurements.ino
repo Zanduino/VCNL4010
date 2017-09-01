@@ -46,7 +46,7 @@ VCNL4010 Sensor;                                                              //
 *******************************************************************************************************************/
 void setup() {                                                                // Arduino standard setup method    //
   Serial.begin(SERIAL_SPEED);                                                 // Start serial port at Baud rate   //
-  delay(2000);                                                                // Some Atmel Serials need time     //
+  delay(3000);                                                                // Some Atmel Serials need time     //
   Serial.println(F("Starting VCNL4010 display measurements program"));        //                                  //
   while (!Sensor.begin()) {                                                   // Loop until sensor found          //
     Serial.println(F("Error, unable to find or identify VCNL4010."));         // Show error message               //

@@ -59,7 +59,7 @@ void setup() {                                                                //
   pinMode(INTERRUPT_PIN,INPUT_PULLUP);                                        // Default state HIGH with pull-up  //
   Serial.begin(SERIAL_SPEED);                                                 // Start serial comms at set Baud   //
   #if defined(__AVR_ATmega32U4__)                                             //----------------------------------//
-    while (!Serial);                                                          // wait for Serial to initialize    //
+    delay(3000);                                                             // wait for Serial to initialize    //
   #endif                                                                      //----------------------------------//
   Serial.println(F("Starting VCNL4010 WakeOnInterrupt program"));             //                                  //
   while (!Sensor.begin()) {                                                   // Loop until sensor found          //
@@ -96,7 +96,7 @@ void loop() {                                                                 //
     PLLCSR &= ~_BV(PLLE);                                                     // Turn off the USB PLL             //
     USBCON &= ~_BV(USBE);                                                     // Disable the USB                  //
   #endif                                                                      //----------------------------------//
-  attachInterrupt(digitalPinToInterrupt(7),sleepVector,LOW);                  // jump to vector when pin goes LOW //
+  attachInterrupt(digitalPinToInterrupt(WAKE_UP_PIN),sleepVector,LOW);        // jump to vector when pin goes LOW //
   digitalWrite(GREEN_LED_PIN,false);                                          // Turn off LED while we sleep      //
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);                                        // Maximum power savings            //
   sleep_enable();                                                             // Enable sleep mode                //
