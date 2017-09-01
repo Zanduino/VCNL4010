@@ -26,19 +26,20 @@
 ** GNU General Public License for more details. You should have received a copy of the GNU General Public License **
 ** along with this program.  If not, see <http://www.gnu.org/licenses/>.                                          **
 **                                                                                                                **
-** Vers.  Date       Developer                         Comments                                                   **
-** ====== ========== ================================= ========================================================== **
-** 1.0.5b 2017-08-31 https://github.com/SV-Zanshin     Removed 170?s delay in I2C read statements                 **
-** 1.0.5a 2017-08-31 https://github.com/Koepel         Bug https://github.com/SV-Zanshin/VCNL4010/issues/4        **
-** 1.0.4  2017-08-29 https://github.com/SV-Zanshin     Changed method on I2C reads to avoid hang w/out extra call **
-** 1.0.3a 2017-08-29 https://github.com/Danny24        Corrected potential I2C hang condition when no device      **
-** 1.0.2  2017-07-31 https://github.com/SV-Zanshin     Removed default definitions from function definitions, kept**
-**                                                     them in the prototype definitions as this caused compiler  **
-**                                                     errors on non-Windows based machines                       **
-** 1.0.1  2017-01-02 https://github.com/SV-Zanshin     Moved readByte function back into priate area              **
-** 1.0.0  2017-01-01 https://github.com/SV-Zanshin     Fixed error on continuous mode with proximity              **
-** 1.0.b2 2016-12-31 https://github.com/SV-Zanshin     Continued coding                                           **
-** 1.0.b1 2016-12-30 https://github.com/SV-Zanshin     Created class                                              **
+** Vers.  Date       Developer                     Comments                                                       **
+** ====== ========== ============================= ============================================================== **
+** 1.0.5c 2017-09-01 https://github.com/SV-Zanshin Re-introduced 170?s delay in I2C read statements after hangs   **
+** 1.0.5b 2017-08-31 https://github.com/SV-Zanshin Removed 170?s delay in I2C read statements                     **
+** 1.0.5a 2017-08-31 https://github.com/Koepel     Bug https://github.com/SV-Zanshin/VCNL4010/issues/4            **
+** 1.0.4  2017-08-29 https://github.com/SV-Zanshin Changed method on I2C reads to avoid hang w/out extra call     **
+** 1.0.3a 2017-08-29 https://github.com/Danny24    Corrected potential I2C hang condition when no device present  **
+** 1.0.2  2017-07-31 https://github.com/SV-Zanshin Removed default definitions from function definitions, kept    **
+**                                                 them in the prototype definitions as this caused compiler      **
+**                                                 errors on non-Windows based machines                           **
+** 1.0.1  2017-01-02 https://github.com/SV-Zanshin Moved readByte function back into priate area                  **
+** 1.0.0  2017-01-01 https://github.com/SV-Zanshin Fixed error on continuous mode with proximity                  **
+** 1.0.b2 2016-12-31 https://github.com/SV-Zanshin Continued coding                                               **
+** 1.0.b1 2016-12-30 https://github.com/SV-Zanshin Created class                                                  **
 **                                                                                                                **
 *******************************************************************************************************************/
 #include "Arduino.h"                                                          // Arduino data type definitions    //
@@ -64,6 +65,7 @@
     const uint8_t  VCNL4010_INTERRUPT_STATUS_REG   = 0x8E;                    // Interrupt status register        //
     const uint8_t  VCNL4010_PROXIMITY_TIMING_REG   = 0x8F;                    // Register containing ProxTiming   //
     const uint8_t  VCNL4010_PRODUCT_VERSION        = 0x21;                    // Current product ID               //
+    const uint8_t  VCNL4010_I2C_DELAY_MICROSECONDS =  200;                    // I2C Delay in communications      //
   class VCNL4010 {                                                            // Class definition                 //
     public:                                                                   // Publicly visible methods         //
       VCNL4010();                                                             // Class constructor                //

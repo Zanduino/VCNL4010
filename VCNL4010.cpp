@@ -41,6 +41,7 @@ uint8_t VCNL4010::readByte(const uint8_t addr) {                              //
   Wire.beginTransmission(VCNL4010_ADDRESS);                                   // Address the I2C device           //
   Wire.write(addr);                                                           // Send the register address to read//
   _TransmissionStatus = Wire.endTransmission();                               // Close transmission               //
+  delayMicroseconds(VCNL4010_I2C_DELAY_MICROSECONDS);                         // Introduce slight delay           //
   Wire.requestFrom(VCNL4010_ADDRESS, (uint8_t)1);                             // Request 1 byte of data           //
   return Wire.read();                                                         // read it and return it            //
 } // of method readByte()                                                     //----------------------------------//
@@ -53,6 +54,7 @@ uint16_t VCNL4010::readWord(const uint8_t addr) {                             //
   Wire.beginTransmission(VCNL4010_ADDRESS);                                   // Address the I2C device           //
   Wire.write(addr);                                                           // Send the register address to read//
   _TransmissionStatus = Wire.endTransmission();                               // Close transmission               //
+  delayMicroseconds(VCNL4010_I2C_DELAY_MICROSECONDS);                         // Introduce slight delay           //
   Wire.requestFrom(VCNL4010_ADDRESS, (uint8_t)2);                             // Request 2 consecutive bytes      //
   returnData  = Wire.read();                                                  // Read the msb                     //
   returnData  = returnData<<8;                                                // shift the data over              //
@@ -123,23 +125,26 @@ void VCNL4010::setProximityFreq(const uint8_t value) {                        //
 ** Method setAmbientLight() sets the number of samples taken per second and the number of samples averaged to     **
 ** make a reading; each reading takes only 300microseconds and the default period for a measurement is 100ms.     **
 *******************************************************************************************************************/
-void VCNL4010::setAmbientLight(uint8_t sample, uint8_t avg) {                 //                                  //
-  sample--;                                                                   // subtract one for offset          //
-  if (sample==6)      sample==5;                                              // Adjust nonexistent values        //
-  else if (sample==8) sample==6;                                              //                                  //
-  else if (sample>7)  sample==7;                                              //                                  //
-  if (avg>=128)       avg = B111;                                             //                                  //
-  else if (avg>=64)   avg = B110;                                             //                                  //
-  else if (avg>=32)   avg = B101;                                             //                                  //
-  else if (avg>=16)   avg = B100;                                             //                                  //
-  else if (avg>=8)    avg = B011;                                             //                                  //
-  else if (avg>=4)    avg = B010;                                             //                                  //
-  else if (avg>=2)    avg = B001;                                             //                                  //
-  else                avg = B000;                                             //                                  //
+void VCNL4010::setAmbientLight(const uint8_t sample, const uint8_t avg) {     //                                  //
+  uint8_t workAvg;                                                            // work variable                    //
+  uint8_t workSample = sample - 1;                                            // subtract one for offset          //
+  if (workSample==6)      workSample==5;                                      // Adjust nonexistent values        //
+  else if (workSample==8) workSample==6;                                      //                                  //
+  else if (workSample>7)  workSample==7;                                      //                                  //
+                                                                              //                                  //
+  if (avg>=128)       workAvg = B111;                                         //                                  //
+  else if (avg>=64)   workAvg = B110;                                         //                                  //
+  else if (avg>=32)   workAvg = B101;                                         //                                  //
+  else if (avg>=16)   workAvg = B100;                                         //                                  //
+  else if (avg>=8)    workAvg = B011;                                         //                                  //
+  else if (avg>=4)    workAvg = B010;                                         //                                  //
+  else if (avg>=2)    workAvg = B001;                                         //                                  //
+  else                workAvg = B000;                                         //                                  //
+                                                                              //                                  //
   uint8_t registerValue = readByte(VCNL4010_AMBIENT_PARAMETER_REG);           // retrieve current settings        //
   registerValue &= B10001000;                                                 // Mask current settings            //
-  registerValue |= sample << 4;                                               // Set bits 4,5,6                   //
-  registerValue |= avg;                                                       // Set bits 0,1,2                   //
+  registerValue |= workSample << 4;                                           // Set bits 4,5,6                   //
+  registerValue |= workAvg;                                                   // Set bits 0,1,2                   //
   writeByte(VCNL4010_AMBIENT_PARAMETER_REG,registerValue);                    // Write new values to buffer       //
 } // of method setAmbientLight()                                              //----------------------------------//
 
