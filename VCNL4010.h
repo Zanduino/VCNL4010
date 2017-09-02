@@ -28,7 +28,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                     Comments                                                       **
 ** ====== ========== ============================= ============================================================== **
-** 1.0.5d 2017-09-02 https://github.com/SV-Zanshin Added option to begin() to all for different I2C Address       **
+** 1.0.5  2017-09-02 https://github.com/SV-Zanshin Added option to begin() to all for different I2C Address       **
 ** 1.0.5c 2017-09-01 https://github.com/SV-Zanshin Re-introduced 170?s delay in I2C read statements after hangs   **
 ** 1.0.5b 2017-08-31 https://github.com/SV-Zanshin Removed 170?s delay in I2C read statements                     **
 ** 1.0.5a 2017-08-31 https://github.com/Koepel     Bug https://github.com/SV-Zanshin/VCNL4010/issues/4            **
