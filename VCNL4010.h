@@ -89,10 +89,10 @@
       uint16_t getProximity();                                                // Retrieve proximity reading       //
       uint8_t  getInterrupt();                                                // Retrieve Interrupt bits          //
       void     clearInterrupt(const uint8_t intVal=0);                        // Clear Interrupt bits             //
+    private:                                                                  // Private methods                  //
       uint8_t  readByte(const uint8_t addr);                                  // Read 1 byte from address on I2C  //
       uint16_t readWord(const uint8_t addr);                                  // Read 2 bytes from address on I2C //
       void     writeByte(const uint8_t addr, const uint8_t data);             // Write 1 byte at address to I2C   //
-    private:                                                                  // Private methods                  //
       uint8_t _TransmissionStatus;                                            // Status of I2C transmission       //
       bool    _ContinuousAmbient   = false;                                   // If mode turned on for Ambient    //
       bool    _ContinuousProximity = false;                                   // If mode turned on for Proximity  //
