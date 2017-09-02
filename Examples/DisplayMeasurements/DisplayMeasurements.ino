@@ -26,6 +26,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                     Comments                                                       **
 ** ====== ========== ============================= ============================================================== **
+** 1.0.3  2017-09-02 https://github.com/SV-Zanshin Added serial handling of Arduino micro initialisation          **
 ** 1.0.2  2017-09-01 https://github.com/SV-Zanshin Removed F() flash macro - uneeded here and confusing to some   **
 ** 1.0.1  2017-07-11 https://github.com/SV-Zanshin Refactored variables to standard c++ nomenclature              **
 ** 1.0.0  2017-01-02 https://github.com/SV-Zanshin Added PERCENTAGE constant and program description              **
@@ -35,8 +36,8 @@
 /*******************************************************************************************************************
 ** Declare all program constants                                                                                  **
 *******************************************************************************************************************/
-const uint32_t SERIAL_SPEED = 9600;                                           // Set the baud rate for Serial I/O //
-const float    PERCENTAGE   = 0.15;                                           // Percentage delta trigger         //
+const uint32_t SERIAL_SPEED = 115200;                                        // Set the baud rate for Serial I/O //
+const float    PERCENTAGE   =   0.15;                                        // Percentage delta trigger         //
 
 /*******************************************************************************************************************
 ** Declare global variables and instantiate classes                                                               **
@@ -51,7 +52,9 @@ uint16_t proximityLast     = 0;                                               //
 *******************************************************************************************************************/
 void setup() {                                                                // Arduino standard setup method    //
   Serial.begin(SERIAL_SPEED);                                                 // Start serial port at Baud rate   //
-  delay(3000);                                                                // Some Atmel Serials need time     //
+  #ifdef __AVR_ATmega32U4__                                                   // If we are a 32U4 processor, then //
+    while(!Serial){}                                                          // loop until serial port is ready  //
+  #endif                                                                      // and then continue                //
   Serial.println("Starting VCNL4010 display measurements program");           //                                  //
   while (!Sensor.begin()) {                                                   // Loop until sensor found          //
     Serial.println("Error, unable to find or identify VCNL4010.");            // Show error message               //

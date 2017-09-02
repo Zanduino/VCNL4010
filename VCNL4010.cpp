@@ -20,7 +20,8 @@ VCNL4010::~VCNL4010() {} // of class destructor                               //
 ** Method begin starts I2C communications with the device, using a default address if one is not specified and    **
 ** return true if the device has been detected and false if it was not                                            **
 *******************************************************************************************************************/
-bool VCNL4010::begin( ) {                                                     // Start I2C Communications         //
+bool VCNL4010::begin(const uint8_t deviceAddress) {                           // Start I2C Communications         //
+  _I2Caddress = deviceAddress;                                                // Set the internal device address  //
   Wire.begin();                                                               // Start I2C as master device       //
   if(readByte(VCNL4010_PRODUCT_REG)!=VCNL4010_PRODUCT_VERSION) return false;  // Return error if no match         //
   setProximityHz(2);                                                          // Default 2Hz proximity rate       //
@@ -38,11 +39,11 @@ bool VCNL4010::begin( ) {                                                     //
 ** Method readByte reads 1 byte from the specified address                                                        **
 *******************************************************************************************************************/
 uint8_t VCNL4010::readByte(const uint8_t addr) {                              //                                  //
-  Wire.beginTransmission(VCNL4010_ADDRESS);                                   // Address the I2C device           //
+  Wire.beginTransmission(_I2Caddress);                                        // Address the I2C device           //
   Wire.write(addr);                                                           // Send the register address to read//
   _TransmissionStatus = Wire.endTransmission();                               // Close transmission               //
   delayMicroseconds(VCNL4010_I2C_DELAY_MICROSECONDS);                         // Introduce slight delay           //
-  Wire.requestFrom(VCNL4010_ADDRESS, (uint8_t)1);                             // Request 1 byte of data           //
+  Wire.requestFrom(_I2Caddress, (uint8_t)1);                                  // Request 1 byte of data           //
   return Wire.read();                                                         // read it and return it            //
 } // of method readByte()                                                     //----------------------------------//
 
@@ -51,11 +52,11 @@ uint8_t VCNL4010::readByte(const uint8_t addr) {                              //
 *******************************************************************************************************************/
 uint16_t VCNL4010::readWord(const uint8_t addr) {                             //                                  //
   uint16_t returnData;                                                        // Store return value               //
-  Wire.beginTransmission(VCNL4010_ADDRESS);                                   // Address the I2C device           //
+  Wire.beginTransmission(_I2Caddress);                                        // Address the I2C device           //
   Wire.write(addr);                                                           // Send the register address to read//
   _TransmissionStatus = Wire.endTransmission();                               // Close transmission               //
   delayMicroseconds(VCNL4010_I2C_DELAY_MICROSECONDS);                         // Introduce slight delay           //
-  Wire.requestFrom(VCNL4010_ADDRESS, (uint8_t)2);                             // Request 2 consecutive bytes      //
+  Wire.requestFrom(_I2Caddress, (uint8_t)2);                                  // Request 2 consecutive bytes      //
   returnData  = Wire.read();                                                  // Read the msb                     //
   returnData  = returnData<<8;                                                // shift the data over              //
   returnData |= Wire.read();                                                  // Read the lsb                     //
@@ -66,7 +67,7 @@ uint16_t VCNL4010::readWord(const uint8_t addr) {                             //
 ** Method writeByte write 1 byte to the specified address                                                         **
 *******************************************************************************************************************/
 void VCNL4010::writeByte(const uint8_t addr, const uint8_t data) {            //                                  //
-  Wire.beginTransmission(VCNL4010_ADDRESS);                                   // Address the I2C device           //
+  Wire.beginTransmission(_I2Caddress);                                        // Address the I2C device           //
   Wire.write(addr);                                                           // Send the register address to read//
   Wire.write(data);                                                           // Send the register address to read//
   _TransmissionStatus = Wire.endTransmission();                               // Close transmission               //

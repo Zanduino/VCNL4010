@@ -28,6 +28,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                     Comments                                                       **
 ** ====== ========== ============================= ============================================================== **
+** 1.0.5d 2017-09-02 https://github.com/SV-Zanshin Added option to begin() to all for different I2C Address       **
 ** 1.0.5c 2017-09-01 https://github.com/SV-Zanshin Re-introduced 170?s delay in I2C read statements after hangs   **
 ** 1.0.5b 2017-08-31 https://github.com/SV-Zanshin Removed 170?s delay in I2C read statements                     **
 ** 1.0.5a 2017-08-31 https://github.com/Koepel     Bug https://github.com/SV-Zanshin/VCNL4010/issues/4            **
@@ -70,7 +71,7 @@
     public:                                                                   // Publicly visible methods         //
       VCNL4010();                                                             // Class constructor                //
       ~VCNL4010();                                                            // Class destructor                 //
-      bool     begin();                                                       // Start I2C communications         //
+      bool     begin(const uint8_t deviceAddress=VCNL4010_ADDRESS);           // Start I2C communications         //
       void     setProximityHz(const uint8_t Hz=2);                            // Set proximity Hz sampling rate   //
       void     setLEDmA(const uint8_t mA=20);                                 // Set milliamperes used by IR LED  //
       void     setProximityFreq(const uint8_t value=0);                       // Set Frequency value from list    //
@@ -88,13 +89,13 @@
       uint16_t getProximity();                                                // Retrieve proximity reading       //
       uint8_t  getInterrupt();                                                // Retrieve Interrupt bits          //
       void     clearInterrupt(const uint8_t intVal=0);                        // Clear Interrupt bits             //
-    private:                                                                  // Private methods                  //
       uint8_t  readByte(const uint8_t addr);                                  // Read 1 byte from address on I2C  //
       uint16_t readWord(const uint8_t addr);                                  // Read 2 bytes from address on I2C //
       void     writeByte(const uint8_t addr, const uint8_t data);             // Write 1 byte at address to I2C   //
+    private:                                                                  // Private methods                  //
       uint8_t _TransmissionStatus;                                            // Status of I2C transmission       //
       bool    _ContinuousAmbient   = false;                                   // If mode turned on for Ambient    //
       bool    _ContinuousProximity = false;                                   // If mode turned on for Proximity  //
-      bool    _I2Caddress          = VCNL4010_ADDRESS;                        // Default to standard I2C address  //
+      uint8_t _I2Caddress          = VCNL4010_ADDRESS;                        // Default to standard I2C address  //
   }; // of VCNL4010 class definition                                          //                                  //
 #endif                                                                        //----------------------------------//

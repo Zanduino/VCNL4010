@@ -25,30 +25,37 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                     Comments                                                       **
 ** ====== ========== ============================= ============================================================== **
+** 1.0.2  2017-09-02 https://github.com/SV-Zanshin Removed F() flash macro - uneeded here and confusing to some   **
 ** 1.0.1  2017-08-30 https://github.com/SV-Zanshin Added version information                                      **
 **                                                                                                                **
 *******************************************************************************************************************/
 #include "VCNL4010.h"                                                         // Include the library              //
 #include <avr/sleep.h>                                                        // Sleep mode Library               //
+
 /*******************************************************************************************************************
 ** Declare all program constants                                                                                  **
 *******************************************************************************************************************/
-const uint32_t SERIAL_SPEED   = 9600;                                         // Set the baud rate for Serial I/O //
-const uint8_t  GREEN_LED_PIN  =   13;                                         // Define the default Arduino pin   //
-const uint8_t  INTERRUPT_PIN  =    9;                                         // VCNL4010 attached to this pin    //
-const uint8_t  WAKE_UP_PIN    =    7;                                         // Pin used to wake up processor,   //
-const uint8_t  PERCENT_CHANGE =   10;                                         // Trigger percentage change        //
+const uint32_t SERIAL_SPEED   = 115200;                                       // Set the baud rate for Serial I/O //
+const uint8_t  GREEN_LED_PIN  =     13;                                       // Define the default Arduino pin   //
+const uint8_t  WAKE_UP_PIN    =      7;                                       // Pin used to wake up processor,   //
+const float    PERCENT_CHANGE =   0.10;                                       // Trigger percentage change        //
+
 /*******************************************************************************************************************
 ** Declare global variables and instantiate classes                                                               **
 *******************************************************************************************************************/
-uint16_t Proximity_Value = 0;                                                 // Last displayed Proximity reading //
-uint16_t Proximity_Delta = 0;                                                 // Difference between current & last//
+uint16_t Proximity_Value      =      0;                                       // Last displayed Proximity reading //
+uint16_t Proximity_Delta      =      0;                                       // Difference between current & last//
 VCNL4010 Sensor;                                                              // Instantiate the class            //
+
 /*******************************************************************************************************************
 ** Declare interrupt vector to jump to when the VCNL4010 triggers a pin change interrupt. Nothing is done here    **
 ** apart from disabling the interrupt to prevent a race condition where the program jumps here constantly         **
 *******************************************************************************************************************/
-void sleepVector(void) {detachInterrupt(digitalPinToInterrupt(WAKE_UP_PIN));} // Detach interrupt immediately     //
+void sleepVector(void) {                                                      // Interrupt handler on pin change  //
+  detachInterrupt(digitalPinToInterrupt(WAKE_UP_PIN));                        // Detach interrupt immediately     //
+  digitalWrite(GREEN_LED_PIN,true);                                           // Turn on the green LED            //
+} // of method sleepVector()                                                  //                                  //
+
 /*******************************************************************************************************************
 ** Method Setup(). This is an Arduino IDE method which is called upon boot or restart. It is only called one time **
 ** and then control goes to the main loop, which loop indefinately.                                               **
@@ -56,46 +63,49 @@ void sleepVector(void) {detachInterrupt(digitalPinToInterrupt(WAKE_UP_PIN));} //
 void setup() {                                                                // Arduino standard setup method    //
   pinMode(GREEN_LED_PIN, OUTPUT);                                             // Define the green LED as an output//
   digitalWrite(GREEN_LED_PIN,HIGH);                                           // Show that we've booted           //
-  pinMode(INTERRUPT_PIN,INPUT_PULLUP);                                        // Default state HIGH with pull-up  //
+  pinMode(WAKE_UP_PIN, INPUT);	                                              // Pin is attached to VCNL4010 INT  //
   Serial.begin(SERIAL_SPEED);                                                 // Start serial comms at set Baud   //
-  #if defined(__AVR_ATmega32U4__)                                             //----------------------------------//
-    delay(3000);                                                             // wait for Serial to initialize    //
-  #endif                                                                      //----------------------------------//
-  Serial.println(F("Starting VCNL4010 WakeOnInterrupt program"));             //                                  //
+  #ifdef __AVR_ATmega32U4__                                                   // If we are a 32U4 processor, then //
+    while(!Serial);                                                           // loop until serial port is ready  //
+    delay(1000);                                                              // and wait a little bit more       //
+  #endif                                                                      // and then continue                //
+  Serial.println("Starting VCNL4010 WakeOnInterrupt program");                //                                  //
   while (!Sensor.begin()) {                                                   // Loop until sensor found          //
-    Serial.println(F("Error, unable to find or identify VCNL4010."));         // Show error message               //
+    Serial.println("Error, unable to find or identify VCNL4010.");            // Show error message               //
     delay(5000);                                                              // Wait 5 seconds before retrying   //
   } // of if-then we can't initialize or find the device                      //                                  //
   Sensor.setLEDmA(200);                                                       // Boost power to Proximity sensor  //
   Sensor.setProximityFreq(32);                                                // Sample 32 times per second       //
   uint16_t ProximityReading = Sensor.getProximity();                          // Get the proximity reading        //
-  Serial.print(F("Proximity sensor is "));Serial.print(ProximityReading);     // Display reading                  //
-  Serial.print(F(", low = "));Serial.print(ProximityReading*9/10);            // Display low threshold value      //
-  Serial.print(F(", high = "));Serial.print(ProximityReading*11/10);          // Display high threshold value     //
+  uint16_t lowThreshold  = ProximityReading-(ProximityReading*PERCENT_CHANGE);// low threshold value              //
+  uint16_t highThreshold = ProximityReading+(ProximityReading*PERCENT_CHANGE);// high threshold value             //
+  Serial.print("Proximity sensor is ");Serial.print(ProximityReading);        // Display reading                  //
+  Serial.print(", low = ");Serial.print(lowThreshold);                        // Display low threshold value      //
+  Serial.print(", high = ");Serial.print(highThreshold);                      // Display high threshold value     //
   Serial.println();                                                           //                                  //
   Sensor.setInterrupt( 1,                                                     // Trigger after 1 event            //
                        false,                                                 // Nothing on Proximity reading     //
                        false,                                                 // Nothing on Ambient light reading //
                        true,                                                  // Interrupt on Proximity threshold //
                        false,                                                 // Nothing on Ambient threshold     //
-                       ProximityReading * PERCENT_CHANGE / 100,               // Low value is 90% of first reading//
-                       ProximityReading * (100+PERCENT_CHANGE) / 100);        // High value is 110% of first value//
+                       lowThreshold,                                          // Low value is 90% of first reading//
+                       highThreshold);                                        // High value is 110% of first value//
   Sensor.setProximityContinuous(true);                                        // Turn on continuous Proximity     //
-  Serial.println(F("VCNL4010 initialized.\n\n"));                             //                                  //
-  pinMode(WAKE_UP_PIN, INPUT);	                                              // Pin is attached to VCNL4010 INT  //
-  digitalWrite(WAKE_UP_PIN, HIGH);                                            // Configure pull-up resistor       //
+  Serial.println("VCNL4010 initialized.\n\n");                                //                                  //
 } // of method setup()                                                        //----------------------------------//
+
 /*******************************************************************************************************************
 ** This is the main program for the Arduino IDE, it is an infinite loop and keeps on repeating.                   **
 *******************************************************************************************************************/
 void loop() {                                                                 //                                  //
-  Serial.println(F("Going to sleep until sensor movement detected."));        // Go to sleep until wake-up        //
+  Serial.println("Going to sleep until sensor movement detected.");           // Go to sleep until wake-up        //
   delay(2000);                                                                // Give USB time to display message //
   #if defined(__AVR_ATmega32U4__)                                             //----------------------------------//
     USBCON |= _BV(FRZCLK);                                                    // Stop the USB clock               //
     PLLCSR &= ~_BV(PLLE);                                                     // Turn off the USB PLL             //
     USBCON &= ~_BV(USBE);                                                     // Disable the USB                  //
   #endif                                                                      //----------------------------------//
+  Sensor.clearInterrupt(0);                                                   // Reset status on VCNL4010         //
   attachInterrupt(digitalPinToInterrupt(WAKE_UP_PIN),sleepVector,LOW);        // jump to vector when pin goes LOW //
   digitalWrite(GREEN_LED_PIN,false);                                          // Turn off LED while we sleep      //
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);                                        // Maximum power savings            //
@@ -103,13 +113,11 @@ void loop() {                                                                 //
   sleep_mode();                                                               // Go to Sleep here until woken     //
   // S L E E P   H E R E   U N T I L   W O K E N   B Y   I N T E R R U P T   T R I G G E R E D   B Y  VCNL1040    //
   sleep_disable();                                                            // Turn off sleep mode after waking //
-  digitalWrite(GREEN_LED_PIN,HIGH);                                           // Turning on LED                   //
   #if defined(__AVR_ATmega32U4__)                                             //----------------------------------//
     USBDevice.attach();                                                       // Re-attach the USB port           //
     Serial.begin(SERIAL_SPEED);                                               // Start serial comms at set Baud   //
     while (!Serial);                                                          // wait for Serial to initialize    //
-    delay(2000);                                                              //                                  //
+    delay(3000);                                                              // Delay 3 seconds for Serial       //
   #endif                                                                      //----------------------------------//
-  Sensor.clearInterrupt(0);                                                   // Reset status on VCNL4010         //
-  Serial.println(F("Woke up, sensor movement detected"));                     // Tell the world that we're awake  //
+  Serial.println("Woke up, sensor movement detected");                        // Tell the world that we're awake  //
 } // of method loop()                                                         //----------------------------------//
