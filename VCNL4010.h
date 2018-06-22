@@ -5,7 +5,7 @@
 ** Adafruit with additional information located at https://www.adafruit.com/product/466.                          **
 **                                                                                                                **
 ** The most recent version of the library can be downloaded from the following github location:                   **
-**  https://github.com/SV-Zanshin/VCNL4010/archive/master.zip and a detailed description of the library and it's  **
+** https://github.com/SV-Zanshin/VCNL4010/archive/master.zip and a detailed description of the library and it's   **
 ** functions is at the github wiki located in https://github.com/SV-Zanshin/VCNL4010/wiki                         **
 **                                                                                                                **
 ** When the class is instantiated the default mode is to have triggered readings for the ambient light sensor as  **
