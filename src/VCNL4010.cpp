@@ -20,10 +20,11 @@ VCNL4010::~VCNL4010() {} // of class destructor                               //
 ** Method begin starts I2C communications with the device, using a default address if one is not specified and    **
 ** return true if the device has been detected and false if it was not                                            **
 *******************************************************************************************************************/
-bool VCNL4010::begin(const uint8_t deviceAddress) {                           // Start I2C Communications         //
+bool VCNL4010::begin(const uint8_t deviceAddress, const uint16_t i2CSpeed) {  // Start I2C Communications         //
   _I2Caddress = deviceAddress;                                                // Set the internal device address  //
   Wire.begin();                                                               // Start I2C as master device       //
   if(readByte(VCNL4010_PRODUCT_REG)!=VCNL4010_PRODUCT_VERSION) return false;  // Return error if no match         //
+  Wire.setClock(i2CSpeed);                                                    // Set the I2C speed                //
   setProximityHz(2);                                                          // Default 2Hz proximity rate       //
   setLEDmA(20);                                                               // Default 20mA IR LED power        //
   setAmbientLight(2,32);                                                      // Default 2/sec and 32 averaged    //

@@ -28,7 +28,8 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                     Comments                                                       **
 ** ====== ========== ============================= ============================================================== **
-** 1.0.5  2017-09-02 https://github.com/SV-Zanshin Added option to begin() to all for different I2C Address       **
+** 1.0.6  2018-06-29 https://github.com/SV-Zanshin https://github.com/SV-Zanshin/VCNL4010/issues/8 I2C speed slct **
+** 1.0.5  2017-09-02 https://github.com/SV-Zanshin Added option to begin() to allow for different I2C Address     **
 ** 1.0.5c 2017-09-01 https://github.com/SV-Zanshin Re-introduced 170?s delay in I2C read statements after hangs   **
 ** 1.0.5b 2017-08-31 https://github.com/SV-Zanshin Removed 170?s delay in I2C read statements                     **
 ** 1.0.5a 2017-08-31 https://github.com/Koepel     Bug https://github.com/SV-Zanshin/VCNL4010/issues/4            **
@@ -50,28 +51,33 @@
     /***************************************************************************************************************
     ** Declare constants used in the class                                                                        **
     ***************************************************************************************************************/
-    const uint8_t  VCNL4010_ADDRESS                = 0x13;                    // Device address, fixed value      //
-    const uint8_t  VCNL4010_COMMAND_REG            = 0x80;                    // Register containing commands     //
-    const uint8_t  VCNL4010_PRODUCT_REG            = 0x81;                    // Register containing product ID   //
-    const uint8_t  VCNL4010_PROXIMITY_RATE_REG     = 0x82;                    // Register containing sampling rate//
-    const uint8_t  VCNL4010_LED_CURRENT_REG        = 0x83;                    // Register containing IR LED mA    //
-    const uint8_t  VCNL4010_AMBIENT_PARAMETER_REG  = 0x84;                    // Register containing ambient set  //
-    const uint8_t  VCNL4010_AMBIENT_LIGHT_REG      = 0x85;                    // Register containing ambient data //
-    const uint8_t  VCNL4010_PROXIMITY_REG          = 0x87;                    // Register containing Proximity    //
-    const uint8_t  VCNL4010_INTERRUPT_REG          = 0x89;                    // Register containing Interrupts   //
-    const uint8_t  VCNL4010_LOW_THRESHOLD_MSB_REG  = 0x8A;                    // MSB of low threshold value       //
-    const uint8_t  VCNL4010_LOW_THRESHOLD_LSB_REG  = 0x8B;                    // LSB of low threshold value       //
-    const uint8_t  VCNL4010_HIGH_THRESHOLD_MSB_REG = 0x8C;                    // MSB of high threshold value      //
-    const uint8_t  VCNL4010_HIGH_THRESHOLD_LSB_REG = 0x8D;                    // LSB of high threshold value      //
-    const uint8_t  VCNL4010_INTERRUPT_STATUS_REG   = 0x8E;                    // Interrupt status register        //
-    const uint8_t  VCNL4010_PROXIMITY_TIMING_REG   = 0x8F;                    // Register containing ProxTiming   //
-    const uint8_t  VCNL4010_PRODUCT_VERSION        = 0x21;                    // Current product ID               //
-    const uint8_t  VCNL4010_I2C_DELAY_MICROSECONDS =  200;                    // I2C Delay in communications      //
+    const uint16_t I2C_STANDARD_MODE               =  100000;                 // Default normal I2C comms speed   //
+    const uint16_t I2C_FAST_MODE                   =  400000;                 // Fast mode                        //
+    const uint16_t I2C_FAST_MODE_PLUS_MODE         = 1000000;                 // Really fast mode                 //
+    const uint16_t I2C_HIGH_SPEED_MODE             = 3400000;                 // Turbo mode                       //
+    const uint8_t  VCNL4010_ADDRESS                =    0x13;                 // Device address, fixed value      //
+    const uint8_t  VCNL4010_COMMAND_REG            =    0x80;                 // Register containing commands     //
+    const uint8_t  VCNL4010_PRODUCT_REG            =    0x81;                 // Register containing product ID   //
+    const uint8_t  VCNL4010_PROXIMITY_RATE_REG     =    0x82;                 // Register containing sampling rate//
+    const uint8_t  VCNL4010_LED_CURRENT_REG        =    0x83;                 // Register containing IR LED mA    //
+    const uint8_t  VCNL4010_AMBIENT_PARAMETER_REG  =    0x84;                 // Register containing ambient set  //
+    const uint8_t  VCNL4010_AMBIENT_LIGHT_REG      =    0x85;                 // Register containing ambient data //
+    const uint8_t  VCNL4010_PROXIMITY_REG          =    0x87;                 // Register containing Proximity    //
+    const uint8_t  VCNL4010_INTERRUPT_REG          =    0x89;                 // Register containing Interrupts   //
+    const uint8_t  VCNL4010_LOW_THRESHOLD_MSB_REG  =    0x8A;                 // MSB of low threshold value       //
+    const uint8_t  VCNL4010_LOW_THRESHOLD_LSB_REG  =    0x8B;                 // LSB of low threshold value       //
+    const uint8_t  VCNL4010_HIGH_THRESHOLD_MSB_REG =    0x8C;                 // MSB of high threshold value      //
+    const uint8_t  VCNL4010_HIGH_THRESHOLD_LSB_REG =    0x8D;                 // LSB of high threshold value      //
+    const uint8_t  VCNL4010_INTERRUPT_STATUS_REG   =    0x8E;                 // Interrupt status register        //
+    const uint8_t  VCNL4010_PROXIMITY_TIMING_REG   =    0x8F;                 // Register containing ProxTiming   //
+    const uint8_t  VCNL4010_PRODUCT_VERSION        =    0x21;                 // Current product ID               //
+    const uint8_t  VCNL4010_I2C_DELAY_MICROSECONDS =     200;                 // I2C Delay in communications      //
   class VCNL4010 {                                                            // Class definition                 //
     public:                                                                   // Publicly visible methods         //
       VCNL4010();                                                             // Class constructor                //
       ~VCNL4010();                                                            // Class destructor                 //
-      bool     begin(const uint8_t deviceAddress=VCNL4010_ADDRESS);           // Start I2C communications         //
+      bool     begin(const uint8_t  deviceAddress=VCNL4010_ADDRESS,           // Start I2C communications         //
+                     const uint16_t i2CSpeed=I2C_STANDARD_MODE);              // defaulting to 100KHz             //
       void     setProximityHz(const uint8_t Hz=2);                            // Set proximity Hz sampling rate   //
       void     setLEDmA(const uint8_t mA=20);                                 // Set milliamperes used by IR LED  //
       void     setProximityFreq(const uint8_t value=0);                       // Set Frequency value from list    //
