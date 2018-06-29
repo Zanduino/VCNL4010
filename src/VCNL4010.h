@@ -28,7 +28,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                     Comments                                                       **
 ** ====== ========== ============================= ============================================================== **
-** 1.0.6  2018-06-29 https://github.com/SV-Zanshin https://github.com/SV-Zanshin/VCNL4010/issues/8 I2C speed slct **
+** 1.0.8  2018-06-29 https://github.com/SV-Zanshin https://github.com/SV-Zanshin/VCNL4010/issues/8 I2C speed slct **
 ** 1.0.5  2017-09-02 https://github.com/SV-Zanshin Added option to begin() to allow for different I2C Address     **
 ** 1.0.5c 2017-09-01 https://github.com/SV-Zanshin Re-introduced 170?s delay in I2C read statements after hangs   **
 ** 1.0.5b 2017-08-31 https://github.com/SV-Zanshin Removed 170?s delay in I2C read statements                     **
