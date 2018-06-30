@@ -31,13 +31,11 @@
 ** Declare all program constants                                                                                  **
 *******************************************************************************************************************/
 const uint32_t SERIAL_SPEED = 115200;                                         // Set the baud rate for Serial I/O //
-const float    PERCENTAGE   = 0.15;                                           // Percentage delta trigger         //
-
+const float    PERCENTAGE   =   0.15;                                         // Percentage delta trigger         //
 /*******************************************************************************************************************
 ** Declare global variables and instantiate classes                                                               **
 *******************************************************************************************************************/
 VCNL4010 Sensor;                                                              // Instantiate the class            //
-
 /*******************************************************************************************************************
 ** Method Setup(). This is an Arduino IDE method which is called upon boot or restart. It is only called one time **
 ** and then control goes to the main loop, which loop indefinately.                                               **
@@ -59,7 +57,6 @@ void setup() {                                                                //
   Serial.println("  - Proximity sampling set to 128x per second");            //                                  //
   Serial.println("- VCNL4010 initialized.\n\n");                              //                                  //
 } // of method setup()                                                        //----------------------------------//
-
 /*******************************************************************************************************************
 ** This is the main program for the Arduino IDE, it is an infinite loop and keeps on repeating.                   **
 *******************************************************************************************************************/

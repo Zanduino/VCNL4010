@@ -76,8 +76,11 @@
     public:                                                                   // Publicly visible methods         //
       VCNL4010();                                                             // Class constructor                //
       ~VCNL4010();                                                            // Class destructor                 //
-      bool     begin(const uint8_t  deviceAddress=VCNL4010_ADDRESS,           // Start I2C communications         //
-                     const uint16_t i2CSpeed=I2C_STANDARD_MODE);              // defaulting to 100KHz             //
+      bool     begin(void);                                                   // Overloaded just device address   //
+      bool     begin(const uint8_t  deviceAddress);                           // Overloaded just device address   //
+      bool     begin(const uint16_t i2CSpeed);                                // Overloaded just speed            //
+      bool     begin(const uint8_t  deviceAddress,                            // Start I2C communications         //
+                     const uint16_t i2CSpeed);                                // specifying both parameters       //
       void     setProximityHz(const uint8_t Hz=2);                            // Set proximity Hz sampling rate   //
       void     setLEDmA(const uint8_t mA=20);                                 // Set milliamperes used by IR LED  //
       void     setProximityFreq(const uint8_t value=0);                       // Set Frequency value from list    //
