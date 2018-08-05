@@ -28,6 +28,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                     Comments                                                       **
 ** ====== ========== ============================= ============================================================== **
+** 1.0.8  2018-07-22 https://github.com/SV-Zanshin Corrected I2C Datatypes                                        **
 ** 1.0.8  2018-07-02 https://github.com/SV-Zanshin Added guard code against multiple I2C constant definitions     **
 ** 1.0.8  2018-06-29 https://github.com/SV-Zanshin https://github.com/SV-Zanshin/VCNL4010/issues/8 I2C speed slct **
 ** 1.0.5  2017-09-02 https://github.com/SV-Zanshin Added option to begin() to allow for different I2C Address     **
@@ -54,10 +55,10 @@
     ***************************************************************************************************************/
     #ifndef I2C_MODES                                                         // I2C related constants            //
       #define I2C_MODES                                                       // Guard code to prevent multiple   //
-      const uint16_t I2C_STANDARD_MODE             =  100000;                 // Default normal I2C 100KHz speed  //
-      const uint16_t I2C_FAST_MODE                 =  400000;                 // Fast mode                        //
-      const uint16_t I2C_FAST_MODE_PLUS_MODE       = 1000000;                 // Really fast mode                 //
-      const uint16_t I2C_HIGH_SPEED_MODE           = 3400000;                 // Turbo mode                       //
+      const uint32_t I2C_STANDARD_MODE             =  100000;                 // Default normal I2C 100KHz speed  //
+      const uint32_t I2C_FAST_MODE                 =  400000;                 // Fast mode                        //
+      const uint32_t I2C_FAST_MODE_PLUS_MODE       = 1000000;                 // Really fast mode                 //
+      const uint32_t I2C_HIGH_SPEED_MODE           = 3400000;                 // Turbo mode                       //
     #endif                                                                    //----------------------------------//
     const uint8_t  VCNL4010_ADDRESS                =    0x13;                 // Device address, fixed value      //
     const uint8_t  VCNL4010_COMMAND_REG            =    0x80;                 // Register containing commands     //
@@ -82,9 +83,9 @@
       ~VCNL4010();                                                            // Class destructor                 //
       bool     begin(void);                                                   // Overloaded just device address   //
       bool     begin(const uint8_t  deviceAddress);                           // Overloaded just device address   //
-      bool     begin(const uint16_t i2CSpeed);                                // Overloaded just speed            //
+      bool     begin(const uint32_t i2CSpeed);                                // Overloaded just speed            //
       bool     begin(const uint8_t  deviceAddress,                            // Start I2C communications         //
-                     const uint16_t i2CSpeed);                                // specifying both parameters       //
+                     const uint32_t i2CSpeed);                                // specifying both parameters       //
       void     setProximityHz(const uint8_t Hz=2);                            // Set proximity Hz sampling rate   //
       void     setLEDmA(const uint8_t mA=20);                                 // Set milliamperes used by IR LED  //
       void     setProximityFreq(const uint8_t value=0);                       // Set Frequency value from list    //

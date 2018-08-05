@@ -20,7 +20,7 @@ VCNL4010::~VCNL4010() {} // of class destructor                               //
 ** Method begin starts I2C communications with the device, using a default address if one is not specified and    **
 ** return true if the device has been detected and false if it was not                                            **
 *******************************************************************************************************************/
-bool VCNL4010::begin(const uint8_t deviceAddress, const uint16_t i2CSpeed) {  // Start I2C Communications         //
+bool VCNL4010::begin(const uint8_t deviceAddress, const uint32_t i2CSpeed) {  // Start I2C Communications         //
   _I2Caddress = deviceAddress;                                                // Set the internal device address  //
   Wire.begin();                                                               // Start I2C as master device       //
   if(readByte(VCNL4010_PRODUCT_REG)!=VCNL4010_PRODUCT_VERSION) return false;  // Return error if no match         //
@@ -41,7 +41,7 @@ bool VCNL4010::begin(void) {                                                  //
 bool VCNL4010::begin(const uint8_t deviceAddress) {                           // Overloaded begin()               //
    begin(deviceAddress,I2C_STANDARD_MODE);                                    // Call actual begin() method       //
 } // of overloaded method begin()                                             //----------------------------------//
-bool VCNL4010::begin(const uint16_t i2CSpeed) {                               // Overloaded begin()               //
+bool VCNL4010::begin(const uint32_t i2CSpeed) {                               // Overloaded begin()               //
   begin(VCNL4010_ADDRESS,i2CSpeed);                                           // Call actual begin() method       //
 } // of overloaded method begin()                                             //----------------------------------//
 /*******************************************************************************************************************
