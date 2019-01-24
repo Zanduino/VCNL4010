@@ -138,9 +138,9 @@ void VCNL4010::setProximityFreq(const uint8_t value) {                        //
 void VCNL4010::setAmbientLight(const uint8_t sample, const uint8_t avg) {     //                                  //
   uint8_t workAvg;                                                            // work variable                    //
   uint8_t workSample = sample - 1;                                            // subtract one for offset          //
-  if (workSample==6)      workSample==5;                                      // Adjust nonexistent values        //
-  else if (workSample==8) workSample==6;                                      //                                  //
-  else if (workSample>7)  workSample==7;                                      //                                  //
+  if (workSample==6)      workSample=5;                                       // Adjust nonexistent values        //
+  else if (workSample==8) workSample=6;                                       //                                  //
+  else if (workSample>7)  workSample=7;                                       //                                  //
                                                                               //                                  //
   if (avg>=128)       workAvg = B111;                                         //                                  //
   else if (avg>=64)   workAvg = B110;                                         //                                  //
