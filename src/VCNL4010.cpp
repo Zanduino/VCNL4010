@@ -164,7 +164,7 @@ void VCNL4010::setAmbientLight(const uint8_t sample, const uint8_t avg) {     //
 *******************************************************************************************************************/
 uint16_t VCNL4010::getAmbientLight() {                                        //                                  //
   uint8_t  commandBuffer = readByte(VCNL4010_COMMAND_REG);                    // get the register contents        //
-  while (commandBuffer&B01000000==0)                                          // Loop until we have a result      //
+  while ((commandBuffer&B01000000)==0)                                        // Loop until we have a result      //
     commandBuffer = readByte(VCNL4010_COMMAND_REG);                           // get the register contents again  //
   uint16_t returnValue = readWord(VCNL4010_AMBIENT_LIGHT_REG);                // retrieve the reading             //
   if (!_ContinuousAmbient) {                                                  // Only trigger if not continuous   //
