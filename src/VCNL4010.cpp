@@ -36,13 +36,13 @@ bool VCNL4010::begin(const uint8_t deviceAddress, const uint32_t i2CSpeed) {  //
   return true;                                                                // return success                   //
 } // of method begin()                                                        //----------------------------------//
 bool VCNL4010::begin(void) {                                                  // Overloaded begin()               //
-  begin(VCNL4010_ADDRESS,I2C_STANDARD_MODE);                                  // Call actual begin() method       //
+  return begin(VCNL4010_ADDRESS,I2C_STANDARD_MODE);                           // Call actual begin() method       //
 } // of overloaded method begin()                                             //----------------------------------//
 bool VCNL4010::begin(const uint8_t deviceAddress) {                           // Overloaded begin()               //
-   begin(deviceAddress,I2C_STANDARD_MODE);                                    // Call actual begin() method       //
+   return begin(deviceAddress,I2C_STANDARD_MODE);                             // Call actual begin() method       //
 } // of overloaded method begin()                                             //----------------------------------//
 bool VCNL4010::begin(const uint32_t i2CSpeed) {                               // Overloaded begin()               //
-  begin(VCNL4010_ADDRESS,i2CSpeed);                                           // Call actual begin() method       //
+  return begin(VCNL4010_ADDRESS,i2CSpeed);                                    // Call actual begin() method       //
 } // of overloaded method begin()                                             //----------------------------------//
 /*******************************************************************************************************************
 ** Method readByte reads 1 byte from the specified address                                                        **

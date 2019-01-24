@@ -28,6 +28,7 @@
 **                                                                                                                **
 ** Vers.  Date       Developer                     Comments                                                       **
 ** ====== ========== ============================= ============================================================== **
+** 1.0.8  2019-01-24 https://github.com/SV-Zanshin Issue #9 - Doxygen Documentation and Travis-CI changes         **
 ** 1.0.8  2018-07-22 https://github.com/SV-Zanshin Corrected I2C Datatypes                                        **
 ** 1.0.8  2018-07-02 https://github.com/SV-Zanshin Added guard code against multiple I2C constant definitions     **
 ** 1.0.8  2018-06-29 https://github.com/SV-Zanshin https://github.com/SV-Zanshin/VCNL4010/issues/8 I2C speed slct **
