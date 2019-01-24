@@ -180,7 +180,7 @@ uint16_t VCNL4010::getAmbientLight() {                                        //
 *******************************************************************************************************************/
 uint16_t VCNL4010::getProximity() {                                           //                                  //
   uint8_t  commandBuffer = readByte(VCNL4010_COMMAND_REG);                    // get the register contents        //
-  while (commandBuffer&B00100000==0)                                          // Loop until we have a result      //
+  while ((commandBuffer&B00100000)==0)                                        // Loop until we have a result      //
   commandBuffer = readByte(VCNL4010_COMMAND_REG);                             // get the register contents again  //
   uint16_t returnValue = readWord(VCNL4010_PROXIMITY_REG);                    // retrieve the reading             //
   if (!_ContinuousProximity) {                                                // Only trigger if not continuous   //
