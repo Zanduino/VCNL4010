@@ -45,7 +45,7 @@ const float    PERCENTAGE   =   0.15; ///< Percentage delta trigger
 /*******************************************************************************************************************
 ** Declare global variables and instantiate classes                                                               **
 *******************************************************************************************************************/
-VCNL4010 Sensor; // Instantiate the VCNL4010 class
+VCNL4010 Sensor; ///< Instantiate the VCNL4010 class
 
 /*!
     @brief    Arduino method called once at startup to initialize the system
