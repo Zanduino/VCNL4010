@@ -1,7 +1,5 @@
 /*! @file CheckDistance.ino
 
- @mainpage Example program for the VCNL4010 Library
-
  @section CheckDistance Description
 
 Example program for using the VCNL4010 library which allows the Arduino to use the VCNL4010 Fully Integrated

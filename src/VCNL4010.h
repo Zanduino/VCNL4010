@@ -54,12 +54,13 @@ Version| Date       | Developer                     | Comments
 #include "Arduino.h"  // Arduino data type definitions
 #include <Wire.h>     // Standard I2C "Wire" library
 #ifndef VCNL4010_h    // Guard code definition
+  /*! @brief Guard code definition for the VCNL4010 Library */
   #define VCNL4010_h  // Define the name inside guard code
 /********************************************
 ** Declare all constants used in the class **
 ********************************************/
 #ifndef I2C_MODES // I2C related constants
-  /** @brief  Guard code definition */
+  /*! @brief  Guard code definition for the various I2C modes */
   #define I2C_MODES // Guard code to prevent multiple declarations
   const uint32_t I2C_STANDARD_MODE               =  100000; ///< Default normal I2C 100KHz speed
   const uint32_t I2C_FAST_MODE                   =  400000; ///< Fast mode

@@ -46,7 +46,6 @@ bool VCNL4010::begin(const uint8_t deviceAddress, const uint32_t i2CSpeed)
 /*!
 * @brief     Starts the I2C communications with the VCNL4010 (overloaded)
 * @details   Uses the default address specified in VCNL4010_ADDRESS if one is not given and standard I2C Speed
-* @param[in] deviceAddress I2C device address
 */
 bool VCNL4010::begin(void) 
 {
@@ -138,8 +137,7 @@ void VCNL4010::writeByte(const uint8_t addr, const uint8_t data)
 * 110   | 125
 * 111   | 250 
 * These roughly equate to Hz (2,4,8,16,32,64,128 and 256)
-* @param[in] addr Address of the I2C device
-* @param[in] data Single byte to write
+* @param[in] Hz Herz code value, described in details
 */
 void VCNL4010::setProximityHz(const uint8_t Hz)
 {
