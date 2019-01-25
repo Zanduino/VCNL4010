@@ -1,0 +1,27 @@
+var _v_c_n_l4010_8h =
+[
+    [ "VCNL4010", "class_v_c_n_l4010.html", "class_v_c_n_l4010" ],
+    [ "I2C_MODES", "_v_c_n_l4010_8h.html#ab1ba09cc86d54a24a664eacdd9d30030", null ],
+    [ "VCNL4010_h", "_v_c_n_l4010_8h.html#a35a40d4764a8cd600d4a5d42e9c6564c", null ],
+    [ "I2C_FAST_MODE", "_v_c_n_l4010_8h.html#a575b1d77d752156e2175f705573647b7", null ],
+    [ "I2C_FAST_MODE_PLUS_MODE", "_v_c_n_l4010_8h.html#af270b48deda721358069b9d029837aaa", null ],
+    [ "I2C_HIGH_SPEED_MODE", "_v_c_n_l4010_8h.html#a4fa63c7d7ea29d06b825a86baa622b2b", null ],
+    [ "I2C_STANDARD_MODE", "_v_c_n_l4010_8h.html#a348cbfad3423827f84b19829d91be1a7", null ],
+    [ "VCNL4010_ADDRESS", "_v_c_n_l4010_8h.html#a59ef50a4e2e6331398bd757c896fce53", null ],
+    [ "VCNL4010_AMBIENT_LIGHT_REG", "_v_c_n_l4010_8h.html#afd2b40dcc9b7142aa5170cca2d84ccb5", null ],
+    [ "VCNL4010_AMBIENT_PARAMETER_REG", "_v_c_n_l4010_8h.html#abb400b95968221f08ce5024c0f17c377", null ],
+    [ "VCNL4010_COMMAND_REG", "_v_c_n_l4010_8h.html#a5885a83f18fa909c2c4e004ac9bf99be", null ],
+    [ "VCNL4010_HIGH_THRESHOLD_LSB_REG", "_v_c_n_l4010_8h.html#a9b42b4b407d095e679ff4849e9196f4b", null ],
+    [ "VCNL4010_HIGH_THRESHOLD_MSB_REG", "_v_c_n_l4010_8h.html#a376505d94f74370cf0539da7a92f3bf6", null ],
+    [ "VCNL4010_I2C_DELAY_MICROSECONDS", "_v_c_n_l4010_8h.html#afe58b2a5b3447233eb6b56250ea08400", null ],
+    [ "VCNL4010_INTERRUPT_REG", "_v_c_n_l4010_8h.html#a151f05ac4af264b68efcb85cb18ce6be", null ],
+    [ "VCNL4010_INTERRUPT_STATUS_REG", "_v_c_n_l4010_8h.html#ae1d38f72cf313b32871abec8fa90b0b2", null ],
+    [ "VCNL4010_LED_CURRENT_REG", "_v_c_n_l4010_8h.html#aa6f18b9be86f4f4d39fe4a025171b280", null ],
+    [ "VCNL4010_LOW_THRESHOLD_LSB_REG", "_v_c_n_l4010_8h.html#a4a41bc1b60bf2a95892796eab8510c4d", null ],
+    [ "VCNL4010_LOW_THRESHOLD_MSB_REG", "_v_c_n_l4010_8h.html#a555824c6e22cdd4e593e8dafa766d44f", null ],
+    [ "VCNL4010_PRODUCT_REG", "_v_c_n_l4010_8h.html#abf9f98f48b8bd20ad69f18ad04dd6ef0", null ],
+    [ "VCNL4010_PRODUCT_VERSION", "_v_c_n_l4010_8h.html#a1353ddb1346cb76e9370063df58148f3", null ],
+    [ "VCNL4010_PROXIMITY_RATE_REG", "_v_c_n_l4010_8h.html#aa0e3cc57ef313f363257f0fe39c2fb5c", null ],
+    [ "VCNL4010_PROXIMITY_REG", "_v_c_n_l4010_8h.html#ac4708ae26f3a5ac879fbc1d662de5a55", null ],
+    [ "VCNL4010_PROXIMITY_TIMING_REG", "_v_c_n_l4010_8h.html#a8b65fddae4425ec439aacd421a6c25f2", null ]
+];
