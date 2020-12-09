@@ -3,6 +3,7 @@
 ##                                                                                                  ##
 ## Date       Developer           Comments                                                          ##
 ## ========== =================== ================================================================= ##
+## 2020-06-06 Arnd@SV-Zanshin     Cleaned up comments                                               ##
 ## 2020-05-11 Arnd@SV-Zanshin     Removed Adafruit libraries which now caused Travis to fail        ##
 ## 2019-01-23 Arnd@SV-Zanshin     Corrected PRETTYNAME                                              ##
 ## 2019-01-20 Arnd@SV-Zanshin     Linked to Adafruit script rather than manually defining all tests ##
@@ -22,7 +23,7 @@ git:
   quiet: true
 env:
   global:
-    - PRETTYNAME="SV-Zanshin VCNL4010 Arduino Library"
+    - PRETTYNAME="VCNL4010 Arduino Library"
     - DOXYFILE: $TRAVIS_BUILD_DIR/Doxyfile
 
 before_install:

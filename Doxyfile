@@ -3,12 +3,13 @@
 ##                                                                                                  ##
 ## Date       Developer           Comments                                                          ##
 ## ========== =================== ================================================================= ##
+## 2020-06-06 Arnd@SV-Zanshin     Updated version to v1.0.10                                        ##
 ## 2020-05-11 Arnd@SV-Zanshin     Removed all comments in order to compact this file                ##
 ##                                                                                                  ##
 ######################################################################################################
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = VCNL4010
-PROJECT_NUMBER         = "Version 1.0.9"
+PROJECT_NUMBER         = "Version 1.0.10"
 PROJECT_BRIEF          = "Arduino Library for VCNL4010 Proximity detector"
 PROJECT_LOGO           =
 OUTPUT_DIRECTORY       =
