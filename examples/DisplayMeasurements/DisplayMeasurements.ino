@@ -49,15 +49,15 @@ received a copy of the GNU General Public License along with this program.  If n
 /***************************************************************************************************
 ** Declare all program constants                                                                  **
 ***************************************************************************************************/
-const uint32_t SERIAL_SPEED{115200};  // Set the baud rate for Serial I/O
-const float    PERCENTAGE{0.15};      // Percentage delta trigger
+const uint32_t SERIAL_SPEED{115200};  ///< Set the baud rate for Serial I/O
+const float    PERCENTAGE{0.15};      ///< Percentage delta trigger
 
 /***************************************************************************************************
 ** Declare global variables and instantiate classes                                               **
 ***************************************************************************************************/
-VCNL4010 Sensor;                // Instantiate the class
-uint16_t ambientSensorLast{0};  // Last displayed ALS reading
-uint16_t proximityLast{0};      // Last displayed Proximity reading
+VCNL4010 Sensor;                ///< Instantiate the class
+uint16_t ambientSensorLast{0};  ///< Last displayed ALS reading
+uint16_t proximityLast{0};      ///< Last displayed Proximity reading
 
 void setup() {
   /*!

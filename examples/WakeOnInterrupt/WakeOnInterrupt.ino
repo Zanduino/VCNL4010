@@ -54,17 +54,17 @@ Version | Date       | Developer  | Comments
 /***************************************************************************************************
 ** Declare all program constants                                                                  **
 ***************************************************************************************************/
-const uint32_t SERIAL_SPEED{115200};  // Set the baud rate for Serial I/O
-const uint8_t  GREEN_LED_PIN{13};     // Define the default Arduino pin
-const uint8_t  WAKE_UP_PIN{7};        // Pin used to wake up processor
-const float    PERCENT_CHANGE{0.10};  // Trigger percentage change
+const uint32_t SERIAL_SPEED{115200};  ///< Set the baud rate for Serial I/O
+const uint8_t  GREEN_LED_PIN{13};     ///< Define the default Arduino pin
+const uint8_t  WAKE_UP_PIN{7};        ///< Pin used to wake up processor
+const float    PERCENT_CHANGE{0.10};  ///< Trigger percentage change
 
 /***************************************************************************************************
 ** Declare global variables and instantiate classes                                               **
 ***************************************************************************************************/
-uint16_t Proximity_Value{0};  // Last displayed Proximity reading
-uint16_t Proximity_Delta{0};  // Difference between current & last
-VCNL4010 Sensor;              // Instantiate the class
+uint16_t Proximity_Value{0};  ///< Last displayed Proximity reading
+uint16_t Proximity_Delta{0};  ///< Difference between current & last
+VCNL4010 Sensor;              ///< Instantiate the class
 
 void sleepVector(void) {
   /*!
