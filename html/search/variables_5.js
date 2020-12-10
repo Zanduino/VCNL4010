@@ -1,13 +1,9 @@
 var searchData=
 [
-  ['vcnl4010',['VCNL4010',['../class_v_c_n_l4010.html',1,'VCNL4010'],['../class_v_c_n_l4010.html#a73f470f672ac1d36692a00f0de915044',1,'VCNL4010::VCNL4010()']]],
-  ['vcnl4010_2ecpp',['VCNL4010.cpp',['../_v_c_n_l4010_8cpp.html',1,'']]],
-  ['vcnl4010_2eh',['VCNL4010.h',['../_v_c_n_l4010_8h.html',1,'']]],
   ['vcnl4010_5faddress',['VCNL4010_ADDRESS',['../_v_c_n_l4010_8h.html#a59ef50a4e2e6331398bd757c896fce53',1,'VCNL4010.h']]],
   ['vcnl4010_5fambient_5flight_5freg',['VCNL4010_AMBIENT_LIGHT_REG',['../_v_c_n_l4010_8h.html#afd2b40dcc9b7142aa5170cca2d84ccb5',1,'VCNL4010.h']]],
   ['vcnl4010_5fambient_5fparameter_5freg',['VCNL4010_AMBIENT_PARAMETER_REG',['../_v_c_n_l4010_8h.html#abb400b95968221f08ce5024c0f17c377',1,'VCNL4010.h']]],
   ['vcnl4010_5fcommand_5freg',['VCNL4010_COMMAND_REG',['../_v_c_n_l4010_8h.html#a5885a83f18fa909c2c4e004ac9bf99be',1,'VCNL4010.h']]],
-  ['vcnl4010_5fh',['VCNL4010_h',['../_v_c_n_l4010_8h.html#a35a40d4764a8cd600d4a5d42e9c6564c',1,'VCNL4010.h']]],
   ['vcnl4010_5fhigh_5fthreshold_5flsb_5freg',['VCNL4010_HIGH_THRESHOLD_LSB_REG',['../_v_c_n_l4010_8h.html#a9b42b4b407d095e679ff4849e9196f4b',1,'VCNL4010.h']]],
   ['vcnl4010_5fhigh_5fthreshold_5fmsb_5freg',['VCNL4010_HIGH_THRESHOLD_MSB_REG',['../_v_c_n_l4010_8h.html#a376505d94f74370cf0539da7a92f3bf6',1,'VCNL4010.h']]],
   ['vcnl4010_5fi2c_5fdelay_5fmicroseconds',['VCNL4010_I2C_DELAY_MICROSECONDS',['../_v_c_n_l4010_8h.html#afe58b2a5b3447233eb6b56250ea08400',1,'VCNL4010.h']]],

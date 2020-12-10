@@ -1,20 +1,8 @@
 var searchData=
 [
-  ['vcnl4010_5faddress',['VCNL4010_ADDRESS',['../_v_c_n_l4010_8h.html#a59ef50a4e2e6331398bd757c896fce53',1,'VCNL4010.h']]],
-  ['vcnl4010_5fambient_5flight_5freg',['VCNL4010_AMBIENT_LIGHT_REG',['../_v_c_n_l4010_8h.html#afd2b40dcc9b7142aa5170cca2d84ccb5',1,'VCNL4010.h']]],
-  ['vcnl4010_5fambient_5fparameter_5freg',['VCNL4010_AMBIENT_PARAMETER_REG',['../_v_c_n_l4010_8h.html#abb400b95968221f08ce5024c0f17c377',1,'VCNL4010.h']]],
-  ['vcnl4010_5fcommand_5freg',['VCNL4010_COMMAND_REG',['../_v_c_n_l4010_8h.html#a5885a83f18fa909c2c4e004ac9bf99be',1,'VCNL4010.h']]],
-  ['vcnl4010_5fhigh_5fthreshold_5flsb_5freg',['VCNL4010_HIGH_THRESHOLD_LSB_REG',['../_v_c_n_l4010_8h.html#a9b42b4b407d095e679ff4849e9196f4b',1,'VCNL4010.h']]],
-  ['vcnl4010_5fhigh_5fthreshold_5fmsb_5freg',['VCNL4010_HIGH_THRESHOLD_MSB_REG',['../_v_c_n_l4010_8h.html#a376505d94f74370cf0539da7a92f3bf6',1,'VCNL4010.h']]],
-  ['vcnl4010_5fi2c_5fdelay_5fmicroseconds',['VCNL4010_I2C_DELAY_MICROSECONDS',['../_v_c_n_l4010_8h.html#afe58b2a5b3447233eb6b56250ea08400',1,'VCNL4010.h']]],
-  ['vcnl4010_5finterrupt_5freg',['VCNL4010_INTERRUPT_REG',['../_v_c_n_l4010_8h.html#a151f05ac4af264b68efcb85cb18ce6be',1,'VCNL4010.h']]],
-  ['vcnl4010_5finterrupt_5fstatus_5freg',['VCNL4010_INTERRUPT_STATUS_REG',['../_v_c_n_l4010_8h.html#ae1d38f72cf313b32871abec8fa90b0b2',1,'VCNL4010.h']]],
-  ['vcnl4010_5fled_5fcurrent_5freg',['VCNL4010_LED_CURRENT_REG',['../_v_c_n_l4010_8h.html#aa6f18b9be86f4f4d39fe4a025171b280',1,'VCNL4010.h']]],
-  ['vcnl4010_5flow_5fthreshold_5flsb_5freg',['VCNL4010_LOW_THRESHOLD_LSB_REG',['../_v_c_n_l4010_8h.html#a4a41bc1b60bf2a95892796eab8510c4d',1,'VCNL4010.h']]],
-  ['vcnl4010_5flow_5fthreshold_5fmsb_5freg',['VCNL4010_LOW_THRESHOLD_MSB_REG',['../_v_c_n_l4010_8h.html#a555824c6e22cdd4e593e8dafa766d44f',1,'VCNL4010.h']]],
-  ['vcnl4010_5fproduct_5freg',['VCNL4010_PRODUCT_REG',['../_v_c_n_l4010_8h.html#abf9f98f48b8bd20ad69f18ad04dd6ef0',1,'VCNL4010.h']]],
-  ['vcnl4010_5fproduct_5fversion',['VCNL4010_PRODUCT_VERSION',['../_v_c_n_l4010_8h.html#a1353ddb1346cb76e9370063df58148f3',1,'VCNL4010.h']]],
-  ['vcnl4010_5fproximity_5frate_5freg',['VCNL4010_PROXIMITY_RATE_REG',['../_v_c_n_l4010_8h.html#aa0e3cc57ef313f363257f0fe39c2fb5c',1,'VCNL4010.h']]],
-  ['vcnl4010_5fproximity_5freg',['VCNL4010_PROXIMITY_REG',['../_v_c_n_l4010_8h.html#ac4708ae26f3a5ac879fbc1d662de5a55',1,'VCNL4010.h']]],
-  ['vcnl4010_5fproximity_5ftiming_5freg',['VCNL4010_PROXIMITY_TIMING_REG',['../_v_c_n_l4010_8h.html#a8b65fddae4425ec439aacd421a6c25f2',1,'VCNL4010.h']]]
+  ['percent_5fchange',['PERCENT_CHANGE',['../_wake_on_interrupt_8ino.html#a6f6be10aa709465b1b24175133ccb78f',1,'WakeOnInterrupt.ino']]],
+  ['percentage',['PERCENTAGE',['../_check_distance_8ino.html#a014714e4564c3371fab4b2abf954f9c8',1,'PERCENTAGE():&#160;CheckDistance.ino'],['../_display_measurements_8ino.html#a014714e4564c3371fab4b2abf954f9c8',1,'PERCENTAGE():&#160;DisplayMeasurements.ino']]],
+  ['proximity_5fdelta',['Proximity_Delta',['../_wake_on_interrupt_8ino.html#a23d10bd5831d11125a59cf4f78e3984e',1,'WakeOnInterrupt.ino']]],
+  ['proximity_5fvalue',['Proximity_Value',['../_wake_on_interrupt_8ino.html#ad87f18619e178cf7916a6b6758db3498',1,'WakeOnInterrupt.ino']]],
+  ['proximitylast',['proximityLast',['../_display_measurements_8ino.html#a58047abf293b544196c2c6e103e984d6',1,'DisplayMeasurements.ino']]]
 ];

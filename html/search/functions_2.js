@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['getambientlight',['getAmbientLight',['../class_v_c_n_l4010.html#a6bac36f18a9a8bec575f5ddb20875365',1,'VCNL4010']]],
-  ['getinterrupt',['getInterrupt',['../class_v_c_n_l4010.html#aa6ec5b719033f588a453429e02029a37',1,'VCNL4010']]],
-  ['getproximity',['getProximity',['../class_v_c_n_l4010.html#a5c4a4ad38b200582e22e299219d39842',1,'VCNL4010']]]
+  ['getambientlight',['getAmbientLight',['../class_v_c_n_l4010.html#a84b6b6398ea20cd4efb01733a14028df',1,'VCNL4010']]],
+  ['getinterrupt',['getInterrupt',['../class_v_c_n_l4010.html#a9d78388188bfc76a4e5bc4cbeca393cc',1,'VCNL4010']]],
+  ['getproximity',['getProximity',['../class_v_c_n_l4010.html#aeb2bdc031fc2c658bd89e3670d215d4e',1,'VCNL4010']]]
 ];
