@@ -8,6 +8,6 @@ The ambient light sensor (ALS) returns a 16-bit value starting at close to 0 for
 ## Proximity sensing
 The proximity sensor has a range of approximately 200mm (2 cm, or 3/4 of an inch) and goes from 65536 when the closest reflector is touching the device to a value of around 2000 when nothing is being reflected in range.
 
-A detailed library description and further details are available at the [GitHub VCNL4010 Wiki](https://github.com/SV-Zanshin/VCNL4010/wiki)
+A detailed library description and further details are available at the [GitHub VCNL4010 Wiki](https://github.com/Zanduino/VCNL4010/wiki)
 
 [![Zanshin Logo](https://zanduino.github.io/Images/zanshinkanjitiny.gif) <img src="https://zanduino.github.io/Images/zanshintext.gif" width="75"/>](https://www.sv-zanshin.com)
