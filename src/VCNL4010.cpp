@@ -64,7 +64,7 @@ bool VCNL4010::begin(const uint32_t i2CSpeed) {
   */
   return begin(VCNL4010_ADDRESS, i2CSpeed);
 }  // of overloaded method begin()
-uint8_t VCNL4010::readByte(const uint8_t addr) const{
+uint8_t VCNL4010::readByte(const uint8_t addr) const {
   /*!
     @brief     reads 1 byte from the specified address
     @details   Delays VCNL4010_I2C_DELAY_MICROSECONDS after reading
@@ -100,9 +100,9 @@ void VCNL4010::writeByte(const uint8_t addr, const uint8_t data) const {
     @param[in] addr Address of the I2C device
     @param[in] data Single byte to write
   */
-  Wire.beginTransmission(_I2Caddress);           // Address the I2C device
-  Wire.write(addr);                              // Send the register address to read
-  Wire.write(data);                              // Send the register address to read
+  Wire.beginTransmission(_I2Caddress);  // Address the I2C device
+  Wire.write(addr);                     // Send the register address to read
+  Wire.write(data);                     // Send the register address to read
 }  // of method writeByte()
 void VCNL4010::setProximityHz(const uint8_t Hz) const {
   /*!
@@ -356,4 +356,4 @@ void VCNL4010::setProximityContinuous(const bool ContinuousMode) {
     _ContinuousProximity = false;                  // set flag
   }                                                // of if-then-else we are turning on
   writeByte(VCNL4010_COMMAND_REG, commandBuffer);  // Write value back to register
-}  // of method setProximityContinuous() 
+}  // of method setProximityContinuous()
