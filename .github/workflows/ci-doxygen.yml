@@ -13,7 +13,7 @@ name: 'Doxygen'
 ####################################################################################################
 ## Action runs when committing (push), doing a pull request, or a workflow_dispatch               ##
 ####################################################################################################
-on: 
+on:
   push:
   pull_request:
   workflow_dispatch:
@@ -37,7 +37,7 @@ jobs:
           ##########################################################################################
           PRETTYNAME:     "VCNL4010 Arduino Library"
           PROJECT_NAME:   "VCNL4010"
-          PROJECT_NUMBER: "v1.0.11"
+          PROJECT_NUMBER: "v1.0.10"
           PROJECT_BRIEF:  "Arduino Library for VCNL4010"
-          PROJECT_LOGO:   ""  
+          PROJECT_LOGO:   ""
          run: bash ${GITHUB_WORKSPACE}/Common/Scripts/doxy_gen_and_deploy.sh

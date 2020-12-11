@@ -5,11 +5,11 @@
 Example program for using the VCNL4010 library which allows the Arduino to use the VCNL4010 Fully
 Integrated Proximity and Ambient Light Sensor with Infrared Emitter. The most recent version of this
 program can be found at
-https://github.com/SV-Zanshin/VCNL4010/blob/master/Examples/CheckDistance/CheckDistance.ino \n\n The
+https://github.com/Zanduino/VCNL4010/blob/master/Examples/CheckDistance/CheckDistance.ino \n\n The
 VCNL4010 library uses the standard I2C library and assumes that the default hardware I2C ports for
 SDA and SCL are being utilized. The address of the VCNL4010 is hardcoded at 0x13 and cannot be
 changed. The library is available on GitHub at
-https://github.com/SV-Zanshin/VCNL4010/archive/master.zip \n\n This program sets up the VCNL4010
+https://github.com/Zanduino/VCNL4010/archive/master.zip \n\n This program sets up the VCNL4010
 with the IR emitter powered at 200mA versus the default of 20mA to increase the measurement range.
 The proximity sampling rate is also increased from the default of 2 to 125 in order to get more
 accurate readings.\n\n
@@ -28,14 +28,14 @@ received a copy of the GNU General Public License along with this program.  If n
 
 @section author Author
 
-Written by Arnd\@SV-Zanshin
+Written by Arnd <Zanshin_Github@sv-zanshin.com> / https://www.github.com/SV-Zanshin
 
 @section versions Changelog
 
-Version | Date       | Developer           | Comments
-------- | ---------- | ------------------- | --------
-1.0.1   | 2019-01-23 | Arnd@SV-Zanshin.Com | Changed coding style to doxygen
-1.0.0   | 2017-09-01 | Arnd@SV-Zanshin.Com | Initial coding
+Version | Date       | Developer  | Comments
+------- | ---------- | ---------- | --------
+1.0.1   | 2019-01-23 | SV-Zanshin | Changed coding style to doxygen
+1.0.0   | 2017-09-01 | SV-Zanshin | Initial coding
 
 */
 #include "VCNL4010.h"  // Include the library

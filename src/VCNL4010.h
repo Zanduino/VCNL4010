@@ -6,26 +6,43 @@
  @section VCNL4010_intro_section Description
 
 Class definition header for the VCNL4010 chip from Vishay Semiconductors. This is a Fully Integrated
-Proximity and Ambient Light Sensor with Infrared Emitter, I2C Interface and Interrupt Function. The 
+Proximity and Ambient Light Sensor with Infrared Emitter, I2C Interface and Interrupt Function. The
 data sheet for the VCNL4010 can be found at http://www.vishay.com/docs/83462/vcnl4010.pdf and there
-is a breakout board from Adafruit with additional information located at 
+is a breakout board from Adafruit with additional information located at
 https://www.adafruit.com/product/466. \n\n
 The library is documented at https://github.com/Zanduino/VCNL4010/wiki \n\n
 
 When the class is instantiated the default mode is to have triggered readings for the ambient light
 sensor as well as for the proximity sensor.  In order to speed up processing the class will trigger
-the two types of measurements preemptively, meaning that as soon that either of the results have 
+the two types of measurements preemptively, meaning that as soon that either of the results have
 been read the next measurement is started automatically.  If the continuous mode is activated for
-either of the ambient or proximity sensors then no specific measurements are triggered since the 
+either of the ambient or proximity sensors then no specific measurements are triggered since the
 device takes care of that internally.
+
+@section doxygen configuration
+This library is built with the standard "Doxyfile", which is located at
+https://github.com/Zanduino/Common/blob/main/Doxygen. As described on that page, there are only 5
+environment variables used, and these are set in the project's actions file, located at
+https://github.com/Zanduino/VCNL4010/blob/master/.github/workflows/ci-doxygen.yml
+Edit this file and set the 5 variables: PRETTYNAME, PROJECT_NAME, PROJECT_NUMBER, PROJECT_BRIEF and
+PROJECT_LOGO so that these values are used in the doxygen documentation.
+The local copy of the doxyfile should be in the project's root directory in order to do local
+doxygen testing, but the file is ignored on upload to GitHub.
+
+@section clang-format
+Part of the GitHub actions for CI is running every source file through "clang-format" to ensure
+that coding formatting is done the same for all files. The configuration file ".clang-format" is
+located at https://github.com/Zanduino/Common/tree/main/clang-format and this is used for CI tests
+when pushing to GitHub. The local file, if present in the root directory, is ignored when
+committing and uploading.
 
 @section VCNL4010_license GNU General Public License v3.0
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU
-General Public License as published by the Free Software Foundation, either version 3 of the 
+General Public License as published by the Free Software Foundation, either version 3 of the
 License, or (at your option) any later version. This program is distributed in the hope that it will
 be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. You should have 
-received a copy of the GNU General Public License along with this program.  If not, see 
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. You should have
+received a copy of the GNU General Public License along with this program.  If not, see
 <http://www.gnu.org/licenses/>.
 
 @section VCNL4010_author Author
