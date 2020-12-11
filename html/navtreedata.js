@@ -3,6 +3,8 @@ var NAVTREE =
   [ "VCNL4010", "index.html", [
     [ "Arduino Library Header for the VCNL4010 Proximity detector", "index.html", [
       [ "Description", "index.html#VCNL4010_intro_section", null ],
+      [ "configuration", "index.html#doxygen", null ],
+      [ "clang-format", "index.html#clang-format", null ],
       [ "GNU General Public License v3.0", "index.html#VCNL4010_license", null ],
       [ "Author", "index.html#VCNL4010_author", null ],
       [ "Changelog", "index.html#VCNL4010_versions", null ]

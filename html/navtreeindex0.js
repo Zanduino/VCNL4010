@@ -83,11 +83,13 @@ var NAVTREEINDEX0 =
 "globals_defs.html":[2,1,3],
 "globals_func.html":[2,1,1],
 "globals_vars.html":[2,1,2],
-"index.html":[0],
 "index.html":[],
-"index.html#VCNL4010_author":[0,2],
+"index.html":[0],
+"index.html#VCNL4010_author":[0,4],
 "index.html#VCNL4010_intro_section":[0,0],
-"index.html#VCNL4010_license":[0,1],
-"index.html#VCNL4010_versions":[0,3],
+"index.html#VCNL4010_license":[0,3],
+"index.html#VCNL4010_versions":[0,5],
+"index.html#clang-format":[0,2],
+"index.html#doxygen":[0,1],
 "pages.html":[]
 };
