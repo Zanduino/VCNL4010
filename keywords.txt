@@ -1,6 +1,12 @@
-###################################
-# Syntax Coloring Map for library #
-###################################
+######################################################################################################
+## Syntax Coloring Map for library. The values below MUST be separated by a single "TAB", otherwise ##
+## the file will not be parsed correctly.                                                           ##
+##                                                                                                  ##
+## Date       Developer  Comments                                                                   ##
+## ========== ========== ========================================================================== ##
+## 2020-12-25 SV-Zanshin Added this comment header and readByte(), readWord() and writeByte()       ##
+##                                                                                                  ##
+######################################################################################################
 
 ################################
 # Classes/Datatypes (KEYWORD1) #
