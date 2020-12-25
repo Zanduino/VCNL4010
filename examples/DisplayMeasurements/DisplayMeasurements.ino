@@ -6,7 +6,7 @@
 Example program for using the VCNL4010 library which allows the Arduino to use the VCNL4010 Fully
 Integrated Proximity and Ambient Light Sensor with Infrared Emitter.
 
-The VCNL4010 library uses the standard I2C library and assumes that the default hardware I2C ports
+The VCNL4010 library uses the standard I2C calls and assumes that the default hardware I2C ports
 for SDA and SCL are being utilized. The address of the VCNL4010 is hardcoded at 0x13 and cannot be
 changed. The library is available on GitHub at https://github.com/Zanduino/VCNL4010
 
@@ -50,14 +50,12 @@ received a copy of the GNU General Public License along with this program.  If n
 ** Declare all program constants                                                                  **
 ***************************************************************************************************/
 const uint32_t SERIAL_SPEED{115200};  ///< Set the baud rate for Serial I/O
-const float    PERCENTAGE{0.15};      ///< Percentage delta trigger
+const float    PERCENTAGE{0.15f};     ///< Percentage delta trigger
 
 /***************************************************************************************************
 ** Declare global variables and instantiate classes                                               **
 ***************************************************************************************************/
-VCNL4010 Sensor;                ///< Instantiate the class
-uint16_t ambientSensorLast{0};  ///< Last displayed ALS reading
-uint16_t proximityLast{0};      ///< Last displayed Proximity reading
+VCNL4010 Sensor;  ///< Instantiate the class
 
 void setup() {
   /*!
@@ -69,18 +67,19 @@ void setup() {
   */
   Serial.begin(SERIAL_SPEED);  // Start serial port at Baud rate
 #ifdef __AVR_ATmega32U4__      // If we are a 32U4 processor, then
-  while (!Serial) {
-  }     // loop until serial port is ready
-#endif  // and then continue
+  delay(2000);  // wait 2 seconds for initialization
+#endif          // and then continue
   Serial.println("Starting VCNL4010 display measurements program");
-  while (!Sensor.begin()) {                                         // Loop until sensor found
-    Serial.println("Error, unable to find or identify VCNL4010.");  // Show error message
-    delay(5000);  // Wait 5 seconds before retrying
-  }               // of if-then we can't initialize or find the device
+  while (!Sensor.begin()) {  // Loop until sensor found
+    Serial.println("Error, unable to find or identify VCNL4010.\nChecking again in 5 seconds...");
+    delay(5000);
+  }  // of if-then we can't initialize or find the device
   Serial.println("Setting VCNL4010 attributes.");
-  Sensor.setLEDmA(200);            // Boost power to Proximity sensor
-  Sensor.setAmbientLight(2, 128);  // Sample 2x per second, 128 avg.
-  Sensor.setProximityHz(128);      // Sample 128x per second
+  Sensor.setLEDmA(200);             // Boost power to Proximity sensor
+  Sensor.setAmbientLight(2, 128);   // Sample 2x per second, 128 avg.
+  Sensor.setProximityHz(128);       // Sample 128x per second
+  Sensor.setAmbientContinuous();    // Use continuous readings
+  Sensor.setProximityContinuous();  // Use continuous readings
   Serial.println("VCNL4010 initialized.\n\n");
 }  // of method setup()
 
@@ -91,24 +90,26 @@ void loop() {
     repeating.
     @return   void
   */
-  uint16_t ambientSensor        = Sensor.getAmbientLight();  // Get the ambient light value
-  uint16_t proximitySensor      = Sensor.getProximity();     // Get the Proximity sensor value
-  uint16_t ambientSensorDelta   = Sensor.getAmbientLight() * PERCENTAGE;  // Set delta to percentage
-  uint16_t proximitySensorDelta = Sensor.getProximity() * PERCENTAGE;     // Set delta to percentage
-  int32_t  ambientSensorChange  = ambientSensorLast - ambientSensor;      // Compute delta ALS
-  int32_t  proximitySensorChange = proximityLast - proximitySensor;       // Compute delta Proximity
+  static uint16_t ambientSensorLast{0};  ///< Last displayed ALS reading
+  static uint16_t proximityLast{0};      ///< Last displayed Proximity reading
+  uint16_t        ambientSensor         = Sensor.getAmbientLight();  // Get the ambient light value
+  uint16_t        proximitySensor       = Sensor.getProximity();  // Get the Proximity sensor value
+  uint16_t        ambientSensorDelta    = ambientSensor * PERCENTAGE;    // Set delta to percentage
+  uint16_t        proximitySensorDelta  = proximitySensor * PERCENTAGE;  // Set delta to percentage
+  uint16_t        ambientSensorChange   = abs((int16_t)ambientSensorLast - (int16_t)ambientSensor);
+  uint16_t        proximitySensorChange = abs((int16_t)proximityLast - (int16_t)proximitySensor);
 
-  if (abs(ambientSensorChange) > ambientSensorDelta ||      // If either ambient or proximity
-      abs(proximitySensorChange) > proximitySensorDelta) {  // is above the preset threshold,
-    Serial.print("Time = ");                                // then display the new values
-    Serial.print(millis() / 1000);                          // marking the ALS or proximity that
-    Serial.print(", Ambient Light = ");                     // triggered the display with a "*"
-    if (abs(ambientSensorChange) > ambientSensorDelta) Serial.print("*");
+  if (ambientSensorChange > ambientSensorDelta ||      // If either ambient or proximity
+      proximitySensorChange > proximitySensorDelta) {  // is above the preset threshold,
+    Serial.print("T = ");                              // then display the new values
+    Serial.print(millis() / 1000);                     // marking the ALS or proximity that
+    Serial.print(", Ambient = ");                      // triggered the display with a "*"
+    if (ambientSensorChange > ambientSensorDelta) Serial.print("*");
     Serial.print(ambientSensor);
     Serial.print(", Proximity = ");
-    if (abs(proximitySensorChange) > proximitySensorDelta) Serial.print("*");
+    if (proximitySensorChange > proximitySensorDelta) Serial.print("*");
     Serial.println(proximitySensor);
     ambientSensorLast = ambientSensor;
     proximityLast     = proximitySensor;
-  }  // of if-then we have a 10% change or more in either reading
+  }  // of if-then we have a 20% change or more in either reading
 }  // of method loop()

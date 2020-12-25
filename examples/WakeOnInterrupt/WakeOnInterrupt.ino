@@ -89,9 +89,7 @@ void setup() {
   pinMode(WAKE_UP_PIN, INPUT);        // Pin is attached to VCNL4010 INT
   Serial.begin(SERIAL_SPEED);         // Start serial comms at set Baud
 #ifdef __AVR_ATmega32U4__             // If we are a 32U4 processor, then
-  while (!Serial)
-    ;           // loop until serial port is ready
-  delay(1000);  // and wait a little bit more
+  delay(2000);  // and wait 2 seconds
 #endif          // and then continue
   Serial.println("Starting VCNL4010 WakeOnInterrupt program");
   while (!Sensor.begin())  // Loop until sensor found
@@ -143,15 +141,14 @@ void loop() {
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);  // Maximum power savings
   sleep_enable();                       // Enable sleep mode
   sleep_mode();                         // Go to Sleep here until woken
-  // S L E E P   H E R E   U N T I L   W O K E N   B Y   I N T E R R U P T   T R I G G E R E D   B Y
-  // VCNL1040
+
+  // S L E E P   H E R E   U N T I L   W O K E N   B Y   V C N L 4 0 1 0   I N T E R R U P T
+
   sleep_disable();  // Turn off sleep mode after waking
 #if defined(__AVR_ATmega32U4__)
   USBDevice.attach();          // Re-attach the USB port
   Serial.begin(SERIAL_SPEED);  // Start serial comms at set Baud
-  while (!Serial)
-    ;           // wait for Serial to initialize
-  delay(3000);  // Delay 3 seconds for Serial
+  delay(3000);                 // Delay 3 seconds for Serial
 #endif
   Serial.println("Woke up, sensor movement detected");  // Tell the world that we're awake
 }  // of method loop()

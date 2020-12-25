@@ -26,8 +26,8 @@ bool VCNL4010::begin(const uint8_t deviceAddress, const uint32_t i2CSpeed) {
   */
   _I2Caddress = deviceAddress;  // Set the private device address variable
   Wire.begin();                 // Start I2C as master device
+  Wire.setClock(i2CSpeed);      // Set the I2C speed
   if (readByte(VCNL4010_PRODUCT_REG) != VCNL4010_PRODUCT_VERSION) return false;
-  Wire.setClock(i2CSpeed);                                 // Set the I2C speed
   setProximityHz(2);                                       // Default 2Hz proximity rate
   setLEDmA(20);                                            // Default 20mA IR LED power
   setAmbientLight(2, 32);                                  // Default 2/sec and 32 averaged
@@ -73,6 +73,7 @@ uint8_t VCNL4010::readByte(const uint8_t addr) const {
   */
   Wire.beginTransmission(_I2Caddress);                 // Address the I2C device
   Wire.write(addr);                                    // Send the register address to read
+  Wire.endTransmission();                              // Close transmission
   delayMicroseconds(VCNL4010_I2C_DELAY_MICROSECONDS);  // Introduce slight delay
   Wire.requestFrom(_I2Caddress, (uint8_t)1);           // Request 1 byte of data
   return Wire.read();                                  // read it and return it
@@ -87,6 +88,7 @@ uint16_t VCNL4010::readWord(const uint8_t addr) const {
   uint16_t returnData;                                 // Store return value
   Wire.beginTransmission(_I2Caddress);                 // Address the I2C device
   Wire.write(addr);                                    // Send the register address to read
+  Wire.endTransmission();                              // Close transmission
   delayMicroseconds(VCNL4010_I2C_DELAY_MICROSECONDS);  // Introduce slight delay
   Wire.requestFrom(_I2Caddress, (uint8_t)2);           // Request 2 consecutive bytes
   returnData = Wire.read();                            // Read the msb
@@ -103,6 +105,7 @@ void VCNL4010::writeByte(const uint8_t addr, const uint8_t data) const {
   Wire.beginTransmission(_I2Caddress);  // Address the I2C device
   Wire.write(addr);                     // Send the register address to read
   Wire.write(data);                     // Send the register address to read
+  Wire.endTransmission();               // Close transmission
 }  // of method writeByte()
 void VCNL4010::setProximityHz(const uint8_t Hz) const {
   /*!

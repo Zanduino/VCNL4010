@@ -53,7 +53,8 @@ Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 
 Version| Date       | Developer  | Comments
 ------ | ---------- | ---------- | --------------------------------------------------------------
-1.0.8  | 2019-01-24 | SV-Zanshin | Issue #9 - Doxygen Documentation and Travis-CI changes
+1.1.0  | 2020-12-25 | SV-Zanshin | Issue #14 - Corrected I2C reads, cleaned up examples
+1.0.8  | 2019-01-24 | SV-Zanshin | Issue  #9 - Doxygen Documentation and Travis-CI changes
 1.0.8  | 2018-07-22 | SV-Zanshin | Corrected I2C Datatypes
 1.0.8  | 2018-07-02 | SV-Zanshin | Added guard code against multiple I2C constant definitions
 1.0.8  | 2018-06-29 | SV-Zanshin | Issue #8 I2C speed slct

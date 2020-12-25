@@ -1,6 +1,6 @@
 /*! @file CheckDistance.ino
 
- @section CheckDistance Description
+ @section CheckDistanceDescription Description
 
 Example program for using the VCNL4010 library which allows the Arduino to use the VCNL4010 Fully
 Integrated Proximity and Ambient Light Sensor with Infrared Emitter. The most recent version of this
@@ -26,16 +26,17 @@ FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. 
 received a copy of the GNU General Public License along with this program.  If not, see
 <http://www.gnu.org/licenses/>.
 
-@section author Author
+@section CheckDistanceauthor Author
 
 Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 
-@section versions Changelog
+@section CheckDistanceversions Changelog
 
-Version | Date       | Developer  | Comments
-------- | ---------- | ---------- | --------
-1.0.1   | 2019-01-23 | SV-Zanshin | Changed coding style to doxygen
-1.0.0   | 2017-09-01 | SV-Zanshin | Initial coding
+| Version | Date       | Developer  | Comments                                                     |
+| ------- | ---------- | ---------- | ------------------------------------------------------------ |
+| 1.0.2   | 2020-12-24 | SV-Zanshin | Changed code to make it more legible                         |
+| 1.0.1   | 2019-01-23 | SV-Zanshin | Changed coding style to doxygen                              |
+| 1.0.0   | 2017-09-01 | SV-Zanshin | Initial coding                                               |
 
 */
 #include "VCNL4010.h"  // Include the library
@@ -61,7 +62,7 @@ void           setup() {
   Serial.println("\n\n\nStarting VCNL4010 CheckDistance program");
   while (!Sensor.begin())  // Loop until sensor found
   {
-    Serial.println("Error, unable to find or identify VCNL4010.");
+    Serial.println("Error, unable to find or identify VCNL4010.\nChecking again in 5 seconds...");
     delay(5000);
   }  // of if-then we can't initialize or find the device
   Serial.println("- Setting VCNL4010 attributes:");
@@ -70,6 +71,7 @@ void           setup() {
   Sensor.setProximityHz(128);
   Serial.println("  - Proximity sampling set to 128x per second");
   Serial.println("- VCNL4010 initialized.\n\n");
+  Serial.println("---> Move object close to sensor <---\n");
 }  // of method setup()
 
 void loop() {
