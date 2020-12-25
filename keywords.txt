@@ -1,4 +1,4 @@
-﻿###################################
+###################################
 # Syntax Coloring Map for library #
 ###################################
 
@@ -22,6 +22,9 @@ getAmbientLight	KEYWORD2
 getProximity	KEYWORD2
 getInterrupt	KEYWORD2
 clearInterrupt	KEYWORD2
+readByte  KEYWORD2
+writeByte KEYWORD2
+readWord  KEYWORD2
 
 ########################
 # Constants (LITERAL1) #
