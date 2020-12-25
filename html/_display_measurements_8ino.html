@@ -104,27 +104,19 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <tr class="memdesc:adc8430dea1bce949f10d9708742cca34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the baud rate for Serial I/O. <br /></td></tr>
 <tr class="separator:adc8430dea1bce949f10d9708742cca34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a014714e4564c3371fab4b2abf954f9c8"><td class="memItemLeft" align="right" valign="top"><a id="a014714e4564c3371fab4b2abf954f9c8"></a>
-const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_measurements_8ino.html#a014714e4564c3371fab4b2abf954f9c8">PERCENTAGE</a> {0.15}</td></tr>
+const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_measurements_8ino.html#a014714e4564c3371fab4b2abf954f9c8">PERCENTAGE</a> {0.15f}</td></tr>
 <tr class="memdesc:a014714e4564c3371fab4b2abf954f9c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Percentage delta trigger. <br /></td></tr>
 <tr class="separator:a014714e4564c3371fab4b2abf954f9c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf8e17d09e8ab1ee4d19e1c3730d88e8"><td class="memItemLeft" align="right" valign="top"><a id="adf8e17d09e8ab1ee4d19e1c3730d88e8"></a>
 <a class="el" href="class_v_c_n_l4010.html">VCNL4010</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_measurements_8ino.html#adf8e17d09e8ab1ee4d19e1c3730d88e8">Sensor</a></td></tr>
 <tr class="memdesc:adf8e17d09e8ab1ee4d19e1c3730d88e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiate the class. <br /></td></tr>
 <tr class="separator:adf8e17d09e8ab1ee4d19e1c3730d88e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac897bf4243fb9bee4bcaf15425478df4"><td class="memItemLeft" align="right" valign="top"><a id="ac897bf4243fb9bee4bcaf15425478df4"></a>
-uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_measurements_8ino.html#ac897bf4243fb9bee4bcaf15425478df4">ambientSensorLast</a> {0}</td></tr>
-<tr class="memdesc:ac897bf4243fb9bee4bcaf15425478df4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last displayed ALS reading. <br /></td></tr>
-<tr class="separator:ac897bf4243fb9bee4bcaf15425478df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58047abf293b544196c2c6e103e984d6"><td class="memItemLeft" align="right" valign="top"><a id="a58047abf293b544196c2c6e103e984d6"></a>
-uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_measurements_8ino.html#a58047abf293b544196c2c6e103e984d6">proximityLast</a> {0}</td></tr>
-<tr class="memdesc:a58047abf293b544196c2c6e103e984d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last displayed Proximity reading. <br /></td></tr>
-<tr class="separator:a58047abf293b544196c2c6e103e984d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h1><a class="anchor" id="DisplayMeasurements_intro_section"></a>
 Description</h1>
 <p>Example program for using the <a class="el" href="class_v_c_n_l4010.html" title="Main class definition. ">VCNL4010</a> library which allows the Arduino to use the <a class="el" href="class_v_c_n_l4010.html" title="Main class definition. ">VCNL4010</a> Fully Integrated Proximity and Ambient Light Sensor with Infrared Emitter.</p>
-<p>The <a class="el" href="class_v_c_n_l4010.html" title="Main class definition. ">VCNL4010</a> library uses the standard I2C library and assumes that the default hardware I2C ports for SDA and SCL are being utilized. The address of the <a class="el" href="class_v_c_n_l4010.html" title="Main class definition. ">VCNL4010</a> is hardcoded at 0x13 and cannot be changed. The library is available on GitHub at <a href="https://github.com/Zanduino/VCNL4010">https://github.com/Zanduino/VCNL4010</a></p>
+<p>The <a class="el" href="class_v_c_n_l4010.html" title="Main class definition. ">VCNL4010</a> library uses the standard I2C calls and assumes that the default hardware I2C ports for SDA and SCL are being utilized. The address of the <a class="el" href="class_v_c_n_l4010.html" title="Main class definition. ">VCNL4010</a> is hardcoded at 0x13 and cannot be changed. The library is available on GitHub at <a href="https://github.com/Zanduino/VCNL4010">https://github.com/Zanduino/VCNL4010</a></p>
 <p>This program sets up the <a class="el" href="class_v_c_n_l4010.html" title="Main class definition. ">VCNL4010</a> to sample the ambient light at 2x per second (which is the default) and to average 128 measurements into each reading (which is more than the default 32 averages) to get more constant measurements. The IR emitter is to the maximum value of 200mA (up from the default of 20mA) to extend the range at which it detects movement and the sampling rate for proximity is raised to 125 from the default 2</p>
 <p>If either the ambient light or the movement sensor values change by more than 15% then the new values are displayed to the serial port. Changes are detected using the abs() function, which turns out to be a macro in the Arduino development environment and doesn't support embedded functions, which is why the checks are done in separate commands rather than in one function call.</p>
 <h1><a class="anchor" id="DisplayMeasurements_license"></a>
@@ -164,6 +156,8 @@ Changelog</h1>
 </div><div class="memdoc">
 <p>Arduino method for the main program loop</p>
 <p>This is the main program for the Arduino IDE, it is an infinite loop and keeps on repeating. </p><dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<p>&lt; Last displayed ALS reading</p>
+<p>&lt; Last displayed Proximity reading </p>
 
 </div>
 </div>

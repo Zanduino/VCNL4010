@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['i2c_5ffast_5fmode',['I2C_FAST_MODE',['../_v_c_n_l4010_8h.html#a575b1d77d752156e2175f705573647b7',1,'VCNL4010.h']]],
-  ['i2c_5ffast_5fmode_5fplus_5fmode',['I2C_FAST_MODE_PLUS_MODE',['../_v_c_n_l4010_8h.html#af270b48deda721358069b9d029837aaa',1,'VCNL4010.h']]],
-  ['i2c_5fhigh_5fspeed_5fmode',['I2C_HIGH_SPEED_MODE',['../_v_c_n_l4010_8h.html#a4fa63c7d7ea29d06b825a86baa622b2b',1,'VCNL4010.h']]],
-  ['i2c_5fstandard_5fmode',['I2C_STANDARD_MODE',['../_v_c_n_l4010_8h.html#a348cbfad3423827f84b19829d91be1a7',1,'VCNL4010.h']]]
+  ['percent_5fchange',['PERCENT_CHANGE',['../_wake_on_interrupt_8ino.html#a6f6be10aa709465b1b24175133ccb78f',1,'WakeOnInterrupt.ino']]],
+  ['percentage',['PERCENTAGE',['../_check_distance_8ino.html#a014714e4564c3371fab4b2abf954f9c8',1,'PERCENTAGE():&#160;CheckDistance.ino'],['../_display_measurements_8ino.html#a014714e4564c3371fab4b2abf954f9c8',1,'PERCENTAGE():&#160;DisplayMeasurements.ino']]],
+  ['proximity_5fdelta',['Proximity_Delta',['../_wake_on_interrupt_8ino.html#a23d10bd5831d11125a59cf4f78e3984e',1,'WakeOnInterrupt.ino']]],
+  ['proximity_5fvalue',['Proximity_Value',['../_wake_on_interrupt_8ino.html#ad87f18619e178cf7916a6b6758db3498',1,'WakeOnInterrupt.ino']]]
 ];
