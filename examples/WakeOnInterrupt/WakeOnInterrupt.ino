@@ -89,8 +89,8 @@ void setup() {
   pinMode(WAKE_UP_PIN, INPUT);        // Pin is attached to VCNL4010 INT
   Serial.begin(SERIAL_SPEED);         // Start serial comms at set Baud
 #ifdef __AVR_ATmega32U4__             // If we are a 32U4 processor, then
-  delay(2000);  // and wait 2 seconds
-#endif          // and then continue
+  delay(2000);                        // and wait 2 seconds
+#endif                                // and then continue
   Serial.println("Starting VCNL4010 WakeOnInterrupt program");
   while (!Sensor.begin())  // Loop until sensor found
   {

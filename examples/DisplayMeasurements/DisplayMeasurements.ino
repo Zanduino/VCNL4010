@@ -67,8 +67,8 @@ void setup() {
   */
   Serial.begin(SERIAL_SPEED);  // Start serial port at Baud rate
 #ifdef __AVR_ATmega32U4__      // If we are a 32U4 processor, then
-  delay(2000);  // wait 2 seconds for initialization
-#endif          // and then continue
+  delay(2000);                 // wait 2 seconds for initialization
+#endif                         // and then continue
   Serial.println("Starting VCNL4010 display measurements program");
   while (!Sensor.begin()) {  // Loop until sensor found
     Serial.println("Error, unable to find or identify VCNL4010.\nChecking again in 5 seconds...");
