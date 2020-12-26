@@ -51,8 +51,8 @@ void setup() {
   */
   Serial.begin(SERIAL_SPEED);  // Start serial port at Baud rate
 #ifdef __AVR_ATmega32U4__      // If we are a 32U4 processor, then
-  delay(2000);                 // wait 2 seconds for initialization
-#endif                         // and then continue
+  delay(2000);  // wait 2 seconds for initialization
+#endif          // and then continue
   Serial.println("Starting VCNL4010 regression test program");
   while (!Sensor.begin()) {  // Loop until sensor found
     Serial.println("Error, unable to find or identify VCNL4010.\nChecking again in 5 seconds...");
@@ -60,14 +60,14 @@ void setup() {
   }  // of if-then we can't initialize or find the device
   Serial.println("Setting and checking VCNL4010 attributes.");
 
-  Sensor.setProximityHz(128);  // Sample 128x per second
+  Sensor.setProximityHz(128);
   uint8_t value = Sensor.readByte(REGISTER_PROXIMITY_RATE);
   if (value != 6) {
     Serial.print("Error in Proximity Hertz, should be \"6\", value = \"");
     Serial.print(value);
     Serial.println("\".");
   }  // if-then bad Proximity change
-  Sensor.setProximityHz(32);  // Sample 32x per second
+  Sensor.setProximityHz(32);
   value = Sensor.readByte(REGISTER_PROXIMITY_RATE);
   if (value != 4) {
     Serial.print("Error in Proximity Hertz, should be \"4\", value = \"");
@@ -75,55 +75,47 @@ void setup() {
     Serial.println("\".");
   }  // if-then bad Proximity change
 
-  Sensor.setProximityFreq(1);  // 781.25kHz
+  Sensor.setProximityFreq(1);
   value = Sensor.readByte(REGISTER_PROXIMITY_TIMING) & B00011000;
   if (value >> 3 != 1) {
     Serial.print("Error in Proximity Freq, should be \"1\", value = \"");
-    Serial.print(value>>3);
+    Serial.print(value >> 3);
     Serial.println("\".");
-  }                           // if-then bad Proximity change
-  Sensor.setProximityFreq(2);  // 
+  }  // if-then bad Proximity change
+  Sensor.setProximityFreq(2);
   value = Sensor.readByte(REGISTER_PROXIMITY_TIMING) & B00011000;
-  if (value>>3 != 2) {
+  if (value >> 3 != 2) {
     Serial.print("Error in Proximity Freq, should be \"2\", value = \"");
-    Serial.print(value>>3);
+    Serial.print(value >> 3);
     Serial.println("\".");
   }  // if-then bad Proximity change
 
-  Sensor.setAmbientLight(5,5); 
+  Sensor.setAmbientLight(5, 5);
   value = Sensor.readByte(REGISTER_AMBIENT_PARAM) & B01110111;
   if (value != B1000010) {
     Serial.print("Error in Ambient, should be B1000010, value = \"");
-    Serial.print(value,BIN);
+    Serial.print(value, BIN);
     Serial.println("\".");
-  }                            // if-then bad Proximity change
-  Sensor.setAmbientLight(3,2);  //
+  }  // if-then bad Proximity change
+  Sensor.setAmbientLight(3, 2);
   value = Sensor.readByte(REGISTER_AMBIENT_PARAM) & B01110111;
   if (value != B100001) {
     Serial.print("Error in Ambient Freq, should be B100001, value = \"");
-    Serial.print(value,BIN);
+    Serial.print(value, BIN);
     Serial.println("\".");
   }  // if-then bad Proximity change
-  
-  Sensor.setLEDmA(200);  // Boost power to Proximity sensor
+
+  Sensor.setLEDmA(200);
   value = Sensor.readByte(REGISTER_LED_CURRENT);
-  Sensor.setLEDmA(100);  // Boost power to Proximity sensor
+  Sensor.setLEDmA(100);
   if (value == Sensor.readByte(REGISTER_LED_CURRENT) * 10) {
     Serial.print("Error in setting/reading LED current value \"");
     Serial.print(value);
     Serial.println("\".");
   }  // if-then bad LED change
 
-
-
-
-
-
   Serial.println("Finished Testing.");
 
-
-  
-//  Sensor.setAmbientContinuous();    // Use continuous readings
 }  // of method setup()
 
 void loop() {
