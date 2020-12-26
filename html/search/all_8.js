@@ -1,14 +1,7 @@
 var searchData=
 [
-  ['sensor',['Sensor',['../_check_distance_8ino.html#adf8e17d09e8ab1ee4d19e1c3730d88e8',1,'Sensor():&#160;CheckDistance.ino'],['../_display_measurements_8ino.html#adf8e17d09e8ab1ee4d19e1c3730d88e8',1,'Sensor():&#160;DisplayMeasurements.ino'],['../_wake_on_interrupt_8ino.html#adf8e17d09e8ab1ee4d19e1c3730d88e8',1,'Sensor():&#160;WakeOnInterrupt.ino']]],
-  ['serial_5fspeed',['SERIAL_SPEED',['../_check_distance_8ino.html#adc8430dea1bce949f10d9708742cca34',1,'SERIAL_SPEED():&#160;CheckDistance.ino'],['../_display_measurements_8ino.html#adc8430dea1bce949f10d9708742cca34',1,'SERIAL_SPEED():&#160;DisplayMeasurements.ino'],['../_wake_on_interrupt_8ino.html#adc8430dea1bce949f10d9708742cca34',1,'SERIAL_SPEED():&#160;WakeOnInterrupt.ino']]],
-  ['setambientcontinuous',['setAmbientContinuous',['../class_v_c_n_l4010.html#a1f9c3cfbd9b77fb629c7ad51ef8c7f3b',1,'VCNL4010']]],
-  ['setambientlight',['setAmbientLight',['../class_v_c_n_l4010.html#a0f1fedf12d4e2ede47bc70f81f2b870a',1,'VCNL4010']]],
-  ['setinterrupt',['setInterrupt',['../class_v_c_n_l4010.html#ab0c484791d83fd26f0053d07bddf2fc3',1,'VCNL4010']]],
-  ['setledma',['setLEDmA',['../class_v_c_n_l4010.html#a0f53d3ce3fc60a238a2b2e842f6fb680',1,'VCNL4010']]],
-  ['setproximitycontinuous',['setProximityContinuous',['../class_v_c_n_l4010.html#a18a38d8d28f53d831a66e01d239c0d0c',1,'VCNL4010']]],
-  ['setproximityfreq',['setProximityFreq',['../class_v_c_n_l4010.html#a4f5299760b0405018a938774179ab040',1,'VCNL4010']]],
-  ['setproximityhz',['setProximityHz',['../class_v_c_n_l4010.html#a098bc01e11b7d7eed66b1d0bc7d41421',1,'VCNL4010']]],
-  ['setup',['setup',['../_check_distance_8ino.html#a4fc01d736fe50cf5b977f755b675f11d',1,'setup():&#160;CheckDistance.ino'],['../_display_measurements_8ino.html#a4fc01d736fe50cf5b977f755b675f11d',1,'setup():&#160;DisplayMeasurements.ino'],['../_wake_on_interrupt_8ino.html#a4fc01d736fe50cf5b977f755b675f11d',1,'setup():&#160;WakeOnInterrupt.ino']]],
-  ['sleepvector',['sleepVector',['../_wake_on_interrupt_8ino.html#a6dacd5de21d6faa8aabcdc7c195143bd',1,'WakeOnInterrupt.ino']]]
+  ['percent_5fchange',['PERCENT_CHANGE',['../_wake_on_interrupt_8ino.html#a6f6be10aa709465b1b24175133ccb78f',1,'WakeOnInterrupt.ino']]],
+  ['percentage',['PERCENTAGE',['../_check_distance_8ino.html#a014714e4564c3371fab4b2abf954f9c8',1,'PERCENTAGE():&#160;CheckDistance.ino'],['../_display_measurements_8ino.html#a014714e4564c3371fab4b2abf954f9c8',1,'PERCENTAGE():&#160;DisplayMeasurements.ino']]],
+  ['proximity_5fdelta',['Proximity_Delta',['../_wake_on_interrupt_8ino.html#a23d10bd5831d11125a59cf4f78e3984e',1,'WakeOnInterrupt.ino']]],
+  ['proximity_5fvalue',['Proximity_Value',['../_wake_on_interrupt_8ino.html#ad87f18619e178cf7916a6b6758db3498',1,'WakeOnInterrupt.ino']]]
 ];

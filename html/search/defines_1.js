@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vcnl4010_5fh',['VCNL4010_h',['../_v_c_n_l4010_8h.html#a35a40d4764a8cd600d4a5d42e9c6564c',1,'VCNL4010.h']]]
+  ['i2c_5fmodes',['I2C_MODES',['../_v_c_n_l4010_8h.html#ab1ba09cc86d54a24a664eacdd9d30030',1,'VCNL4010.h']]]
 ];

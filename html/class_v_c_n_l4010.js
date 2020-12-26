@@ -10,11 +10,14 @@ var class_v_c_n_l4010 =
     [ "getAmbientLight", "class_v_c_n_l4010.html#a84b6b6398ea20cd4efb01733a14028df", null ],
     [ "getInterrupt", "class_v_c_n_l4010.html#a9d78388188bfc76a4e5bc4cbeca393cc", null ],
     [ "getProximity", "class_v_c_n_l4010.html#aeb2bdc031fc2c658bd89e3670d215d4e", null ],
+    [ "readByte", "class_v_c_n_l4010.html#a97fdbfeeaac31f2bd9809692d3bd54e7", null ],
+    [ "readWord", "class_v_c_n_l4010.html#a24cb4aef8ed1d209cfc1e2a04eb635b3", null ],
     [ "setAmbientContinuous", "class_v_c_n_l4010.html#a1f9c3cfbd9b77fb629c7ad51ef8c7f3b", null ],
     [ "setAmbientLight", "class_v_c_n_l4010.html#a0f1fedf12d4e2ede47bc70f81f2b870a", null ],
     [ "setInterrupt", "class_v_c_n_l4010.html#ab0c484791d83fd26f0053d07bddf2fc3", null ],
     [ "setLEDmA", "class_v_c_n_l4010.html#a0f53d3ce3fc60a238a2b2e842f6fb680", null ],
     [ "setProximityContinuous", "class_v_c_n_l4010.html#a18a38d8d28f53d831a66e01d239c0d0c", null ],
-    [ "setProximityFreq", "class_v_c_n_l4010.html#a4f5299760b0405018a938774179ab040", null ],
-    [ "setProximityHz", "class_v_c_n_l4010.html#a098bc01e11b7d7eed66b1d0bc7d41421", null ]
+    [ "setProximityFreq", "class_v_c_n_l4010.html#ae5de327a61afcfc38fd9cfd1e01802d9", null ],
+    [ "setProximityHz", "class_v_c_n_l4010.html#a463eaac66a404654a8d857d66174ba50", null ],
+    [ "writeByte", "class_v_c_n_l4010.html#ac60da801d71510ec75e7152f95756d87", null ]
 ];

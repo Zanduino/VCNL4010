@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['arduino_20library_20header_20for_20the_20vcnl4010_20proximity_20detector',['Arduino Library Header for the VCNL4010 Proximity detector',['../index.html',1,'']]]
+  ['_5fbv',['_BV',['../_v_c_n_l4010_8h.html#a11643f271076024c395a93800b3d9546',1,'VCNL4010.h']]]
 ];

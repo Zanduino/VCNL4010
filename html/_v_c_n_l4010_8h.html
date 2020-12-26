@@ -106,6 +106,10 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a35a40d4764a8cd600d4a5d42e9c6564c">VCNL4010_h</a></td></tr>
 <tr class="memdesc:a35a40d4764a8cd600d4a5d42e9c6564c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Guard code definition for the <a class="el" href="class_v_c_n_l4010.html" title="Main class definition. ">VCNL4010</a> Library. <br /></td></tr>
 <tr class="separator:a35a40d4764a8cd600d4a5d42e9c6564c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11643f271076024c395a93800b3d9546"><td class="memItemLeft" align="right" valign="top"><a id="a11643f271076024c395a93800b3d9546"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a11643f271076024c395a93800b3d9546">_BV</a>(bit)&#160;&#160;&#160;(1 &lt;&lt; (bit))</td></tr>
+<tr class="memdesc:a11643f271076024c395a93800b3d9546"><td class="mdescLeft">&#160;</td><td class="mdescRight">This macro isn't pre-defined on all platforms. <br /></td></tr>
+<tr class="separator:a11643f271076024c395a93800b3d9546"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1ba09cc86d54a24a664eacdd9d30030"><td class="memItemLeft" align="right" valign="top"><a id="ab1ba09cc86d54a24a664eacdd9d30030"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#ab1ba09cc86d54a24a664eacdd9d30030">I2C_MODES</a></td></tr>
 <tr class="memdesc:ab1ba09cc86d54a24a664eacdd9d30030"><td class="mdescLeft">&#160;</td><td class="mdescRight">Guard code definition for the various I2C modes. <br /></td></tr>
@@ -129,74 +133,102 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a4fa63c7d7ea29d06b825a86baa622b2b">I2C_HIGH_SPEED_MODE</a> {3400000}</td></tr>
 <tr class="memdesc:a4fa63c7d7ea29d06b825a86baa622b2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turbo mode. <br /></td></tr>
 <tr class="separator:a4fa63c7d7ea29d06b825a86baa622b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59ef50a4e2e6331398bd757c896fce53"><td class="memItemLeft" align="right" valign="top"><a id="a59ef50a4e2e6331398bd757c896fce53"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a59ef50a4e2e6331398bd757c896fce53">VCNL4010_ADDRESS</a> {0x13}</td></tr>
-<tr class="memdesc:a59ef50a4e2e6331398bd757c896fce53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device address, fixed value. <br /></td></tr>
-<tr class="separator:a59ef50a4e2e6331398bd757c896fce53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5885a83f18fa909c2c4e004ac9bf99be"><td class="memItemLeft" align="right" valign="top"><a id="a5885a83f18fa909c2c4e004ac9bf99be"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a5885a83f18fa909c2c4e004ac9bf99be">VCNL4010_COMMAND_REG</a> {0x80}</td></tr>
-<tr class="memdesc:a5885a83f18fa909c2c4e004ac9bf99be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing commands. <br /></td></tr>
-<tr class="separator:a5885a83f18fa909c2c4e004ac9bf99be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf9f98f48b8bd20ad69f18ad04dd6ef0"><td class="memItemLeft" align="right" valign="top"><a id="abf9f98f48b8bd20ad69f18ad04dd6ef0"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#abf9f98f48b8bd20ad69f18ad04dd6ef0">VCNL4010_PRODUCT_REG</a> {0x81}</td></tr>
-<tr class="memdesc:abf9f98f48b8bd20ad69f18ad04dd6ef0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing product ID. <br /></td></tr>
-<tr class="separator:abf9f98f48b8bd20ad69f18ad04dd6ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0e3cc57ef313f363257f0fe39c2fb5c"><td class="memItemLeft" align="right" valign="top"><a id="aa0e3cc57ef313f363257f0fe39c2fb5c"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#aa0e3cc57ef313f363257f0fe39c2fb5c">VCNL4010_PROXIMITY_RATE_REG</a> {0x82}</td></tr>
-<tr class="memdesc:aa0e3cc57ef313f363257f0fe39c2fb5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing sampling rate. <br /></td></tr>
-<tr class="separator:aa0e3cc57ef313f363257f0fe39c2fb5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6f18b9be86f4f4d39fe4a025171b280"><td class="memItemLeft" align="right" valign="top"><a id="aa6f18b9be86f4f4d39fe4a025171b280"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#aa6f18b9be86f4f4d39fe4a025171b280">VCNL4010_LED_CURRENT_REG</a> {0x83}</td></tr>
-<tr class="memdesc:aa6f18b9be86f4f4d39fe4a025171b280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing IR LED mA. <br /></td></tr>
-<tr class="separator:aa6f18b9be86f4f4d39fe4a025171b280"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb400b95968221f08ce5024c0f17c377"><td class="memItemLeft" align="right" valign="top"><a id="abb400b95968221f08ce5024c0f17c377"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#abb400b95968221f08ce5024c0f17c377">VCNL4010_AMBIENT_PARAMETER_REG</a> {0x84}</td></tr>
-<tr class="memdesc:abb400b95968221f08ce5024c0f17c377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing ambient set. <br /></td></tr>
-<tr class="separator:abb400b95968221f08ce5024c0f17c377"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd2b40dcc9b7142aa5170cca2d84ccb5"><td class="memItemLeft" align="right" valign="top"><a id="afd2b40dcc9b7142aa5170cca2d84ccb5"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#afd2b40dcc9b7142aa5170cca2d84ccb5">VCNL4010_AMBIENT_LIGHT_REG</a> {0x85}</td></tr>
-<tr class="memdesc:afd2b40dcc9b7142aa5170cca2d84ccb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing ambient data. <br /></td></tr>
-<tr class="separator:afd2b40dcc9b7142aa5170cca2d84ccb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4708ae26f3a5ac879fbc1d662de5a55"><td class="memItemLeft" align="right" valign="top"><a id="ac4708ae26f3a5ac879fbc1d662de5a55"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#ac4708ae26f3a5ac879fbc1d662de5a55">VCNL4010_PROXIMITY_REG</a> {0x87}</td></tr>
-<tr class="memdesc:ac4708ae26f3a5ac879fbc1d662de5a55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing Proximity. <br /></td></tr>
-<tr class="separator:ac4708ae26f3a5ac879fbc1d662de5a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a151f05ac4af264b68efcb85cb18ce6be"><td class="memItemLeft" align="right" valign="top"><a id="a151f05ac4af264b68efcb85cb18ce6be"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a151f05ac4af264b68efcb85cb18ce6be">VCNL4010_INTERRUPT_REG</a> {0x89}</td></tr>
-<tr class="memdesc:a151f05ac4af264b68efcb85cb18ce6be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing Interrupts. <br /></td></tr>
-<tr class="separator:a151f05ac4af264b68efcb85cb18ce6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a555824c6e22cdd4e593e8dafa766d44f"><td class="memItemLeft" align="right" valign="top"><a id="a555824c6e22cdd4e593e8dafa766d44f"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a555824c6e22cdd4e593e8dafa766d44f">VCNL4010_LOW_THRESHOLD_MSB_REG</a> {0x8A}</td></tr>
-<tr class="memdesc:a555824c6e22cdd4e593e8dafa766d44f"><td class="mdescLeft">&#160;</td><td class="mdescRight">MSB of low threshold value. <br /></td></tr>
-<tr class="separator:a555824c6e22cdd4e593e8dafa766d44f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a41bc1b60bf2a95892796eab8510c4d"><td class="memItemLeft" align="right" valign="top"><a id="a4a41bc1b60bf2a95892796eab8510c4d"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a4a41bc1b60bf2a95892796eab8510c4d">VCNL4010_LOW_THRESHOLD_LSB_REG</a> {0x8B}</td></tr>
-<tr class="memdesc:a4a41bc1b60bf2a95892796eab8510c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">LSB of low threshold value. <br /></td></tr>
-<tr class="separator:a4a41bc1b60bf2a95892796eab8510c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a376505d94f74370cf0539da7a92f3bf6"><td class="memItemLeft" align="right" valign="top"><a id="a376505d94f74370cf0539da7a92f3bf6"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a376505d94f74370cf0539da7a92f3bf6">VCNL4010_HIGH_THRESHOLD_MSB_REG</a> {0x8C}</td></tr>
-<tr class="memdesc:a376505d94f74370cf0539da7a92f3bf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">MSB of high threshold value. <br /></td></tr>
-<tr class="separator:a376505d94f74370cf0539da7a92f3bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b42b4b407d095e679ff4849e9196f4b"><td class="memItemLeft" align="right" valign="top"><a id="a9b42b4b407d095e679ff4849e9196f4b"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a9b42b4b407d095e679ff4849e9196f4b">VCNL4010_HIGH_THRESHOLD_LSB_REG</a> {0x8D}</td></tr>
-<tr class="memdesc:a9b42b4b407d095e679ff4849e9196f4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">LSB of high threshold value. <br /></td></tr>
-<tr class="separator:a9b42b4b407d095e679ff4849e9196f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1d38f72cf313b32871abec8fa90b0b2"><td class="memItemLeft" align="right" valign="top"><a id="ae1d38f72cf313b32871abec8fa90b0b2"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#ae1d38f72cf313b32871abec8fa90b0b2">VCNL4010_INTERRUPT_STATUS_REG</a> {0x8E}</td></tr>
-<tr class="memdesc:ae1d38f72cf313b32871abec8fa90b0b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt status register. <br /></td></tr>
-<tr class="separator:ae1d38f72cf313b32871abec8fa90b0b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b65fddae4425ec439aacd421a6c25f2"><td class="memItemLeft" align="right" valign="top"><a id="a8b65fddae4425ec439aacd421a6c25f2"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a8b65fddae4425ec439aacd421a6c25f2">VCNL4010_PROXIMITY_TIMING_REG</a> {0x8F}</td></tr>
-<tr class="memdesc:a8b65fddae4425ec439aacd421a6c25f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing ProxTiming. <br /></td></tr>
-<tr class="separator:a8b65fddae4425ec439aacd421a6c25f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a976ed64caa2deabddf57f187e2de4162"><td class="memItemLeft" align="right" valign="top"><a id="a976ed64caa2deabddf57f187e2de4162"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a976ed64caa2deabddf57f187e2de4162">VCNL4010_I2C_ADDRESS</a> {0x13}</td></tr>
+<tr class="memdesc:a976ed64caa2deabddf57f187e2de4162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device address, fixed value. <br /></td></tr>
+<tr class="separator:a976ed64caa2deabddf57f187e2de4162"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1353ddb1346cb76e9370063df58148f3"><td class="memItemLeft" align="right" valign="top"><a id="a1353ddb1346cb76e9370063df58148f3"></a>
 const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a1353ddb1346cb76e9370063df58148f3">VCNL4010_PRODUCT_VERSION</a> {0x21}</td></tr>
 <tr class="memdesc:a1353ddb1346cb76e9370063df58148f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current product ID. <br /></td></tr>
 <tr class="separator:a1353ddb1346cb76e9370063df58148f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe58b2a5b3447233eb6b56250ea08400"><td class="memItemLeft" align="right" valign="top"><a id="afe58b2a5b3447233eb6b56250ea08400"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#afe58b2a5b3447233eb6b56250ea08400">VCNL4010_I2C_DELAY_MICROSECONDS</a> {200}</td></tr>
-<tr class="memdesc:afe58b2a5b3447233eb6b56250ea08400"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C Delay in communications. <br /></td></tr>
-<tr class="separator:afe58b2a5b3447233eb6b56250ea08400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9bb7e2128f9b79dbe4a7ad2fd3d4f28"><td class="memItemLeft" align="right" valign="top"><a id="af9bb7e2128f9b79dbe4a7ad2fd3d4f28"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#af9bb7e2128f9b79dbe4a7ad2fd3d4f28">VCNL4010_I2C_MS_DELAY</a> {200}</td></tr>
+<tr class="memdesc:af9bb7e2128f9b79dbe4a7ad2fd3d4f28"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C Delay in communications. <br /></td></tr>
+<tr class="separator:af9bb7e2128f9b79dbe4a7ad2fd3d4f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03204dc9921d89810e2c8738fec545b3"><td class="memItemLeft" align="right" valign="top"><a id="a03204dc9921d89810e2c8738fec545b3"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a03204dc9921d89810e2c8738fec545b3">REGISTER_CMD</a> {0x80}</td></tr>
+<tr class="memdesc:a03204dc9921d89810e2c8738fec545b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing commands. <br /></td></tr>
+<tr class="separator:a03204dc9921d89810e2c8738fec545b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9efb85f11e24187a277a7887953d507f"><td class="memItemLeft" align="right" valign="top"><a id="a9efb85f11e24187a277a7887953d507f"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a9efb85f11e24187a277a7887953d507f">REGISTER_PRODUCT</a> {0x81}</td></tr>
+<tr class="memdesc:a9efb85f11e24187a277a7887953d507f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing product ID. <br /></td></tr>
+<tr class="separator:a9efb85f11e24187a277a7887953d507f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba9528ac6092c6789f5752f74732a0c7"><td class="memItemLeft" align="right" valign="top"><a id="aba9528ac6092c6789f5752f74732a0c7"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#aba9528ac6092c6789f5752f74732a0c7">REGISTER_PROXIMITY_RATE</a> {0x82}</td></tr>
+<tr class="memdesc:aba9528ac6092c6789f5752f74732a0c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing sampling rate. <br /></td></tr>
+<tr class="separator:aba9528ac6092c6789f5752f74732a0c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f560317454f102c71e4dd3d1d20c4a0"><td class="memItemLeft" align="right" valign="top"><a id="a4f560317454f102c71e4dd3d1d20c4a0"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a4f560317454f102c71e4dd3d1d20c4a0">REGISTER_LED_CURRENT</a> {0x83}</td></tr>
+<tr class="memdesc:a4f560317454f102c71e4dd3d1d20c4a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing IR LED mA. <br /></td></tr>
+<tr class="separator:a4f560317454f102c71e4dd3d1d20c4a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0672c59cc9827f77e273c24bfdff092"><td class="memItemLeft" align="right" valign="top"><a id="ac0672c59cc9827f77e273c24bfdff092"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#ac0672c59cc9827f77e273c24bfdff092">REGISTER_AMBIENT_PARAM</a> {0x84}</td></tr>
+<tr class="memdesc:ac0672c59cc9827f77e273c24bfdff092"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing ambient set. <br /></td></tr>
+<tr class="separator:ac0672c59cc9827f77e273c24bfdff092"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85a705654b556816f2a898e31a09d659"><td class="memItemLeft" align="right" valign="top"><a id="a85a705654b556816f2a898e31a09d659"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a85a705654b556816f2a898e31a09d659">REGISTER_AMBIENT_LIGHT</a> {0x85}</td></tr>
+<tr class="memdesc:a85a705654b556816f2a898e31a09d659"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing ambient data. <br /></td></tr>
+<tr class="separator:a85a705654b556816f2a898e31a09d659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5db1605db06f7af2ee81fb724bb97afb"><td class="memItemLeft" align="right" valign="top"><a id="a5db1605db06f7af2ee81fb724bb97afb"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a5db1605db06f7af2ee81fb724bb97afb">REGISTER_PROXIMITY</a> {0x87}</td></tr>
+<tr class="memdesc:a5db1605db06f7af2ee81fb724bb97afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing Proximity. <br /></td></tr>
+<tr class="separator:a5db1605db06f7af2ee81fb724bb97afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f4c6b5818f8d59217218e9a1b1e17e1"><td class="memItemLeft" align="right" valign="top"><a id="a9f4c6b5818f8d59217218e9a1b1e17e1"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a9f4c6b5818f8d59217218e9a1b1e17e1">REGISTER_INTERRUPT</a> {0x89}</td></tr>
+<tr class="memdesc:a9f4c6b5818f8d59217218e9a1b1e17e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing Interrupts. <br /></td></tr>
+<tr class="separator:a9f4c6b5818f8d59217218e9a1b1e17e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a585740e675369b351d17f26fc454e9ec"><td class="memItemLeft" align="right" valign="top"><a id="a585740e675369b351d17f26fc454e9ec"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a585740e675369b351d17f26fc454e9ec">REGISTER_LOW_THRESH_MSB</a> {0x8A}</td></tr>
+<tr class="memdesc:a585740e675369b351d17f26fc454e9ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">MSB of low threshold value. <br /></td></tr>
+<tr class="separator:a585740e675369b351d17f26fc454e9ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a389e68452211a706e7833614d9c0828c"><td class="memItemLeft" align="right" valign="top"><a id="a389e68452211a706e7833614d9c0828c"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a389e68452211a706e7833614d9c0828c">REGISTER_LOW_THRESH_LSB</a> {0x8B}</td></tr>
+<tr class="memdesc:a389e68452211a706e7833614d9c0828c"><td class="mdescLeft">&#160;</td><td class="mdescRight">LSB of low threshold value. <br /></td></tr>
+<tr class="separator:a389e68452211a706e7833614d9c0828c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a940e9819021cb38ac8d4ee6e9239d4bf"><td class="memItemLeft" align="right" valign="top"><a id="a940e9819021cb38ac8d4ee6e9239d4bf"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a940e9819021cb38ac8d4ee6e9239d4bf">REGISTER_HIGH_THRESH_MSB</a> {0x8C}</td></tr>
+<tr class="memdesc:a940e9819021cb38ac8d4ee6e9239d4bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">MSB of high threshold value. <br /></td></tr>
+<tr class="separator:a940e9819021cb38ac8d4ee6e9239d4bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ae9f29353ab11f87201172ee002e704"><td class="memItemLeft" align="right" valign="top"><a id="a2ae9f29353ab11f87201172ee002e704"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a2ae9f29353ab11f87201172ee002e704">REGISTER_HIGH_THRESH_LSB</a> {0x8D}</td></tr>
+<tr class="memdesc:a2ae9f29353ab11f87201172ee002e704"><td class="mdescLeft">&#160;</td><td class="mdescRight">LSB of high threshold value. <br /></td></tr>
+<tr class="separator:a2ae9f29353ab11f87201172ee002e704"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1acaeec1eb4082018e86597302a32f3d"><td class="memItemLeft" align="right" valign="top"><a id="a1acaeec1eb4082018e86597302a32f3d"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a1acaeec1eb4082018e86597302a32f3d">REGISTER_INTERRUPT_STATUS</a> {0x8E}</td></tr>
+<tr class="memdesc:a1acaeec1eb4082018e86597302a32f3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt status register. <br /></td></tr>
+<tr class="separator:a1acaeec1eb4082018e86597302a32f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0900c206ce37d08d067ae9e2c7ce77c1"><td class="memItemLeft" align="right" valign="top"><a id="a0900c206ce37d08d067ae9e2c7ce77c1"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a0900c206ce37d08d067ae9e2c7ce77c1">REGISTER_PROXIMITY_TIMING</a> {0x8F}</td></tr>
+<tr class="memdesc:a0900c206ce37d08d067ae9e2c7ce77c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register containing ProxTiming. <br /></td></tr>
+<tr class="separator:a0900c206ce37d08d067ae9e2c7ce77c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa617845c3bf9436df40c59a737f43366"><td class="memItemLeft" align="right" valign="top"><a id="aa617845c3bf9436df40c59a737f43366"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#aa617845c3bf9436df40c59a737f43366">BIT_ALS_DATA_RDY</a> {6}</td></tr>
+<tr class="memdesc:aa617845c3bf9436df40c59a737f43366"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALS data ready bit. <br /></td></tr>
+<tr class="separator:aa617845c3bf9436df40c59a737f43366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e905972d3603e71c9380fa2c2467ff2"><td class="memItemLeft" align="right" valign="top"><a id="a1e905972d3603e71c9380fa2c2467ff2"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a1e905972d3603e71c9380fa2c2467ff2">BIT_PROX_DATA_RDY</a> {5}</td></tr>
+<tr class="memdesc:a1e905972d3603e71c9380fa2c2467ff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">PROX data ready bit. <br /></td></tr>
+<tr class="separator:a1e905972d3603e71c9380fa2c2467ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6457f9d733a2041ce66d0f74ab2bde0a"><td class="memItemLeft" align="right" valign="top"><a id="a6457f9d733a2041ce66d0f74ab2bde0a"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a6457f9d733a2041ce66d0f74ab2bde0a">BIT_ALS_OD</a> {4}</td></tr>
+<tr class="memdesc:a6457f9d733a2041ce66d0f74ab2bde0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">start On-Demand ALS reading bit <br /></td></tr>
+<tr class="separator:a6457f9d733a2041ce66d0f74ab2bde0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44c3cb6ad63e56aa086219192ce3c16a"><td class="memItemLeft" align="right" valign="top"><a id="a44c3cb6ad63e56aa086219192ce3c16a"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a44c3cb6ad63e56aa086219192ce3c16a">BIT_PROX_OD</a> {3}</td></tr>
+<tr class="memdesc:a44c3cb6ad63e56aa086219192ce3c16a"><td class="mdescLeft">&#160;</td><td class="mdescRight">start On-Demand PROX reading bit <br /></td></tr>
+<tr class="separator:a44c3cb6ad63e56aa086219192ce3c16a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18071484baa2a2b03465bfdc3ecf7176"><td class="memItemLeft" align="right" valign="top"><a id="a18071484baa2a2b03465bfdc3ecf7176"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a18071484baa2a2b03465bfdc3ecf7176">BIT_ALS_EN</a> {2}</td></tr>
+<tr class="memdesc:a18071484baa2a2b03465bfdc3ecf7176"><td class="mdescLeft">&#160;</td><td class="mdescRight">enable periodic ALS reading bit <br /></td></tr>
+<tr class="separator:a18071484baa2a2b03465bfdc3ecf7176"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b164eb8c60369799e8f565c08ec3695"><td class="memItemLeft" align="right" valign="top"><a id="a8b164eb8c60369799e8f565c08ec3695"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#a8b164eb8c60369799e8f565c08ec3695">BIT_PROX_EN</a> {1}</td></tr>
+<tr class="memdesc:a8b164eb8c60369799e8f565c08ec3695"><td class="mdescLeft">&#160;</td><td class="mdescRight">enable periodic PROX reading bit <br /></td></tr>
+<tr class="separator:a8b164eb8c60369799e8f565c08ec3695"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac40fbbcbf783708cd532ebfa931bfb"><td class="memItemLeft" align="right" valign="top"><a id="acac40fbbcbf783708cd532ebfa931bfb"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_v_c_n_l4010_8h.html#acac40fbbcbf783708cd532ebfa931bfb">BIT_SELFTIMED_EN</a> {0}</td></tr>
+<tr class="memdesc:acac40fbbcbf783708cd532ebfa931bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">enable periodic (self-timed) reading bit <br /></td></tr>
+<tr class="separator:acac40fbbcbf783708cd532ebfa931bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

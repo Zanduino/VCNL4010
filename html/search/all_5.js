@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['i2c_5ffast_5fmode',['I2C_FAST_MODE',['../_v_c_n_l4010_8h.html#a575b1d77d752156e2175f705573647b7',1,'VCNL4010.h']]],
-  ['i2c_5ffast_5fmode_5fplus_5fmode',['I2C_FAST_MODE_PLUS_MODE',['../_v_c_n_l4010_8h.html#af270b48deda721358069b9d029837aaa',1,'VCNL4010.h']]],
-  ['i2c_5fhigh_5fspeed_5fmode',['I2C_HIGH_SPEED_MODE',['../_v_c_n_l4010_8h.html#a4fa63c7d7ea29d06b825a86baa622b2b',1,'VCNL4010.h']]],
-  ['i2c_5fmodes',['I2C_MODES',['../_v_c_n_l4010_8h.html#ab1ba09cc86d54a24a664eacdd9d30030',1,'VCNL4010.h']]],
-  ['i2c_5fstandard_5fmode',['I2C_STANDARD_MODE',['../_v_c_n_l4010_8h.html#a348cbfad3423827f84b19829d91be1a7',1,'VCNL4010.h']]]
+  ['getambientlight',['getAmbientLight',['../class_v_c_n_l4010.html#a84b6b6398ea20cd4efb01733a14028df',1,'VCNL4010']]],
+  ['getinterrupt',['getInterrupt',['../class_v_c_n_l4010.html#a9d78388188bfc76a4e5bc4cbeca393cc',1,'VCNL4010']]],
+  ['getproximity',['getProximity',['../class_v_c_n_l4010.html#aeb2bdc031fc2c658bd89e3670d215d4e',1,'VCNL4010']]],
+  ['green_5fled_5fpin',['GREEN_LED_PIN',['../_wake_on_interrupt_8ino.html#a4cc57301563e3c5c906dbad9f19a7d94',1,'WakeOnInterrupt.ino']]]
 ];
