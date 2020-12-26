@@ -76,6 +76,9 @@ Version| Date       | Developer  | Comments
 #ifndef VCNL4010_h    // Guard code definition
 /*! @brief Guard code definition for the VCNL4010 Library */
 #define VCNL4010_h  // Define the name inside guard code
+#ifndef _BV
+#define _BV(bit) (1 << (bit))  ///< This macro isn't pre-defined on all platforms
+#endif
 /********************************************
 ** Declare all constants used in the class **
 ********************************************/
@@ -87,23 +90,31 @@ const uint32_t I2C_FAST_MODE{400000};             ///< Fast mode
 const uint32_t I2C_FAST_MODE_PLUS_MODE{1000000};  ///< Really fast mode
 const uint32_t I2C_HIGH_SPEED_MODE{3400000};      ///< Turbo mode
 #endif
-const uint8_t VCNL4010_ADDRESS{0x13};                 ///< Device address, fixed value
-const uint8_t VCNL4010_COMMAND_REG{0x80};             ///< Register containing commands
-const uint8_t VCNL4010_PRODUCT_REG{0x81};             ///< Register containing product ID
-const uint8_t VCNL4010_PROXIMITY_RATE_REG{0x82};      ///< Register containing sampling rate
-const uint8_t VCNL4010_LED_CURRENT_REG{0x83};         ///< Register containing IR LED mA
-const uint8_t VCNL4010_AMBIENT_PARAMETER_REG{0x84};   ///< Register containing ambient set
-const uint8_t VCNL4010_AMBIENT_LIGHT_REG{0x85};       ///< Register containing ambient data
-const uint8_t VCNL4010_PROXIMITY_REG{0x87};           ///< Register containing Proximity
-const uint8_t VCNL4010_INTERRUPT_REG{0x89};           ///< Register containing Interrupts
-const uint8_t VCNL4010_LOW_THRESHOLD_MSB_REG{0x8A};   ///< MSB of low threshold value
-const uint8_t VCNL4010_LOW_THRESHOLD_LSB_REG{0x8B};   ///< LSB of low threshold value
-const uint8_t VCNL4010_HIGH_THRESHOLD_MSB_REG{0x8C};  ///< MSB of high threshold value
-const uint8_t VCNL4010_HIGH_THRESHOLD_LSB_REG{0x8D};  ///< LSB of high threshold value
-const uint8_t VCNL4010_INTERRUPT_STATUS_REG{0x8E};    ///< Interrupt status register
-const uint8_t VCNL4010_PROXIMITY_TIMING_REG{0x8F};    ///< Register containing ProxTiming
-const uint8_t VCNL4010_PRODUCT_VERSION{0x21};         ///< Current product ID
-const uint8_t VCNL4010_I2C_DELAY_MICROSECONDS{200};   ///< I2C Delay in communications
+const uint8_t VCNL4010_I2C_ADDRESS{0x13};       ///< Device address, fixed value
+const uint8_t VCNL4010_PRODUCT_VERSION{0x21};   ///< Current product ID
+const uint8_t VCNL4010_I2C_MS_DELAY{200};       ///< I2C Delay in communications
+const uint8_t REGISTER_CMD{0x80};               ///< Register containing commands
+const uint8_t REGISTER_PRODUCT{0x81};           ///< Register containing product ID
+const uint8_t REGISTER_PROXIMITY_RATE{0x82};    ///< Register containing sampling rate
+const uint8_t REGISTER_LED_CURRENT{0x83};       ///< Register containing IR LED mA
+const uint8_t REGISTER_AMBIENT_PARAM{0x84};     ///< Register containing ambient set
+const uint8_t REGISTER_AMBIENT_LIGHT{0x85};     ///< Register containing ambient data
+const uint8_t REGISTER_PROXIMITY{0x87};         ///< Register containing Proximity
+const uint8_t REGISTER_INTERRUPT{0x89};         ///< Register containing Interrupts
+const uint8_t REGISTER_LOW_THRESH_MSB{0x8A};    ///< MSB of low threshold value
+const uint8_t REGISTER_LOW_THRESH_LSB{0x8B};    ///< LSB of low threshold value
+const uint8_t REGISTER_HIGH_THRESH_MSB{0x8C};   ///< MSB of high threshold value
+const uint8_t REGISTER_HIGH_THRESH_LSB{0x8D};   ///< LSB of high threshold value
+const uint8_t REGISTER_INTERRUPT_STATUS{0x8E};  ///< Interrupt status register
+const uint8_t REGISTER_PROXIMITY_TIMING{0x8F};  ///< Register containing ProxTiming
+const uint8_t BIT_ALS_DATA_RDY{6};              ///< ALS data ready bit
+const uint8_t BIT_PROX_DATA_RDY{5};             ///< PROX data ready bit
+const uint8_t BIT_ALS_OD{4};                    ///< start On-Demand ALS reading bit
+const uint8_t BIT_PROX_OD{3};                   ///< start On-Demand PROX reading bit
+const uint8_t BIT_ALS_EN{2};                    ///< enable periodic ALS reading bit
+const uint8_t BIT_PROX_EN{1};                   ///< enable periodic PROX reading bit
+const uint8_t BIT_SELFTIMED_EN{0};              ///< enable periodic (self-timed) reading bit
+
 class VCNL4010 {
  public:
   /*!
@@ -112,14 +123,14 @@ class VCNL4010 {
    */
   VCNL4010();
   ~VCNL4010();
-  bool     begin(void);                                      // Overloaded just device address
-  bool     begin(const uint8_t deviceAddress);               // Overloaded just device address
-  bool     begin(const uint32_t i2CSpeed);                   // Overloaded just speed
-  bool     begin(const uint8_t  deviceAddress,               // Start I2C communications
-                 const uint32_t i2CSpeed);                   // specifying both parameters
-  void     setProximityHz(const uint8_t Hz = 2) const;       // Set proximity Hz sampling rate
-  void     setLEDmA(const uint8_t mA = 20) const;            // Set milliamperes used by IR LED
-  void     setProximityFreq(const uint8_t value = 0) const;  // Set Frequency value from list
+  bool     begin(void);                                // Overloaded just device address
+  bool     begin(const uint8_t deviceAddress);         // Overloaded just device address
+  bool     begin(const uint32_t i2CSpeed);             // Overloaded just speed
+  bool     begin(const uint8_t  deviceAddress,         // Start I2C communications
+                 const uint32_t i2CSpeed);             // specifying both parameters
+  void     setProximityHz(const uint8_t Hz = 2);       // Set proximity Hz sampling rate
+  void     setLEDmA(const uint8_t mA = 20) const;      // Set milliamperes used by IR LED
+  void     setProximityFreq(const uint8_t value = 0);  // Set Frequency value from list
   void     setAmbientLight(const uint8_t sample = 2,
                            const uint8_t avg    = 32) const;           // Set samples and avg
   void     setAmbientContinuous(const bool ContinuousMode = true);  // Cont. Ambient sampling on/off
@@ -132,12 +143,13 @@ class VCNL4010 {
   uint16_t getProximity() const;                            // Retrieve proximity reading
   uint8_t  getInterrupt() const;                            // Retrieve Interrupt bits
   void     clearInterrupt(const uint8_t intVal = 0) const;  // Clear Interrupt bits
- private:
   uint8_t  readByte(const uint8_t addr) const;
   uint16_t readWord(const uint8_t addr) const;
   void     writeByte(const uint8_t addr, const uint8_t data) const;
-  bool     _ContinuousAmbient   = false;             // If mode turned on for Ambient readings
-  bool     _ContinuousProximity = false;             // If mode turned on for Proximity readings
-  uint8_t  _I2Caddress          = VCNL4010_ADDRESS;  // Default to standard I2C address
-};                                                   // of VCNL4010 class definition
+
+ private:
+  bool    _ContinuousAmbient   = false;                 // If mode turned on for Ambient readings
+  bool    _ContinuousProximity = false;                 // If mode turned on for Proximity readings
+  uint8_t _I2Caddress          = VCNL4010_I2C_ADDRESS;  // Default to standard I2C address
+};                                                      // of VCNL4010 class definition
 #endif
