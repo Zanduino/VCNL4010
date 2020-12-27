@@ -37,12 +37,13 @@ received a copy of the GNU General Public License along with this program.  If n
 
  @section DisplayMeasurements_versions Changelog
 
- Version| Date       | Developer  | Comments
- ------ | ---------- | ---------- | --------
-1.0.3   | 2017-09-02 | SV-Zanshin | Added serial handling of Arduino micro initialisation
-1.0.2   | 2017-09-01 | SV-Zanshin | Removed F() flash macro - uneeded here and confusing to some
-1.0.1   | 2017-07-11 | SV-Zanshin | Refactored variables to standard c++ nomenclature
-1.0.0   | 2017-01-02 | SV-Zanshin | Added PERCENTAGE constant and program description
+| Version | Date       | Developer  | Comments                                                     |
+| ------  | ---------- | ---------- | ------------------------------------------------------------ |
+| 1.0.4   | 2020-12-27 | SV-Zanshin | Refactored code and made more legible                        |
+| 1.0.3   | 2017-09-02 | SV-Zanshin | Added serial handling of Arduino micro initialisation        |
+| 1.0.2   | 2017-09-01 | SV-Zanshin | Removed F() flash macro - uneeded here and confusing to some |
+| 1.0.1   | 2017-07-11 | SV-Zanshin | Refactored variables to standard c++ nomenclature            |
+| 1.0.0   | 2017-01-02 | SV-Zanshin | Added PERCENTAGE constant and program description            |
 
 */
 #include "VCNL4010.h"  // Include the library
@@ -66,9 +67,9 @@ void setup() {
     @return   void
   */
   Serial.begin(SERIAL_SPEED);  // Start serial port at Baud rate
-#ifdef __AVR_ATmega32U4__      // If we are a 32U4 processor, then
-  delay(2000);                 // wait 2 seconds for initialization
-#endif                         // and then continue
+#ifdef __AVR_ATmega32U4__      // If we are a 32U4 processor, then wait for initialization
+  delay(2000);
+#endif
   Serial.println("Starting VCNL4010 display measurements program");
   while (!Sensor.begin()) {  // Loop until sensor found
     Serial.println("Error, unable to find or identify VCNL4010.\nChecking again in 5 seconds...");

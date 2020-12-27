@@ -49,8 +49,8 @@ void setup() {
               never returns
     @return   void
   */
-  Serial.begin(SERIAL_SPEED);  // Start serial port at Baud rate
-#ifdef __AVR_ATmega32U4__      // If we are a 32U4 processor, then wait a bit
+  Serial.begin(SERIAL_SPEED);  // Start serial port at the specified baud rate
+#ifdef __AVR_ATmega32U4__      // If we are a 32U4 processor, then wait for the interface to start
   delay(2000);
 #endif
   Serial.println("Starting VCNL4010 regression test program");
@@ -114,8 +114,9 @@ void setup() {
     Serial.println("\".");
   }  // if-then bad LED change
 
-  Serial.println("Finished Testing.");
+  uint16_t i = Sensor.getProximity();
 
+  Serial.println("Finished Testing.");
 }  // of method setup()
 
 void loop() {

@@ -123,14 +123,21 @@ class VCNL4010 {
    */
   VCNL4010();
   ~VCNL4010();
-  bool     begin(void);                                // Overloaded just device address
-  bool     begin(const uint8_t deviceAddress);         // Overloaded just device address
-  bool     begin(const uint32_t i2CSpeed);             // Overloaded just speed
-  bool     begin(const uint8_t  deviceAddress,         // Start I2C communications
-                 const uint32_t i2CSpeed);             // specifying both parameters
-  void     setProximityHz(const uint8_t Hz = 2);       // Set proximity Hz sampling rate
-  void     setLEDmA(const uint8_t mA = 20) const;      // Set milliamperes used by IR LED
-  void     setProximityFreq(const uint8_t value = 0);  // Set Frequency value from list
+  bool     begin(void);                                     // Overloaded just device address
+  bool     begin(const uint8_t deviceAddress);              // Overloaded just device address
+  bool     begin(const uint32_t &i2CSpeed);                 // Overloaded just speed
+  bool     begin(const uint8_t   deviceAddress,             // Start I2C communications
+                 const uint32_t &i2CSpeed);                 // specifying both parameters
+  void     setProximityHz(const uint8_t Hz = 2);            // Set proximity Hz sampling rate
+  void     setLEDmA(const uint8_t mA = 20) const;           // Set milliamperes used by IR LED
+  void     setProximityFreq(const uint8_t value = 0);       // Set Frequency value from list
+  uint16_t getAmbientLight() const;                         // Retrieve ambient light reading
+  uint16_t getProximity() const;                            // Retrieve proximity reading
+  uint8_t  getInterrupt() const;                            // Retrieve Interrupt bits
+  void     clearInterrupt(const uint8_t intVal = 0) const;  // Clear Interrupt bits
+  uint8_t  readByte(const uint8_t addr) const;              // Read a single byte from device
+  uint16_t readWord(const uint8_t addr) const;              // Read two bytes from device
+  void     writeByte(const uint8_t addr, const uint8_t data) const;  // Write a byte to device
   void     setAmbientLight(const uint8_t sample = 2,
                            const uint8_t avg    = 32) const;           // Set samples and avg
   void     setAmbientContinuous(const bool ContinuousMode = true);  // Cont. Ambient sampling on/off
@@ -139,13 +146,6 @@ class VCNL4010 {
                         const bool ALSReady = false, const bool ProxThreshold = false,
                         const bool ALSThreshold = false, const uint16_t lowThreshold = 0,
                         const uint16_t highThreshold = UINT16_MAX) const;
-  uint16_t getAmbientLight() const;                         // Retrieve ambient light reading
-  uint16_t getProximity() const;                            // Retrieve proximity reading
-  uint8_t  getInterrupt() const;                            // Retrieve Interrupt bits
-  void     clearInterrupt(const uint8_t intVal = 0) const;  // Clear Interrupt bits
-  uint8_t  readByte(const uint8_t addr) const;
-  uint16_t readWord(const uint8_t addr) const;
-  void     writeByte(const uint8_t addr, const uint8_t data) const;
 
  private:
   bool    _ContinuousAmbient   = false;                 // If mode turned on for Ambient readings

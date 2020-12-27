@@ -16,7 +16,7 @@ VCNL4010::~VCNL4010() { /*!
                          * @details Class Destructor for VCNL4010 destroys the class. Unused
                          */
 }
-bool VCNL4010::begin(const uint8_t deviceAddress, const uint32_t i2CSpeed) {
+bool VCNL4010::begin(const uint8_t deviceAddress, const uint32_t &i2CSpeed) {
   /*!
     @brief     Starts the I2C communications with the VCNL4010 (overloaded)
     @details   This is the only overloaded begin() that actually starts the device and initializes
@@ -44,15 +44,18 @@ bool VCNL4010::begin(const uint8_t deviceAddress, const uint32_t i2CSpeed) {
   if (commandRegister & _BV(BIT_PROX_DATA_RDY)) {
     readWord(REGISTER_PROXIMITY);  // ignore any data, used to clear flag
   }                                // of if-then an PROX reading is ready
+  /*****************************************************************
+  ** Then explicitly set default values directly to all registers **
+  *****************************************************************/
+  writeByte(REGISTER_PROXIMITY_RATE, 0);         // 1.95 measurements per second
+  writeByte(REGISTER_LED_CURRENT, 2);            // 20mA
+  writeByte(REGISTER_AMBIENT_LIGHT, B00011101);  // 2 samples/s, 32 averaged
+  writeByte(REGISTER_PROXIMITY_TIMING, 1);       // no delay, 1 dead time, 390.625kHz
+  writeByte(REGISTER_INTERRUPT, 0);              // turn off interrupts
   /********************************************
   ** Now trigger one reading for both values **
   ********************************************/
   writeByte(REGISTER_CMD, _BV(BIT_ALS_OD) | _BV(BIT_PROX_OD));
-  setProximityHz(2);       // Default 2Hz proximity rate
-  setLEDmA(20);            // Default 20mA IR LED power
-  setAmbientLight(2, 32);  // Default 2/sec and 32 averaged
-  setProximityFreq();      // Default to 390kHz frequency
-  setInterrupt();          // Default to no interrupts
   return true;
 }  // of method begin()
 bool VCNL4010::begin(void) {
@@ -72,7 +75,7 @@ bool VCNL4010::begin(const uint8_t deviceAddress) {
   */
   return begin(deviceAddress, I2C_STANDARD_MODE);
 }  // of overloaded method begin()
-bool VCNL4010::begin(const uint32_t i2CSpeed) {
+bool VCNL4010::begin(const uint32_t &i2CSpeed) {
   /*!
     @brief     Starts the I2C communications with the VCNL4010 (overloaded)
     @details   Uses the default VCNL4010_I2C_ADDRESS address specified
@@ -129,17 +132,18 @@ void VCNL4010::setProximityHz(const uint8_t Hz) {
   /*!
     @brief     set the frequency with which the proximity sensor pulses are sent/read
     @details   The only values that the VCNL4010 can be set to are:\n
-    Bits  | Measurements/S
-    ----- | --------------
-    000   | 1.95 (DEFAULT)
-    001   | 3.90625
-    010   | 7.8125
-    011   | 16.625
-    100   | 31.25
-    101   | 62.5
-    110   | 125
-    111   | 250
-    These roughly equate to Hz (2,4,8,16,32,64,128 and 256)
+               | Bits  | Measurements/S |
+               | ----- | -------------- |
+               | 000   | 1.95 (DEFAULT) |
+               | 001   | 3.90625        |
+               | 010   | 7.8125         |
+               | 011   | 16.625         |
+               | 100   | 31.25          |
+               | 101   | 62.5           |
+               | 110   | 125            |
+               | 111   | 250            |
+
+               These roughly equate to Hz (2,4,8,16,32,64,128 and 256)
     @param[in] Hz Herz code value, described in details
   */
   uint8_t setValue{0};  // temp variable for sampling rate
@@ -157,10 +161,10 @@ void VCNL4010::setProximityHz(const uint8_t Hz) {
     setValue = 2;
   else if (Hz >= 4)
     setValue = 1;
-  /**********************************************************************************************
-  ** Can only be changed if BIT_SELFTIMED_EN is turned off and the            **
-  ** BIT_PROX_OD is switched off by the device upon getting a reading         **
-  **********************************************************************************************/
+  /*************************************************************************************************
+  ** Can only be changed if BIT_SELFTIMED_EN is turned off and the BIT_PROX_OD is switched off by **
+  ** the device upon getting a reading                                                            **
+  *************************************************************************************************/
   bool commandRegister = readByte(REGISTER_CMD);  // store current setting
   if (commandRegister & _BV(BIT_SELFTIMED_EN)) {
     writeByte(REGISTER_CMD, commandRegister & ~_BV(BIT_SELFTIMED_EN));
@@ -213,13 +217,10 @@ void VCNL4010::setProximityFreq(const uint8_t value) {
 }  // of method setProximityFreq()
 void VCNL4010::setAmbientLight(const uint8_t sample, const uint8_t avg) const {
   /*!
-    @brief     Sets the number of samples taken per second and the number of samples averaged to
-    make a reading
-    @details   each reading takes only 300microseconds and the default period for a measurement is
-    100ms.
+    @brief     Number of samples to take per second and the number of samples averaged for a reading
+    @details   each reading takes 300microseconds and the default period for a measurement is 100ms
     @param[in] sample Samples to take per second
-    @param[in] avg Averages to take per reading (0-128, rounded internally to nearest correct
-    value)
+    @param[in] avg    Averages to take per reading (0-128, rounded to nearest correct value)
   */
   uint8_t workAvg{0};               // work variable
   uint8_t workSample = sample - 1;  // subtract one for offset
@@ -272,15 +273,13 @@ uint16_t VCNL4010::getAmbientLight() const {
     results we just need to wait for a result to come back.
     @return unsigned integer 16 measurement value
   */
-  uint8_t commandBuffer{0};                                 // store register value
-  while ((commandBuffer & B01000000) == 0)                  // Loop until we have a result
-    commandBuffer = readByte(REGISTER_CMD);                 // get the register contents again
+  while ((readByte(REGISTER_CMD) & _BV(BIT_ALS_DATA_RDY)) == 0) {  // Loop until bit is set
+  }
   uint16_t returnValue = readWord(REGISTER_AMBIENT_LIGHT);  // retrieve the reading
   if (!_ContinuousAmbient)                                  // Only trigger if not continuous
   {
-    commandBuffer |= B00010000;              // Trigger ambient measurement
-    writeByte(REGISTER_CMD, commandBuffer);  // Set trigger for next reading
-  }                                          // of if-then Continuous mode turned on
+    writeByte(REGISTER_CMD, readByte(REGISTER_CMD) | _BV(BIT_ALS_OD));  // Trigger for next reading
+  }  // of if-then Continuous mode turned on
   return returnValue;
 }  // of method getAmbientLight()
 uint16_t VCNL4010::getProximity() const {
@@ -290,15 +289,13 @@ uint16_t VCNL4010::getProximity() const {
     results we just need to wait for a result to come back.
     @return unsigned integer 16 measurement value
   */
-  uint8_t commandBuffer{0};                             // store register value
-  while ((commandBuffer & B00100000) == 0)              // Loop until we have a result
-    commandBuffer = readByte(REGISTER_CMD);             // get the register contents again
+  while ((readByte(REGISTER_CMD) & _BV(BIT_PROX_DATA_RDY)) == 0) {  // Loop until bit is set
+  }
   uint16_t returnValue = readWord(REGISTER_PROXIMITY);  // retrieve the reading
   if (!_ContinuousProximity)                            // Only trigger if not continuous
   {
-    commandBuffer |= B00001000;              // Trigger proximity measurement
-    writeByte(REGISTER_CMD, commandBuffer);  // Set trigger for next reading
-  }                                          // of if-then Continuous mode turned on
+    writeByte(REGISTER_CMD, readByte(REGISTER_CMD) | _BV(BIT_PROX_OD));  // Trigger for next reading
+  }  // of if-then Continuous mode turned on
   return returnValue;
 }  // of method getProximity()
 uint8_t VCNL4010::getInterrupt() const {
@@ -310,8 +307,7 @@ uint8_t VCNL4010::getInterrupt() const {
                Bit 0 - high threshold interrupt\n
     @return unsigned integer 8, only 4 LSB bits are set
   */
-  return readByte(REGISTER_INTERRUPT_STATUS) &
-         B0001111;  // get the register contents and mask unused bits
+  return readByte(REGISTER_INTERRUPT_STATUS) & B0001111;  // get register and mask unused bits
 }  // of method getInterrupt()
 void VCNL4010::clearInterrupt(const uint8_t intVal) const {
   /*!
@@ -397,7 +393,6 @@ void VCNL4010::setAmbientContinuous(const bool ContinuousMode) {
   }                                                             // of if-then-else we are turning on
   writeByte(REGISTER_CMD, cmdBuf);                              // Write value back to register
 }  // of method setAmbientContinuous()
-
 void VCNL4010::setProximityContinuous(const bool ContinuousMode) {
   /*!
     @brief     Sets or unsets the continuous measurement mode for the proximity sensor
