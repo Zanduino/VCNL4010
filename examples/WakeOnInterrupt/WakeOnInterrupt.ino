@@ -40,7 +40,7 @@ Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 
 | Version | Date       | Developer  | Comments                                                     |
 | ------- | ---------- | ---------- | ------------------------------------------------------------ |
-| 1.0.5   | 2020-12-28 | SV-Zanshin | Added #error check for non-AVR hardware                      |
+| 1.0.5   | 2020-12-28 | SV-Zanshin | Added error check for non-AVR hardware                       |
 | 1.0.4   | 2020-12-10 | SV-Zanshin | Reformatted with clang-format and added doxygen              |
 | 1.0.3   | 2018-09-29 | SV-Zanshin | Cleaned up comments                                          |
 | 1.0.2   | 2017-09-02 | SV-Zanshin | Removed F() flash macro. It was confusing for some           |
@@ -49,9 +49,7 @@ Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 */
 
 #ifndef __AVR__
-/// @cond
 #error This program uses interrupts directly and has only been tested on Atmel AVR processors and may not work on other hardware. If you wish to test this, please comment out this line and give it a try.
-/// @endcond
 #endif
 #include <avr/sleep.h>  // Sleep mode Library
 
