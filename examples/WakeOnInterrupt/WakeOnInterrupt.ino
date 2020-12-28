@@ -38,15 +38,19 @@ Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 
 @section I2CDemoversions Changelog
 
-Version | Date       | Developer  | Comments
-------- | ---------- | ---------- | ---------------------------------------------
-1.0.4   | 2020-12-10 | SV-Zanshin |  Reformatted with clang-format and added doxygen
-1.0.3   | 2018-09-29 | SV-Zanshin |  Cleaned up comments
-1.0.2   | 2017-09-02 | SV-Zanshin |  Removed F() flash macro - uneeded here and confusing to some
-1.0.1   | 2017-08-30 | SV-Zanshin |  Added version information
+| Version | Date       | Developer  | Comments                                                     |
+| ------- | ---------- | ---------- | ------------------------------------------------------------ |
+| 1.0.5   | 2020-12-28 | SV-Zanshin | Added #error check for non-AVR hardware                      |
+| 1.0.4   | 2020-12-10 | SV-Zanshin | Reformatted with clang-format and added doxygen              |
+| 1.0.3   | 2018-09-29 | SV-Zanshin | Cleaned up comments                                          |
+| 1.0.2   | 2017-09-02 | SV-Zanshin | Removed F() flash macro. It was confusing for some           |
+| 1.0.1   | 2017-08-30 | SV-Zanshin | Added version information                                    |
 
 */
 
+#ifndef __AVR__
+#error This program uses interrupts directly and has only been tested on Atmel AVR processors and may not work on other hardware. If you wish to test this, please comment out this line and give it a try.
+#endif
 #include <avr/sleep.h>  // Sleep mode Library
 
 #include "VCNL4010.h"  // Include the library
@@ -89,8 +93,8 @@ void setup() {
   pinMode(WAKE_UP_PIN, INPUT);        // Pin is attached to VCNL4010 INT
   Serial.begin(SERIAL_SPEED);         // Start serial comms at set Baud
 #ifdef __AVR_ATmega32U4__             // If we are a 32U4 processor, then
-  delay(2000);                        // and wait 2 seconds
-#endif                                // and then continue
+  delay(2000);  // and wait 2 seconds
+#endif          // and then continue
   Serial.println("Starting VCNL4010 WakeOnInterrupt program");
   while (!Sensor.begin())  // Loop until sensor found
   {

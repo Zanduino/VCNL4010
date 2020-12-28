@@ -51,24 +51,24 @@ Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 
 @section VCNL4010_versions Changelog
 
-Version| Date       | Developer  | Comments
------- | ---------- | ---------- | --------------------------------------------------------------
-1.1.0  | 2020-12-25 | SV-Zanshin | Issue #14 - Corrected I2C reads, cleaned up examples
-1.0.8  | 2019-01-24 | SV-Zanshin | Issue  #9 - Doxygen Documentation and Travis-CI changes
-1.0.8  | 2018-07-22 | SV-Zanshin | Corrected I2C Datatypes
-1.0.8  | 2018-07-02 | SV-Zanshin | Added guard code against multiple I2C constant definitions
-1.0.8  | 2018-06-29 | SV-Zanshin | Issue #8 I2C speed slct
-1.0.5  | 2017-09-02 | SV-Zanshin | Added option to begin() to allow for different I2C Address
-1.0.5c | 2017-09-01 | SV-Zanshin | Re-introduced 170?s delay in I2C read statements after hangs
-1.0.5b | 2017-08-31 | SV-Zanshin | Removed 170?s delay in I2C read statements
-1.0.5a | 2017-08-31 | Koepel     | Issue #4
-1.0.4  | 2017-08-29 | SV-Zanshin | Changed method on I2C reads to avoid hang w/out extra call
-1.0.3a | 2017-08-29 | Danny24    | Corrected potential I2C hang condition when no device present
-1.0.2  | 2017-07-31 | SV-Zanshin | Removed default definitions from function definitions, kept them in the prototype definitions as this caused compiler errors on non-Windows based machines
-1.0.1  | 2017-01-02 | SV-Zanshin | Moved readByte function back into private area
-1.0.0  | 2017-01-01 | SV-Zanshin | Fixed error on continuous mode with proximity
-1.0.b2 | 2016-12-31 | SV-Zanshin | Continued coding
-1.0.b1 | 2016-12-30 | SV-Zanshin | Created class
+| Version| Date       | Developer  | Comments                                                      |
+| ------ | ---------- | ---------- | ------------------------------------------------------------- |
+| 1.1.0  | 2020-12-25 | SV-Zanshin | Issue #14 - Corrected I2C reads, cleaned up examples          |
+| 1.0.8  | 2019-01-24 | SV-Zanshin | Issue  #9 - Doxygen Documentation and Travis-CI changes       |
+| 1.0.8  | 2018-07-22 | SV-Zanshin | Corrected I2C Datatypes                                       |
+| 1.0.8  | 2018-07-02 | SV-Zanshin | Added guard code against multiple I2C constant definitions    |
+| 1.0.8  | 2018-06-29 | SV-Zanshin | Issue #8 I2C speed slct                                       |
+| 1.0.5  | 2017-09-02 | SV-Zanshin | Added option to begin() to allow for different I2C Address    |
+| 1.0.5c | 2017-09-01 | SV-Zanshin | Re-introduced 170?s delay in I2C read statements after hangs  |
+| 1.0.5b | 2017-08-31 | SV-Zanshin | Removed 170?s delay in I2C read statements                    |
+| 1.0.5a | 2017-08-31 | Koepel     | Issue #4                                                      |
+| 1.0.4  | 2017-08-29 | SV-Zanshin | Changed method on I2C reads to avoid hang w/out extra call    |
+| 1.0.3a | 2017-08-29 | Danny24    | Corrected potential I2C hang condition when no device present |
+| 1.0.2  | 2017-07-31 | SV-Zanshin | Removed default definitions from function definitions, kept them in the prototype definitions as this caused compiler errors on non-Windows based machines |
+| 1.0.1  | 2017-01-02 | SV-Zanshin | Moved readByte function back into private area                |
+| 1.0.0  | 2017-01-01 | SV-Zanshin | Fixed error on continuous mode with proximity                 |
+| 1.0.b2 | 2016-12-31 | SV-Zanshin | Continued coding                                              |
+| 1.0.b1 | 2016-12-30 | SV-Zanshin | Created class                                                 |
 */
 // clang-format on
 #include "Arduino.h"  // Arduino data type definitions
