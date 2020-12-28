@@ -49,7 +49,9 @@ Written by Arnd <Arnd@Zanduino.Com> at https://www.github.com/SV-Zanshin
 */
 
 #ifndef __AVR__
+/// @cond
 #error This program uses interrupts directly and has only been tested on Atmel AVR processors and may not work on other hardware. If you wish to test this, please comment out this line and give it a try.
+/// @endcond
 #endif
 #include <avr/sleep.h>  // Sleep mode Library
 
@@ -92,9 +94,9 @@ void setup() {
   digitalWrite(GREEN_LED_PIN, HIGH);  // Show that we've booted
   pinMode(WAKE_UP_PIN, INPUT);        // Pin is attached to VCNL4010 INT
   Serial.begin(SERIAL_SPEED);         // Start serial comms at set Baud
-#ifdef __AVR_ATmega32U4__             // If we are a 32U4 processor, then
-  delay(2000);  // and wait 2 seconds
-#endif          // and then continue
+#ifdef __AVR_ATmega32U4__             // If we are a 32U4 processor, then wait 2 seconds
+  delay(2000);
+#endif
   Serial.println("Starting VCNL4010 WakeOnInterrupt program");
   while (!Sensor.begin())  // Loop until sensor found
   {
